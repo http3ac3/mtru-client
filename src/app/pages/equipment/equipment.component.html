@@ -1,0 +1,144 @@
+<div class="h-full">
+    <div class="header m-0 p-0">
+        <mat-toolbar color="primary" class="">
+            <button mat-raised-button class="ml-2" color="" aria-label="">
+                Добавить информацию
+            </button>
+            <span class="example-spacer"></span>
+            <span>Иванов Иван Иванович</span>
+            <button mat-icon-button class="example-icon" aria-label="">
+              <mat-icon>account_circle</mat-icon>
+            </button>
+          </mat-toolbar>
+    </div>
+    <div class="tools flex ml-[25px] mt-[25px] mb-[25px]">
+        <div class="mr-[25px] ">
+            <button mat-raised-button>Главная</button>
+        </div>
+        <div class="mr-[25px] w-40">
+            <button mat-raised-button class="w-full">Категории</button>
+        </div>
+        <form class="flex w-full">
+            <div class="h-full w-full">
+                <input class="h-full w-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[25px]" placeholder="Поиск оборудования">
+            </div>
+            <div class="mr-[25px] ml-[25px]">
+                <button mat-raised-button>Найти</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="content flex">
+        <div class="filter-class h-[40%] ml-[25px] w-[250px] border-4 rounded-md p-2 mr-[25px]">
+            <mat-accordion multi>
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="">Начальная стоимость</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="flex">
+                        <div class="w-21 h-7 mr-[25px]">
+                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" placeholder="От">
+                        </div>
+                        <div class="w-21 h-7">
+                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" placeholder="До">
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+                
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="">Дата ввода в экплуатацию</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="flex">
+                        <div class="w-[100px] h-7 mr-[10px]">
+                            <!-- <label class="text-xs" for="commissioning-date-from">От</label> -->
+                            <input id="commissioning-date-from" 
+                            class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
+                            type="date" placeholder="От" required="" type="text" 
+                            onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                        </div>
+                        <div class="w-[100px] h-7">
+                            <!-- <label class="text-xs" for="commissioning-date-to">До</label> -->
+                            <input id="commissioning-date-to" 
+                            class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
+                            type="date" placeholder="До" required="" type="text" 
+                            onfocus="(this.type='date')" 
+                            onblur="if(this.value==''){this.type='text'}">
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+                
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="">Дата вывода из экплуатации</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="flex">
+                        <div class="w-[100px] h-7 mr-[10px]">
+                            <!-- <label class="text-xs" for="commissioning-date-from">От</label> -->
+                            <input id="commissioning-date-from" 
+                            class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
+                            type="date" placeholder="От" 
+                            required="" type="text" 
+                            onfocus="(this.type='date')" 
+                            onblur="if(this.value==''){this.type='text'}">
+                        </div>
+                        <div class="w-[100px] h-7">
+                            <!-- <label class="text-xs" for="commissioning-date-to">До</label> -->
+                            <input id="commissioning-date-to" 
+                            class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
+                            type="date" placeholder="До" 
+                            required="" type="text" 
+                            onfocus="(this.type='date')" 
+                            onblur="if(this.value==''){this.type='text'}">
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="">Номер акта о вводе в эксплуатацию</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="flex">
+                        <div class="w-full h-7 mr-[25px]">
+                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
+                            placeholder="Номер акта">
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="">Номер акта о выводе из эксплуатации</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="flex">
+                        <div class="w-full h-7 mr-[25px]">
+                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
+                            placeholder="Номер акта">
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+              <div class="flex justify-center mt-4 w-full">
+                <button mat-flat-button color="primary" class="w-full">Применить</button>
+              </div>
+        </div>
+        <div class="equipment-list w-full mr-[25px]">
+            <app-equipment-row/>
+            <app-equipment-row/>
+            <app-equipment-row/>
+        </div>
+    </div>
+    <div class="mr-2">
+        <app-paginator/>
+    </div>
+</div>
