@@ -1,0 +1,39 @@
+<div>
+    <h2 mat-dialog-title>Новое помещение</h2>
+    <mat-dialog-content>
+        <form>
+            <mat-form-field>
+                <mat-label>Наименование</mat-label>
+                <input matInput placeholder="Наименование" [(ngModel)]="name" name="name">
+            </mat-form-field>
+            <!--<mat-form-field>
+                <mat-label>Инвентарный номер</mat-label>
+                <input matInput placeholder="Инвентарный номер">
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Начальная стоимость</mat-label>
+                <input matInput placeholder="Начальная стоимость">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Дата ввода в эксплуатацию</mat-label>
+                <input matInput placeholder="Дата ввода в эксплуатацию" type="date">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Номер акта о вводе в экслуатацию</mat-label>
+                <input matInput placeholder="Номер акта">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Описание</mat-label>
+                <textarea matInput placeholder="Описание"></textarea>
+            </mat-form-field> -->
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions class="">
+        <div class="text-center">
+            <button mat-button (click)="onCancel()" class="ml-[15px]">Отмена</button>
+            <button mat-button (click)="onSubmit()">Создать</button>
+        </div>
+      
+    </mat-dialog-actions>
+</div>
