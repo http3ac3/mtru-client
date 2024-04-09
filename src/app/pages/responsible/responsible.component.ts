@@ -9,6 +9,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { PaginatorComponent } from '../paginator/paginator.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ResponsibleRowComponent } from '../responsible-row/responsible-row.component';
+import { HeaderComponent } from '../header/header.component';
 @Component({
   selector: 'app-responsible',
   standalone: true,
@@ -19,7 +20,7 @@ import { ResponsibleRowComponent } from '../responsible-row/responsible-row.comp
     MatInputModule,
     MatFormFieldModule, 
     MatExpansionModule, 
-    PaginatorComponent, MatCheckboxModule, ResponsibleRowComponent],
+    PaginatorComponent, MatCheckboxModule, ResponsibleRowComponent, HeaderComponent],
   templateUrl: './responsible.component.html',
   styleUrl: './responsible.component.css'
 })

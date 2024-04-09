@@ -9,12 +9,21 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { EquipmentRowComponent } from '../equipment-row/equipment-row.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { PaginatorComponent } from '../paginator/paginator.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-equipment',
   standalone: true,
-  imports: [MatToolbarModule, MatPaginatorModule,
-     MatIconModule, MatButtonModule, FormsModule, MatInputModule, MatFormFieldModule, MatExpansionModule, EquipmentRowComponent, PaginatorComponent],
+  imports: [MatToolbarModule, 
+    MatPaginatorModule,
+    MatIconModule, 
+    MatButtonModule, 
+    FormsModule, 
+    MatInputModule, 
+    MatFormFieldModule, 
+    MatExpansionModule, 
+    EquipmentRowComponent, 
+    PaginatorComponent, HeaderComponent],
   templateUrl: './equipment.component.html',
   styleUrl: './equipment.component.css'
 })
