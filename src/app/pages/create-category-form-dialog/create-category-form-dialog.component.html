@@ -1,0 +1,17 @@
+<div>
+    <h2 mat-dialog-title>Новая категория</h2>
+    <mat-dialog-content>
+        <form>
+            <mat-form-field class="w-full">
+                <mat-label>Наименование</mat-label>
+                <input matInput placeholder="Наименование">
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions class="">
+        <div class="text-center mb-[10px] ml-[15px]">
+            <button mat-flat-button (click)="onCancel()" class="">Отмена</button>
+            <button mat-flat-button (click)="onSubmit()" color="primary">Создать</button>
+        </div>
+    </mat-dialog-actions>
+</div>

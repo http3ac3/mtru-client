@@ -9,6 +9,7 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
+import { CreateCategoryFormDialogComponent } from '../create-category-form-dialog/create-category-form-dialog.component';
 
 @Component({
   selector: 'app-create-models-dialog',
@@ -23,8 +24,15 @@ import {
   styleUrl: './create-models-dialog.component.css'
 })
 export class CreateModelsDialogComponent {
-  constructor(public dialogRef: MatDialogRef<CreateModelsDialogComponent>) { }
+ 
+  constructor(public dialogRef: MatDialogRef<CreateModelsDialogComponent>, public categoryDialog : MatDialog) { }
+  
   onCancel() : void {
+    this.dialogRef.close();
+  }
+
+  onCategoryDialogOpen() {
+    this.categoryDialog.open(CreateCategoryFormDialogComponent);
     this.dialogRef.close();
   }
 }
