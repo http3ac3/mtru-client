@@ -1,0 +1,71 @@
+<div>
+    <h2 mat-dialog-title>Новый ответственный</h2>
+    <mat-dialog-content>
+        <form>
+            <div class="flex flex-col w-full">
+                <div class="mb-[25px] flex">
+
+                    <div class="mr-[25px] w-[20vw]">
+                        <mat-form-field class="w-full">
+                            <mat-label>Фамилия</mat-label>
+                            <input matInput placeholder="Фамилия">
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="w-[20vw] mr-[25px]">
+                        <mat-form-field class="w-full">
+                            <mat-label>Имя</mat-label>
+                            <input matInput placeholder="Имя">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="w-[20vw]">
+                        <mat-form-field class="w-full">
+                            <mat-label>Отчетство</mat-label>
+                            <input matInput placeholder="Отчетство">
+                        </mat-form-field>
+                    </div>
+                </div>
+                
+                <div class="flex w-full">
+                    <div class="w-[33%] mr-[25px] ">
+                        <mat-form-field class="w-full">
+                            <mat-label>Должность</mat-label>
+                            <input matInput placeholder="Должность">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="w-[33%] mr-[25px]">
+                        <mat-form-field class=" w-full">
+                            <mat-label>Номер телефона</mat-label>
+                            <input matInput placeholder="Номер телефона">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="w-[33%]">
+                        <mat-form-field class="w-full">
+                            <mat-label>Структурное подразделение</mat-label>
+                            <mat-select>
+                                <mat-option value="Структурное подразделение">Структурное подразделение</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="w-full">
+                    <mat-checkbox>Материально ответственный</mat-checkbox>
+                </div>
+            </div>
+            
+        </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="">
+        <div class="text-center">
+            <button mat-flat-button (click)="onCancel()" class="ml-[15px]">Отмена</button>
+            <button mat-flat-button (click)="onSubmit()" color="primary">Создать</button>
+        </div>
+    </mat-dialog-actions>
+
+    
+</div>

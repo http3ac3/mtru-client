@@ -5,10 +5,12 @@
             <div class="flex mb-[25px] w-full">
                 <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]"
                 (click)="onEquipmentDialogOpen()">Оборудование</button>
-                <button mat-flat-button color="primary" class="w-[20vw] ">Помещение</button>               
+                <button mat-flat-button color="primary" class="w-[20vw] "
+                (click)="onPlacementDialogOpen()">Помещение</button>               
             </div>
             <div class="flex mb-[25px]">
-                <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]">Ответственный</button>
+                <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]"
+                (click)="onResponsibleDialogOpen()">Ответственный</button>
                 <button mat-flat-button color="primary" class="w-[20vw] ">Пользователь</button>
             </div>
             <div class="flex mb-[25px]">
@@ -18,7 +20,8 @@
                 (click)="onSubcategoryDialogOpen()">Подкатегория</button>
             </div>
             <div class="w-full">
-                <button mat-flat-button color="primary" class="w-full mr-[25px]">Стр. подразделение</button>
+                <button mat-flat-button color="primary" class="w-full mr-[25px]"
+                (click)="onDepartmentDialogOpen()">Стр. подразделение</button>
             </div>
         </div>
     </mat-dialog-content>
