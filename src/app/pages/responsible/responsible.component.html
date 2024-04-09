@@ -1,0 +1,73 @@
+<div>
+    <div class="header m-0 p-0">
+        <mat-toolbar color="primary" class="">
+            <button mat-raised-button class="ml-2" color="" aria-label="">
+                Добавить информацию
+            </button>
+            <span class="example-spacer"></span>
+            <span>Иванов Иван Иванович</span>
+            <button mat-icon-button class="example-icon" aria-label="">
+              <mat-icon>account_circle</mat-icon>
+            </button>
+          </mat-toolbar>
+    </div>
+    <div class="tools flex ml-[25px] mt-[25px]">
+        <div class="mr-[25px]">
+            <button mat-raised-button>Главная</button>
+        </div>
+        <div class="mr-[25px] w-40">
+            <button mat-raised-button class="w-full">Категории</button>
+        </div>
+        <form class="flex w-full">
+            <div class="h-full w-full">
+                <input class="h-full w-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[25px]" placeholder="Поиск ответственного">
+            </div>
+            <div class="mr-[25px] ml-[25px]">
+                <button mat-raised-button>Найти</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="content flex mt-[25px]">
+        <div class="filter-class h-[40%] ml-[25px] min-w-[250px] border-4 rounded-md p-2 mr-[25px]">
+            <mat-accordion multi>
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="">Структурное подразделение</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="flex w-full">
+                        <div class="w-full h-7 mr-[25px]">
+                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" placeholder="Структурное подразделение">
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+                
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="">Материально ответственные</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="example-section">
+                        <mat-checkbox color="primary" class="example-margin"><span class="text-xs">Материально ответственные</span></mat-checkbox>
+                    </section>
+                </mat-expansion-panel>
+            
+              </mat-accordion>
+              <div class="flex justify-center mt-4 w-full">
+                <button mat-flat-button color="primary" class="w-full">Применить</button>
+              </div>
+        </div>
+        <div class="w-full mr-[25px]">
+            <app-responsible-row/>
+            <app-responsible-row/>
+            <app-responsible-row/>
+            
+        </div>
+    </div>
+    <div class="mr-2">
+        <app-paginator/>
+    </div>
+</div>
