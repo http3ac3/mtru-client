@@ -1,0 +1,49 @@
+<div>
+    <app-header/>
+    <div class="tools flex ml-[25px] mt-[25px] mb-[25px]">
+        <div class="mr-[25px] ">
+            <button mat-raised-button>Главная</button>
+        </div>
+        <div class="mr-[25px] w-40">
+            <button mat-raised-button class="w-full">Категории</button>
+        </div>
+        <form class="flex w-full">
+            <div class="h-full w-full">
+                <input class="h-full w-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[25px]" placeholder="Поиск подкатегории">
+            </div>
+            <div class="mr-[25px] ml-[25px]">
+                <button mat-raised-button>Найти</button>
+            </div>
+        </form>
+    </div>
+    <div class="content mr-[25px] flex">
+        <div class="filter-class h-[40%] ml-[25px] min-w-[250px] border-4 rounded-md p-2 mr-[25px]">
+            <mat-accordion multi>
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="">Категория</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="flex w-full">
+                        <div class="w-full h-7 mr-[25px]">
+                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" placeholder="Категория">
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+              <div class="flex justify-center mt-4 w-full">
+                <button mat-flat-button color="primary" class="w-full">Применить</button>
+              </div>
+        </div>
+        <div class="rows w-full">
+            <app-subcategory-row/>
+            <app-subcategory-row/>
+            <app-subcategory-row/>
+            <app-subcategory-row/>
+        </div>
+    </div>
+    <div>
+        <app-paginator/>
+    </div>
+</div>
