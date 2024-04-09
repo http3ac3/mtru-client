@@ -7,11 +7,12 @@ import { ResponsibleComponent } from './pages/responsible/responsible.component'
 import { PlacementComponent } from './pages/placement/placement.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { SubcategoryComponent } from './pages/subcategory/subcategory.component';
+import { RentComponent } from './pages/rent/rent.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MainComponent, EquipmentComponent, ResponsibleComponent, PlacementComponent, CategoryComponent, SubcategoryComponent],
+  imports: [RouterOutlet, MainComponent, EquipmentComponent, ResponsibleComponent, PlacementComponent, CategoryComponent, SubcategoryComponent, RentComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
