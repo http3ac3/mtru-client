@@ -1,0 +1,40 @@
+<div class="w-full">
+    <div class="header m-0 p-0 w-full">
+        <mat-toolbar color="primary" class="">
+            <button mat-raised-button class="ml-2" color="" aria-label="">
+                Отмена
+            </button>
+            <span class="spacer"></span>
+            <span class="fullname">Иванов Иван Иванович</span>
+            <button mat-icon-button class="example-icon" aria-label="">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+        </mat-toolbar>
+    </div>
+    <div class="h-[90vh] w-full flex justify-center items-center">
+        <div class="w-[80vw]">
+            <form class="w-full flex flex-col border-2 rounded-md p-[25px]">
+                <mat-form-field class="">
+                    <mat-label>Наименование</mat-label>
+                <input matInput placeholder="Наименование" value="Компьютер">
+                </mat-form-field>
+                <mat-form-field class="">
+                    <mat-label>Инвентарный номер</mat-label>
+                    <input matInput placeholder="Инвентарный номер" value="00000001">
+                </mat-form-field>
+                <mat-form-field class="">
+                    <mat-label>Помещение</mat-label>
+                    <input matInput placeholder="Помещение" value="301-3">
+                </mat-form-field>
+                <mat-form-field class="">
+                    <mat-label>Описание</mat-label>
+                    <textarea matInput placeholder="Описание" value="Просто взял"></textarea>
+                </mat-form-field>
+                <div class="text-center">
+                    <button class="w-[30vw]" mat-flat-button color="primary" type="submit">Взять</button>
+                </div>
+              </form>
+        </div>
+    </div>
+    
+</div>
