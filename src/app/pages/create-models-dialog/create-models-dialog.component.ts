@@ -10,6 +10,7 @@ import {
   MatDialogClose,
 } from '@angular/material/dialog';
 import { CreateCategoryFormDialogComponent } from '../create-category-form-dialog/create-category-form-dialog.component';
+import { CreateSubcategoryFormDialogComponent } from '../create-subcategory-form-dialog/create-subcategory-form-dialog.component';
 
 @Component({
   selector: 'app-create-models-dialog',
@@ -25,7 +26,8 @@ import { CreateCategoryFormDialogComponent } from '../create-category-form-dialo
 })
 export class CreateModelsDialogComponent {
  
-  constructor(public dialogRef: MatDialogRef<CreateModelsDialogComponent>, public categoryDialog : MatDialog) { }
+  constructor(public dialogRef: MatDialogRef<CreateModelsDialogComponent>, 
+    public categoryDialog : MatDialog, public subcategoryDialog : MatDialog) { }
   
   onCancel() : void {
     this.dialogRef.close();
@@ -33,6 +35,11 @@ export class CreateModelsDialogComponent {
 
   onCategoryDialogOpen() {
     this.categoryDialog.open(CreateCategoryFormDialogComponent);
+    this.dialogRef.close();
+  }
+
+  onSubcategoryDialogOpen() {
+    this.subcategoryDialog.open(CreateSubcategoryFormDialogComponent);
     this.dialogRef.close();
   }
 }
