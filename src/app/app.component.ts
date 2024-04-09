@@ -9,6 +9,7 @@ import { CategoryComponent } from './pages/category/category.component';
 import { SubcategoryComponent } from './pages/subcategory/subcategory.component';
 import { RentComponent } from './pages/rent/rent.component';
 import { CreateRentComponent } from './pages/create-rent/create-rent.component';
+import { UserSearchComponent } from './pages/user-search/user-search.component';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ import { CreateRentComponent } from './pages/create-rent/create-rent.component';
     CategoryComponent,
     SubcategoryComponent, 
     RentComponent,
-    CreateRentComponent],
+    CreateRentComponent,
+    UserSearchComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
