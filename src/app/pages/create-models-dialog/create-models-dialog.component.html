@@ -1,0 +1,27 @@
+<div>
+    <h2 mat-dialog-title>Выберите что добавить</h2>
+    <mat-dialog-content>
+        <div class="p-[10px] w-full">
+            <div class="flex mb-[25px] w-full">
+                <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]">Оборудование</button>
+                <button mat-flat-button color="primary" class="w-[20vw] ">Помещение</button>               
+            </div>
+            <div class="flex mb-[25px]">
+                <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]">Ответственный</button>
+                <button mat-flat-button color="primary" class="w-[20vw] ">Пользователь</button>
+            </div>
+            <div class="flex mb-[25px]">
+                <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]">Категория</button>
+                <button mat-flat-button color="primary" class="w-[20vw]">Подкатегория</button>
+            </div>
+            <div class="w-full">
+                <button mat-flat-button color="primary" class="w-full mr-[25px]">Стр. подразделение</button>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="">
+        <div class="text-center mb-[10px] ml-[15px]">
+            <button mat-flat-button (click)="onCancel()" class="">Отмена</button>
+        </div>
+    </mat-dialog-actions>
+</div>
