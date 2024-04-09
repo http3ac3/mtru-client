@@ -4,6 +4,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { CreatePlacementFormDialogComponent } from '../create-placement-form-dialog/create-placement-form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CreateDepartmentFormDialogComponent } from '../create-department-form-dialog/create-department-form-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -14,5 +15,5 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class HeaderComponent {
   constructor (public dialog: MatDialog) {}
-  openDialog() {this.dialog.open(CreatePlacementFormDialogComponent);}
+  openDialog() {this.dialog.open(CreateDepartmentFormDialogComponent);}
 }
