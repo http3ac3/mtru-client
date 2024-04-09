@@ -11,6 +11,7 @@ import {
 } from '@angular/material/dialog';
 import { CreateCategoryFormDialogComponent } from '../create-category-form-dialog/create-category-form-dialog.component';
 import { CreateSubcategoryFormDialogComponent } from '../create-subcategory-form-dialog/create-subcategory-form-dialog.component';
+import { CreateEquipmentFormDialogComponent } from '../create-equipment-form-dialog/create-equipment-form-dialog.component';
 
 @Component({
   selector: 'app-create-models-dialog',
@@ -27,7 +28,9 @@ import { CreateSubcategoryFormDialogComponent } from '../create-subcategory-form
 export class CreateModelsDialogComponent {
  
   constructor(public dialogRef: MatDialogRef<CreateModelsDialogComponent>, 
-    public categoryDialog : MatDialog, public subcategoryDialog : MatDialog) { }
+    public categoryDialog : MatDialog, 
+    public subcategoryDialog : MatDialog,
+    public equipmentDialog : MatDialog) { }
   
   onCancel() : void {
     this.dialogRef.close();
@@ -40,6 +43,11 @@ export class CreateModelsDialogComponent {
 
   onSubcategoryDialogOpen() {
     this.subcategoryDialog.open(CreateSubcategoryFormDialogComponent);
+    this.dialogRef.close();
+  }
+
+  onEquipmentDialogOpen() {
+    this.equipmentDialog.open(CreateEquipmentFormDialogComponent);
     this.dialogRef.close();
   }
 }
