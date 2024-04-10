@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { MainComponent } from './pages/main/main.component';
@@ -11,6 +11,8 @@ import { RentComponent } from './pages/rent/rent.component';
 import { CreateRentComponent } from './pages/create-rent/create-rent.component';
 import { UserSearchComponent } from './pages/user-search/user-search.component';
 import { UserRentsComponent } from './pages/user-rents/user-rents.component';
+import { AuthService } from './services/Auth/auth.service';
+import { Category } from './models/category/category';
 
 @Component({
   selector: 'app-root',
@@ -25,10 +27,18 @@ import { UserRentsComponent } from './pages/user-rents/user-rents.component';
     RentComponent,
     CreateRentComponent,
     UserSearchComponent,
-    UserRentsComponent],
+    UserRentsComponent,
+    LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'mtru-client';
+  user : any = null;
+
+  constructor(public authService: AuthService) {}
+
+  ngOnInit() {
+    console.log();
+  }
 }
