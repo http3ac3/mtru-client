@@ -1,0 +1,37 @@
+<div>
+    <div class="tools flex ml-[25px] mt-[25px] mb-[25px]">
+        <div class="mr-[25px] ">
+            <button mat-raised-button>Главная</button>
+        </div>
+        <form class="flex w-full">
+            <div class="h-full w-full">
+                <input class="h-full w-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[25px]" placeholder="Поиск структурного подразделения">
+            </div>
+            <div class="mr-[25px] ml-[25px]">
+                <button mat-raised-button >Найти</button>
+            </div>
+        </form>
+    </div>
+    <div class="content mr-[25px] ml-[25px] border-2 border-slate-700">
+        <table mat-table [dataSource]="dataSource" class="border-4 rounded-lg">
+            
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+                <td mat-cell *matCellDef="let department">{{ department.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Название</th>
+                <td mat-cell *matCellDef="let department">{{ department.name }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns" class="ronded-md"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator
+            [pageSizeOptions]="[1, 10, 25, 50, 100]"
+            showFirstLastButtons
+        ></mat-paginator>
+    </div>
+</div>
