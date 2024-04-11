@@ -12,7 +12,7 @@ export class StorageService {
 
   constructor() { }
 
-  clean() : void {
+  clear() : void {
     window.localStorage.clear();
   }
 

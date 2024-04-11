@@ -6,6 +6,8 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HeaderComponent } from '../header/header.component';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/Auth/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -15,5 +17,40 @@ import { HeaderComponent } from '../header/header.component';
   styleUrl: './main.component.css'
 })
 export class MainComponent {
+  
+  constructor (private router: Router, public authService: AuthService) {
+    
+  }
 
+  ngOnInit() {
+    
+  }
+
+  goToEquipment() {
+    this.router.navigate(['equipment']);
+  }
+
+  goToResponsible() {
+    this.router.navigate(['responsible']);
+  }
+
+  goToCategories() {
+    this.router.navigate(['categories']);
+  }
+
+  goToSubategories() {
+    this.router.navigate(['subcategories']);
+  }
+
+  goToPlacements() {
+    this.router.navigate(['placements']);
+  }
+
+  goToRents() {
+    this.router.navigate(['rents']);
+  }
+
+  goToDepartments() {
+    this.router.navigate(['departments']);
+  }
 }

@@ -1,42 +1,25 @@
 <div>
-    <app-header/>
-    <div class="tools flex ml-[25px] mt-[25px]">
-        <div class="mr-[25px]">
-            <button mat-raised-button>Главная</button>
-        </div>
-        <div class="mr-[25px] w-40">
-            <button mat-raised-button class="w-full">Категории</button>
-        </div>
-        <form class="flex w-full">
-            <div class="h-full w-full">
-                <input class="h-full w-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[25px]" placeholder="Поиск оборудования">
-            </div>
-            <div class="mr-[25px] ml-[25px]">
-                <button mat-raised-button>Найти</button>
-            </div>
-        </form>
-    </div>
     <div class="pages flex mt-[25px] ml-[25px] mb-[25px] justify-between ">
         <div class="page w-[290px] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full">Оборудование</button>
+            <button class="w-full h-full" (click)="goToEquipment()">Оборудование</button>
         </div>
         <div class="page w-[290px] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full">Ответственные</button>
+            <button class="w-full h-full" (click)="goToResponsible()">Ответственные</button>
         </div>
         <div class="page w-[290px] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full">Взятия оборудования</button>
+            <button class="w-full h-full" (click)="goToRents()">Взятия оборудования</button>
         </div>
         <div class="page w-[290px] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full">Структурные подразделения</button>
+            <button class="w-full h-full" (click)="goToDepartments()">Структурные подразделения</button>
         </div>
         <div class="page w-[290px] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full">Помещения</button>
+            <button class="w-full h-full" (click)="goToPlacements()">Помещения</button>
         </div>
         <div class="page w-[290px] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full">Категории</button>
+            <button class="w-full h-full" (click)="goToCategories()">Категории</button>
         </div>
         <div class="page w-[290px] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full">Подкатегории</button>
+            <button class="w-full h-full" (click)="goToSubategories()">Подкатегории</button>
         </div>
     </div>
 </div>

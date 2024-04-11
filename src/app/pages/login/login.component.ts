@@ -49,37 +49,58 @@ export class LoginComponent {
     private router: Router) {}
 
   ngOnInit() {
+    console.log(`login component on init! flags: isAdmin - ${this.isAdmin}, isLabhead - ${this.isLabhead}, isUser - ${this.isUser}`)
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
+      console.log(this.roles);
     }
 
     this.isAdmin = this.roles.some(role => role.name === "ROLE_ADMIN");
     this.isLabhead = this.roles.some(role => role.name === "ROLE_LABHEAD");
     this.isUser = this.roles.some(role => role.name === "ROLE_USER");
+
+    if (this.isAdmin || this.isLabhead) {
+      this.router.navigate(['main']);
+    }
+
+    if (this.isUser) {
+      this.router.navigate(['user-search'])
+    }
   }
 
-  onLogin() : void {
+    onLogin() : void {
     const { username, password } = this.form;
 
     this.authService.login(username, password).subscribe({
       next: data => {
         this.storageService.saveToken(data.token);
-
+        console.log('мы здесь!')
         this.userService.getCurrentUser().subscribe({
           next: data => {
+            console.log("а теперь здесь")
             this.user = new User(data.id, data.username, data.password, data.responsible, data.roles);
+            console.log("user: ", this.user);
             this.storageService.saveUser(this.user);
-          }
+          },
+          complete() {
+            window.location.reload();
+          },
         });
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+        console.log(this.isLoggedIn, " ", this.isLoginFailed)
       }, error: err => {
         alert('Неправильный логин или пароль, попробуйте еще раз');
         console.log(err);
         this.isLoginFailed = false;
-      }
-    }) 
+        return;
+      },
+    })
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 }

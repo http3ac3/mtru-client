@@ -12,6 +12,8 @@ import {
 } from '@angular/material/dialog';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
+import { CategoryServiceService } from '../../services/Category/category-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-category-form-dialog',
@@ -29,12 +31,22 @@ import { MatInput } from '@angular/material/input';
   styleUrl: './create-category-form-dialog.component.css'
 })
 export class CreateCategoryFormDialogComponent {
-  constructor(public dialogRef: MatDialogRef<CreateCategoryFormDialogComponent>) { }
+  constructor(
+    public dialogRef: MatDialogRef<CreateCategoryFormDialogComponent>, 
+    public categoryService : CategoryServiceService,
+    public router : Router) { }
+  category = {
+    name : ""
+  }
+  
   onCancel() : void {
     this.dialogRef.close();
   }
   
   onSubmit() {
+    console.log(this.category);
+    this.categoryService.createCategory(this.category).subscribe();
     this.dialogRef.close();
+    this.router.navigate(["categories"]);
   }
 }

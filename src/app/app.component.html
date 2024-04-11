@@ -1,4 +1,39 @@
-<!--<router-outlet />-->
 <div>
-    <app-main/>
+    
+    <div class="header m-0 p-0">
+        <mat-toolbar color="primary" class="">
+            @if (!isLoggedIn) { 
+                <span class="spacer"></span>
+                <span>Авторизуйтесь для начала работы</span>
+            }
+            @else {
+                @if (isAdmin || isLabhead) {
+                    <button mat-raised-button class="ml-2" [routerLink]="['main']">
+                        Главная
+                    </button>
+                    <button mat-raised-button class="ml-2" color="" aria-label="" (click)="onOpenAddInfoDialog()">
+                        Добавить информацию
+                    </button>
+                }
+                @else if (isUser){
+                    <button mat-raised-button class="ml-2" color="" aria-label="" [routerLink]="['user-rents']">
+                        Мои взятия
+                    </button>
+                    <button mat-raised-button class="ml-2" color="" aria-label="" [routerLink]="['user-search']">
+                        Новое взятие
+                    </button>
+                }
+                <span class="spacer"></span>
+                <span>{{ user.responsible.lastName + ' ' + user.responsible.firstName + ' ' + user.responsible.patronymic }}</span>
+                <button mat-icon-button class="example-icon" (click)="logout()" aria-label="" matTooltip="Выйти">
+                    <mat-icon>logout</mat-icon>
+                </button>
+            }
+        </mat-toolbar>
+    </div>
+    <div>
+        <router-outlet />
+    </div>
 </div>
+
+

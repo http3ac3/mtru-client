@@ -16,19 +16,23 @@ import { SubcategoryComponent } from './pages/subcategory/subcategory.component'
 import { PlacementComponent } from './pages/placement/placement.component';
 import { ResponsibleComponent } from './pages/responsible/responsible.component';
 import { httpInterceptor } from './helpers/http.interceptor';
+import { UserRentsComponent } from './pages/user-rents/user-rents.component';
+import { DepartmentComponent } from './pages/department/department.component';
 
 const appRoutes: Routes = [
-  {path: "main", component: MainComponent},
-    {path: "login", component: LoginComponent},
-    {path: "user-search", component: UserSearchComponent},
-    {path: "new-rent", component: CreateRentComponent},
-    {path: "equipment", component: EquipmentComponent},
-    {path: "responsible", component: ResponsibleComponent},
-    {path: "rents", component: RentComponent},
-    {path: "categories", component: CategoryComponent},
-    {path: "subcategories", component: SubcategoryComponent},
-    {path: "placements", component: PlacementComponent},
-    {path: '', redirectTo: "login", pathMatch:"full"}
+  { path: "main", component: MainComponent },
+  { path: "login", component: LoginComponent },
+  { path: "user-search", component: UserSearchComponent },
+  { path: "user-rents", component: UserRentsComponent },
+  { path: "new-rent", component: CreateRentComponent },
+  { path: "equipment", component: EquipmentComponent },
+  { path: "responsible", component: ResponsibleComponent },
+  { path: 'departments', component: DepartmentComponent },
+  { path: "rents", component: RentComponent },
+  { path: "categories", component: CategoryComponent },
+  { path: "subcategories", component: SubcategoryComponent },
+  { path: "placements", component: PlacementComponent },
+  { path: '', redirectTo: "login", pathMatch:"full" }
 ]
 
 export const appConfig: ApplicationConfig = {
