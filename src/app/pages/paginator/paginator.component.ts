@@ -10,12 +10,12 @@ export class MyCustomPaginatorIntl implements MatPaginatorIntl {
   // For internationalization, the `$localize` function from
   // the `@angular/localize` package can be used.
   firstPageLabel = `Первая страница`;
-  itemsPerPageLabel = `Элементов в странице`;
+  itemsPerPageLabel = `Количество строк`;
   lastPageLabel = `Последняя страница`;
 
   // You can set labels to an arbitrary string too, or dynamically compute
   // it through other third-party internationalization libraries.
-  nextPageLabel = 'Следующая странциа';
+  nextPageLabel = 'Следующая страница';
   previousPageLabel = 'Предыдущая страница';
 
   getRangeLabel(page: number, pageSize: number, length: number): string {

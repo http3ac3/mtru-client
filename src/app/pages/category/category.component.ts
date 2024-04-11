@@ -23,11 +23,12 @@ export class CategoryComponent implements AfterViewInit{
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   ngOnInit() {
+    this.paginator._intl = new MyCustomPaginatorIntl;
     // this.categoryService.getCategories().subscribe({next:(data: any[]) => this.categories = data});
   }
 
   ngAfterViewInit() {
-    this.paginator._intl = new MyCustomPaginatorIntl;
+    
     this.dataSource.paginator = this.paginator;
   }
 }
