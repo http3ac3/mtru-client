@@ -1,23 +1,34 @@
 <div>
-    <h2 mat-dialog-title>Новая подкатегория</h2>
+    <div class="flex items-center mr-[20px] w-full">
+        <h2 mat-dialog-title>{{ dialogHeader }}</h2>
+        <span class="flex-auto"></span>
+        <button mat-icon-button (click)="onCancel()" class="mr-[15px]">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
     <mat-dialog-content>
         <form>
             <mat-form-field class="w-full">
-                <mat-label>Наименование</mat-label>
-                <input matInput placeholder="Наименование">
+                <mat-label>Название</mat-label>
+                <input matInput placeholder="Название" [(ngModel)]="subcategory.name" name="name">
             </mat-form-field>
-            <mat-form-field>
-                <mat-label>Категория</mat-label>
-                <mat-select>
-                    <mat-option value="Категория 1">Категория 1</mat-option>
+            <mat-form-field class="w-full">
+                <mat-label>Категории</mat-label>
+                <mat-select [(ngModel)]="selectedCategory" name="selectedCategory">
+                    <mat-option *ngFor="let category of categories" 
+                    [value]="category">{{category.name}}</mat-option>
                 </mat-select>
-            </mat-form-field>
+              </mat-form-field>
         </form>
     </mat-dialog-content>
     <mat-dialog-actions class="">
-        <div class="text-center mb-[10px] ml-[15px]">
-            <button mat-flat-button (click)="onCancel()" class="">Отмена</button>
-            <button mat-flat-button (click)="onSubmit()" color="primary">Создать</button>
+        <div class="mb-[10px] ml-[15px] flex w-full justify-between">
+            @if (this.data) {
+                <button mat-stroked-button (click)="onSubcategoryChange()" class="w-[50%]" color="primary">Изменить</button>
+                <button mat-flat-button (click)="onSubcategoryDelete()" class="mr-[15px] w-[50%]" color="warn">Удалить</button>
+            } @else {
+                <button mat-flat-button (click)="onSubcategoryCreate()" color="primary">Создать</button>
+            }
         </div>
     </mat-dialog-actions>
 </div>

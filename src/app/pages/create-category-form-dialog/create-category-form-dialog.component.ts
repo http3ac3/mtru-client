@@ -33,7 +33,7 @@ import { CategoryService } from '../../services/category/category.service';
   styleUrl: './create-category-form-dialog.component.css'
 })
 export class CreateCategoryFormDialogComponent {
-  category : Category = { name : "" }
+  category : Category = { id: 0, name : "" }
   dialogHeader = "Новая категория";
 
   constructor(

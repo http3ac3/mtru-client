@@ -1,19 +1,6 @@
 <div>
-    <div class="tools flex ml-[25px] mt-[25px] mb-[25px]">
-        <div class="mr-[25px] ">
-            <button mat-raised-button>Главная</button>
-        </div>
-        <form class="flex w-full">
-            <div class="h-full w-full">
-                <input class="h-full w-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[25px]" placeholder="Поиск подкатегории">
-            </div>
-            <div class="mr-[25px] ml-[25px]">
-                <button mat-raised-button>Найти</button>
-            </div>
-        </form>
-    </div>
-    <div class="content mr-[25px] flex">
-        <div class="filter-class h-[40%] ml-[25px] min-w-[250px] border-4 rounded-md p-2 mr-[25px]">
+    <div class="content mr-[25px] flex mt-[25px]">
+        <div class="filter-class h-[40%] ml-[25px] min-w-[20.5vw] border-4 rounded-md p-2 mr-[25px]">
             <mat-accordion multi>
                 <mat-expansion-panel >
                     <mat-expansion-panel-header>
@@ -21,18 +8,30 @@
                             <span class="">Категория</span>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <div class="flex w-full">
-                        <div class="w-full h-7 mr-[25px]">
-                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" placeholder="Категория">
-                        </div>
-                    </div>
+                    <mat-form-field class="w-full">
+                        <mat-label>Категории</mat-label>
+                        <mat-select [(ngModel)]="selectedCategory" name="selectedCategory">
+                            <mat-option>Ничего не выбирать</mat-option>
+                            
+                            <mat-option *ngFor="let category of categories" 
+                            [value]="category">{{category.name}}</mat-option>
+                            
+                        </mat-select>
+                      </mat-form-field>
                 </mat-expansion-panel>
               </mat-accordion>
               <div class="flex justify-center mt-4 w-full">
-                <button mat-flat-button color="primary" class="w-full">Применить</button>
+                <button mat-flat-button color="primary" class="w-full" (click)="applyFilters()">Применить</button>
+              </div>
+              <div class="flex justify-center mt-4 w-full">
+                <button mat-flat-button color="primary" class="w-full" (click)="resetFilters()">Сбросить фильтры</button>
               </div>
         </div>
         <div class="w-full">
+            <mat-form-field class="w-full">
+                <mat-label>Поиск подкатегории</mat-label>
+                <input matInput placeholder="Поиск подкатегории по названию" (keyup)="searchByName($event)"  #input>
+            </mat-form-field>
             <table mat-table [dataSource]="dataSource" class="border-4 rounded-lg">
             
                 <ng-container matColumnDef="id">
@@ -51,7 +50,8 @@
                 </ng-container>
     
                 <tr mat-header-row *matHeaderRowDef="displayedColumns" class="ronded-md"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="clickRow(row)"></tr>
             </table>
     
             <mat-paginator
