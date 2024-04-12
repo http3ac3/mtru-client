@@ -41,7 +41,7 @@ export class EquipmentComponent implements AfterViewInit {
       new Responsible(1, 'Заплаткин', 'Юрий', 'Александрович', 'ПРЕП', '7999999999', true, 
         new Department(1, 'КИТП')
       ),
-      new Subcategory(1, 'Какашка', new Category(1, 'КАКАШКИ')),
+      new Subcategory(1, 'Какашка', new Category('КАКАШКИ', 1)),
       new Placement(1, '303-3')
     )
   ];

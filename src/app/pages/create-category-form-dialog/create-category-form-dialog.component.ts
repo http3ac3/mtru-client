@@ -45,7 +45,6 @@ export class CreateCategoryFormDialogComponent {
 
   ngOnInit() {
     if (this.data) {
-      console.log(this.data);
       this.dialogHeader = "Подробные сведения"
       this.category = this.data;
     }
