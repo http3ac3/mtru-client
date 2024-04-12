@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import {
   MatDialog,
@@ -30,14 +30,16 @@ import { CreateDepartmentFormDialogComponent } from '../create-department-form-d
 })
 export class CreateModelsDialogComponent {
  
-  constructor(public dialogRef: MatDialogRef<CreateModelsDialogComponent>, 
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data:any,
+    public dialogRef: MatDialogRef<CreateModelsDialogComponent>, 
     public categoryDialog : MatDialog, 
     public subcategoryDialog : MatDialog,
     public equipmentDialog : MatDialog,
     public responsibleDialog : MatDialog,
     public placementDialog : MatDialog,
     public departmentDialog : MatDialog) { }
-  
+
   onCancel() : void {
     this.dialogRef.close();
   }

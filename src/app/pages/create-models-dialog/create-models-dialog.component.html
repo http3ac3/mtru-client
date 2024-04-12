@@ -3,26 +3,30 @@
     <mat-dialog-content>
         <div class="p-[10px] w-full">
             <div class="flex mb-[25px] w-full">
-                <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]"
+                <button mat-flat-button color="primary" class="w-full"
+
                 (click)="onEquipmentDialogOpen()">Оборудование</button>
-                <button mat-flat-button color="primary" class="w-[20vw] "
-                (click)="onPlacementDialogOpen()">Помещение</button>               
             </div>
-            <div class="flex mb-[25px]">
-                <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]"
-                (click)="onResponsibleDialogOpen()">Ответственный</button>
-                <button mat-flat-button color="primary" class="w-[20vw] ">Пользователь</button>
-            </div>
-            <div class="flex mb-[25px]">
-                <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]"
-                (click)="onCategoryDialogOpen()">Категория</button>
-                <button mat-flat-button color="primary" class="w-[20vw]"
-                (click)="onSubcategoryDialogOpen()">Подкатегория</button>
-            </div>
-            <div class="w-full">
-                <button mat-flat-button color="primary" class="w-full mr-[25px]"
-                (click)="onDepartmentDialogOpen()">Стр. подразделение</button>
-            </div>
+            @if (data.isAdmin) {
+                <div class="flex mb-[25px]">
+                    <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]"
+                    (click)="onResponsibleDialogOpen()">Ответственный</button>
+                    <button mat-flat-button color="primary" class="w-[20vw]">Пользователь</button>
+                </div>
+                <div class="flex mb-[25px]">
+                    <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]"
+                    (click)="onCategoryDialogOpen()">Категория</button>
+                    <button mat-flat-button color="primary" class="w-[20vw]"
+                    (click)="onSubcategoryDialogOpen()">Подкатегория</button>
+                </div>
+                <div class="w-full">
+                    <button mat-flat-button color="primary" class="w-[20vw] mr-[25px]"
+                    (click)="onPlacementDialogOpen()">Помещение</button>              
+                    <button mat-flat-button color="primary" class="w-[20vw]"
+                    (click)="onDepartmentDialogOpen()">Структурное подразделение</button>
+                </div>
+            }
+            
         </div>
     </mat-dialog-content>
     <mat-dialog-actions class="">
