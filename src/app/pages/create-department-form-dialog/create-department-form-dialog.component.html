@@ -1,17 +1,26 @@
 <div>
-    <h2 mat-dialog-title>Новое структурное подразделение</h2>
+    <div class="flex items-center mr-[20px]">
+        <h2 mat-dialog-title>{{ dialogHeader }}</h2>
+        <button mat-icon-button (click)="onCancel()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
     <mat-dialog-content>
         <form>
             <mat-form-field class="w-full">
-                <mat-label>Наименование</mat-label>
-                <input matInput placeholder="Наименование">
+                <mat-label>Название</mat-label>
+                <input matInput placeholder="Название" [(ngModel)]="department.name" name="name">
             </mat-form-field>
         </form>
     </mat-dialog-content>
     <mat-dialog-actions class="">
-        <div class="text-center mb-[10px] ml-[15px]">
-            <button mat-flat-button (click)="onCancel()" class="">Отмена</button>
-            <button mat-flat-button (click)="onSubmit()" color="primary">Создать</button>
+        <div class="mb-[10px] ml-[15px] flex w-full justify-between">
+            @if (this.data) {
+                <button mat-stroked-button (click)="onDepartmentChange()" class="w-[50%]" color="primary">Изменить</button>
+                <button mat-flat-button (click)="onDepartmentDelete()" class="mr-[15px] w-[50%]" color="warn">Удалить</button>
+            } @else {
+                <button mat-flat-button (click)="onDepartmentCreate()" color="primary">Создать</button>
+            }
         </div>
     </mat-dialog-actions>
 </div>

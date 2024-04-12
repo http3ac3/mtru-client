@@ -4,28 +4,70 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MyCustomPaginatorIntl } from '../paginator/paginator.component';
 import { Department } from '../../models/department/department';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { _MatInternalFormField } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { DepartmentService } from '../../services/department/department.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateDepartmentFormDialogComponent } from '../create-department-form-dialog/create-department-form-dialog.component';
 
 @Component({
   selector: 'app-department',
   standalone: true,
-  imports: [MatTableModule, MatPaginator, MatPaginatorModule, MatButtonModule],
+  imports: [
+    MatTableModule, 
+    MatPaginator, 
+    MatPaginatorModule, 
+    MatButtonModule,
+    MatInputModule,
+    FormsModule,
+    MatFormFieldModule
+  ],
   templateUrl: './department.component.html',
   styleUrl: './department.component.css'
 })
 export class DepartmentComponent {
-  departments : Department[] = [new Department(1, "КИТП")];
+  departments : Department[] = [];
   dataSource = new MatTableDataSource<Department>(this.departments);
   displayedColumns : string[] = ['id', 'name'];
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
+  constructor (
+    private departmentService : DepartmentService,
+    public dialog : MatDialog
+  ) { }
+  
   ngOnInit() {
     this.paginator._intl = new MyCustomPaginatorIntl;
-    // this.categoryService.getCategories().subscribe({next:(data: any[]) => this.categories = data});
+    this.departmentService.getAll().subscribe({
+      next: (data: Department[]) => {
+        this.departments = data
+      },
+      complete: () => {
+        this.dataSource.data = this.departments
+      }
+    })
   }
 
   ngAfterViewInit() {
-    
     this.dataSource.paginator = this.paginator;
+  }
+
+  clickRow(row : Department) {
+    let department = {
+      id : row.id,
+      name : row.name
+    }
+    this.dialog.open(CreateDepartmentFormDialogComponent, {
+      data: department,
+      autoFocus : false
+    })
+  }
+
+  searchByName(event : Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
