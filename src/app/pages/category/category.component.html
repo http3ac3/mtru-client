@@ -1,18 +1,9 @@
-<div>
-    <div class="tools flex ml-[25px] mt-[25px] mb-[25px]">
-        <div class="mr-[25px] ">
-            <button mat-raised-button>Главная</button>
-        </div>
-        <form class="flex w-full">
-            <div class="h-full w-full">
-                <input class="h-full w-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[25px]" placeholder="Поиск категории">
-            </div>
-            <div class="mr-[25px] ml-[25px]">
-                <button mat-raised-button >Найти</button>
-            </div>
-        </form>
-    </div>
-    <div class="content mr-[25px] ml-[25px] border-2 border-slate-700">
+<div>    
+    <div class="content mr-[25px] ml-[25px] mt-[25px]">
+        <mat-form-field class="w-full">
+            <mat-label>Поиск категории</mat-label>
+            <input matInput placeholder="Поиск категории по названию" (keyup)="searchByName($event)" #input>
+        </mat-form-field>
         <table mat-table [dataSource]="dataSource" class="border-4 rounded-lg">
             
             <ng-container matColumnDef="id">
@@ -26,11 +17,16 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns" class="ronded-md"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            (click)="clickRow(row)"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">Совпадения с "{{input.value}}" не найдены</td>
+              </tr>
         </table>
 
         <mat-paginator
-            [pageSizeOptions]="[1, 10, 25, 50, 100]"
+            [pageSizeOptions]="[10, 25, 50, 100]"
             showFirstLastButtons
         ></mat-paginator>
     </div>

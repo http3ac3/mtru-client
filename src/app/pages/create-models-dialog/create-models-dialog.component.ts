@@ -33,44 +33,39 @@ export class CreateModelsDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data:any,
     public dialogRef: MatDialogRef<CreateModelsDialogComponent>, 
-    public categoryDialog : MatDialog, 
-    public subcategoryDialog : MatDialog,
-    public equipmentDialog : MatDialog,
-    public responsibleDialog : MatDialog,
-    public placementDialog : MatDialog,
-    public departmentDialog : MatDialog) { }
+    public dialog : MatDialog) { }
 
   onCancel() : void {
     this.dialogRef.close();
   }
 
   onCategoryDialogOpen() {
-    this.categoryDialog.open(CreateCategoryFormDialogComponent);
+    this.dialog.open(CreateCategoryFormDialogComponent);
     this.dialogRef.close();
   }
 
   onSubcategoryDialogOpen() {
-    this.subcategoryDialog.open(CreateSubcategoryFormDialogComponent);
+    this.dialog.open(CreateSubcategoryFormDialogComponent);
     this.dialogRef.close();
   }
 
   onEquipmentDialogOpen() {
-    this.equipmentDialog.open(CreateEquipmentFormDialogComponent);
+    this.dialog.open(CreateEquipmentFormDialogComponent);
     this.dialogRef.close();
   }
 
   onResponsibleDialogOpen() {
-    this.responsibleDialog.open(CreateResponsibleFormDialogComponent);
+    this.dialog.open(CreateResponsibleFormDialogComponent);
     this.dialogRef.close();
   }
 
   onPlacementDialogOpen() {
-    this.placementDialog.open(CreatePlacementFormDialogComponent);
+    this.dialog.open(CreatePlacementFormDialogComponent);
     this.dialogRef.close();
   }
 
   onDepartmentDialogOpen() {
-    this.departmentDialog.open(CreateDepartmentFormDialogComponent);
+    this.dialog.open(CreateDepartmentFormDialogComponent);
     this.dialogRef.close();
   }
 }

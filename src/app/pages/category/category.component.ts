@@ -4,14 +4,28 @@ import { HeaderComponent } from '../header/header.component';
 import { MatButton } from '@angular/material/button';
 import { CategoryRowComponent } from '../category-row/category-row.component';
 import { MyCustomPaginatorIntl, PaginatorComponent } from '../paginator/paginator.component';
-import { CategoryServiceService } from '../../services/Category/category-service.service';
+import { CategoryServiceService } from '../../services/category-service.service';
 import { Category } from '../../models/category/category';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { CategoryService } from '../../services/category/category.service';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateCategoryFormDialogComponent } from '../create-category-form-dialog/create-category-form-dialog.component';
+import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatInput, MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [MatButton, PaginatorComponent, MatTable, MatTableModule, MatPaginator, MatPaginatorModule],
+  imports: [
+    MatButton, 
+    PaginatorComponent,  
+    MatTableModule, 
+    MatPaginator, 
+    MatPaginatorModule, 
+    MatIconModule,
+    MatFormFieldModule, MatInputModule
+  ],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
@@ -22,13 +36,39 @@ export class CategoryComponent implements AfterViewInit{
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
+  constructor(private categoryService: CategoryService, private dialog : MatDialog) { }
+
   ngOnInit() {
     this.paginator._intl = new MyCustomPaginatorIntl;
-    // this.categoryService.getCategories().subscribe({next:(data: any[]) => this.categories = data});
+    this.categoryService.getAll().subscribe({
+      next: (data: Category[]) => {
+        this.categories = data;
+      },
+      complete: () => {
+        this.dataSource.data = this.categories;
+      }  
+    });
   }
 
   ngAfterViewInit() {
-    
     this.dataSource.paginator = this.paginator;
+  }
+
+  clickRow(row: Category) {
+    /* объявление объекта category связано с тем, что при передаче в качестве data
+       объекта row в родительской таблице при изменении значения в поле input в таблице также изменяется */
+    let category = {
+      id : row.id,
+      name : row.name
+    };
+    this.dialog.open(CreateCategoryFormDialogComponent, {
+      data: category,
+      autoFocus: false
+    });
+  }
+
+  searchByName(event : Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

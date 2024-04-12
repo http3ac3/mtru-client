@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatButton } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import {
-  MatDialog,
   MAT_DIALOG_DATA,
   MatDialogRef,
   MatDialogTitle,
@@ -12,8 +11,10 @@ import {
 } from '@angular/material/dialog';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { CategoryServiceService } from '../../services/Category/category-service.service';
 import { Router } from '@angular/router';
+import { Category } from '../../models/category/category';
+import { MatIconModule } from '@angular/material/icon';
+import { CategoryService } from '../../services/category/category.service';
 
 @Component({
   selector: 'app-create-category-form-dialog',
@@ -26,27 +27,79 @@ import { Router } from '@angular/router';
     MatLabel, 
     MatDialogClose,
     MatInput,
-    MatButton],
+    MatButtonModule,
+    MatIconModule],
   templateUrl: './create-category-form-dialog.component.html',
   styleUrl: './create-category-form-dialog.component.css'
 })
 export class CreateCategoryFormDialogComponent {
+  category : Category = { name : "" }
+  dialogHeader = "Новая категория";
+
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Category,
     public dialogRef: MatDialogRef<CreateCategoryFormDialogComponent>, 
-    public categoryService : CategoryServiceService,
-    public router : Router) { }
-  category = {
-    name : ""
+    public categoryService : CategoryService,
+    public router : Router
+  ) { }
+
+  ngOnInit() {
+    if (this.data) {
+      console.log(this.data);
+      this.dialogHeader = "Подробные сведения"
+      this.category = this.data;
+    }
   }
   
   onCancel() : void {
     this.dialogRef.close();
   }
-  
-  onSubmit() {
-    console.log(this.category);
-    this.categoryService.createCategory(this.category).subscribe();
-    this.dialogRef.close();
-    this.router.navigate(["categories"]);
+
+  onCategoryCreate() {
+    this.category.name = this.category.name.trim();
+    this.categoryService.create(this.category).subscribe({
+      complete: () => {
+        alert(`Категория ${this.category.name} была успешно сохранена!`)
+        this.dialogRef.close();
+        window.location.reload();
+      },
+      error: (err) => {
+        console.log(err.status === 400);
+        alert('Такая категория уже существует');
+      }
+    });
   }
+  
+  onCategoryChange() {
+    this.category.name = this.category.name.trim();
+    this.categoryService.update(this.category).subscribe({
+      complete: () => {
+        alert('Данные были успешно обновлены!');
+        this.dialogRef.close();
+        window.location.reload();
+      },
+      error: (err) => {
+        alert('Такая категория уже существует');
+      }
+    });
+  }
+
+  onCategoryDelete() {
+    this.categoryService.delete(this.category.id!).subscribe({
+      complete: () => {
+        alert('Данные были успешно удалены!');
+        this.dialogRef.close();
+        window.location.reload();
+      },
+      error: (err) => {
+        if (err.status === 404) {
+          alert('Данной категории не существует!');
+        } else if (err.status === 409) {
+          alert('Категория не может быть удалена: за ней закреплены другие подкатегории!');
+        } else {
+          alert('Непредвиденная ошибка! Удалить категорию невозможно');
+        }
+      }
+    });
+  }  
 }
