@@ -1,52 +1,86 @@
 <div>
-    <h2 mat-dialog-title>Новое оборудование</h2>
+    <div class="flex items-center mr-[20px] w-full">
+        <h2 mat-dialog-title>{{ dialogHeader }}</h2>
+        <span class="flex-auto"></span>
+        <button mat-icon-button (click)="onCancel()" class="mr-[15px]">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
     <mat-dialog-content>
-        <form>
+        <form [formGroup]="equipmentForm">
             <div class="flex flex-col w-full">
-                <div class="mb-[25px] flex">
+                <div class="mb-[25px] flex w-full">
 
-                    <div class="mr-[25px] w-[30vw]">
+                    <div class="mr-[25px] w-[20vw]">
                         <mat-form-field class="w-full">
                             <mat-label>Наименование</mat-label>
-                            <input matInput placeholder="Наименование">
+                            <input matInput placeholder="Наименование" formControlName="name">
                         </mat-form-field>
                     </div>
                     
-                    <div class="w-[30vw]">
+                    <div class="w-[20vw] mr-[25px]">
                         <mat-form-field class="w-full">
                             <mat-label>Инвентарный номер</mat-label>
-                            <input matInput placeholder="Инвентарный номер">
+                            <input matInput placeholder="Инвентарный номер" formControlName="inventoryNumber">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="w-[20vw]">
+                        <mat-form-field class="w-full">
+                            <mat-label>Начальная стоимость</mat-label>
+                            <input matInput placeholder="Начальная стоимость" type="number" formControlName="initialCost">
                         </mat-form-field>
                     </div>
                 </div>
                 
-                <div class="flex mb-[25px] w-full">
-                    <div class="w-[33%] mr-[25px] ">
-                        <mat-form-field class="w-full">
-                            <mat-label>Начальная стоимость</mat-label>
-                            <input matInput placeholder="Начальная стоимость" type="number">
-                        </mat-form-field>
+                <div class="flex flex-col mb-[25px] w-full">
+                    
+                    <div class="flex w-full mr-[25px]">
+                        <div class="w-[50%] mr-[25px]">
+                            <mat-form-field class="w-full">
+                                <mat-label>Дата ввода в эксплуатацию</mat-label>
+                                <input matInput [matDatepicker]="dp3" formControlName="commissioningDate">
+                                <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+                                <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="w-[50%]">
+                            <mat-form-field class="w-full">
+                                <mat-label>Номер акта о вводе в экслуатацию</mat-label>
+                                <input matInput placeholder="Номер акта" formControlName="commissioningActNumber">
+                            </mat-form-field>
+                        </div>
                     </div>
+                    
+                    @if (this.data) {
+                        <div class="flex  w-full">
+                            <div class="w-[50%] mr-[25px]">
+                                <mat-form-field class="w-full">
+                                    <mat-label>Дата вывода из эксплуатации</mat-label>
+                                    <input matInput [matDatepicker]="dp3" formControlName="decommissioningDate">
+                                    <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+                                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+        
+                            <div class="w-[50%]">
+                                <mat-form-field class="w-full">
+                                    <mat-label>Номер акта о выводе из экслуатации</mat-label>
+                                    <input matInput placeholder="Номер акта" formControlName="decommissioningActNumber">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    }
 
-                    <div class="w-[33%] mr-[25px]">
-                        <mat-form-field class=" w-full">
-                            <mat-label>Дата ввода в эксплуатацию</mat-label>
-                            <input matInput placeholder="Дата ввода в эксплуатацию" type="date">
-                        </mat-form-field>
-                    </div>
-
-                    <div class="w-[33%]">
-                        <mat-form-field class="w-full">
-                            <mat-label>Номер акта о вводе в экслуатацию</mat-label>
-                            <input matInput placeholder="Номер акта">
-                        </mat-form-field>
-                    </div>
+                    
+                   
                 </div>
 
                 <div class="w-full">
                     <mat-form-field class="mb-[25px] w-full">
                         <mat-label>Описание</mat-label>
-                        <textarea matInput placeholder="Описание"></textarea>
+                        <textarea matInput placeholder="Описание" formControlName="description"></textarea>
                     </mat-form-field>
                 </div>
                     
@@ -55,8 +89,8 @@
                     <div class="mr-[25px] w-[33%]">
                         <mat-form-field class="w-full">
                             <mat-label>Подкатегория</mat-label>
-                            <mat-select>
-                                <mat-option value="Категория 1">Подкатегория 1</mat-option>
+                            <mat-select formControlName="subcategory">
+                                <mat-option *ngFor="let subcategory of subcategories" [value]="subcategory">{{ subcategory.name }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -64,8 +98,15 @@
                     <div class="mr-[25px] w-[33%]">
                         <mat-form-field class="w-full">
                             <mat-label>Ответственный</mat-label>
-                            <mat-select>
-                                <mat-option value="Иванов Иван Иванович">Иванов Иван Иванович</mat-option>
+                            <mat-select formControlName="responsible">
+                                <mat-option *ngFor="let responsible of responsibleData" 
+                                [value]="responsible">
+                                {{ 
+                                    responsible.lastName + ' ' + 
+                                    responsible.firstName + ' ' + 
+                                    responsible.patronymic
+                                }}
+                                </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -73,8 +114,9 @@
                     <div class="w-[33%]">
                         <mat-form-field class="w-full">
                             <mat-label>Помещение</mat-label>
-                            <mat-select>
-                                <mat-option value="303-3">303-3</mat-option>
+                            <mat-select formControlName="placement">
+                                <mat-option *ngFor="let placement of placements" 
+                                [value]="placement">{{ placement.name }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -86,9 +128,23 @@
     </mat-dialog-content>
 
     <mat-dialog-actions class="">
-        <div class="text-center">
-            <button mat-flat-button (click)="onCancel()" class="ml-[15px]">Отмена</button>
-            <button mat-flat-button (click)="onSubmit()" color="primary">Создать</button>
+        <div class="mb-[10px] ml-[15px] flex w-full justify-between">
+            @if (this.data) {
+                @if (this.currentUser.responsible.id === this.data.responsible.id || this.userIsAdmin) {
+                    <button mat-stroked-button (click)="onEquipmentChange()" class="w-[50%]" color="primary">Изменить</button>
+                    <button mat-flat-button (click)="onEquipmentDelete()" class="mr-[15px] w-[50%]" color="warn">Удалить</button>
+                } @else {
+                    <div>Вы не можете управлять этим оборудованием, так как оно закреплено за 
+                        {{ 
+                            this.data.responsible.lastName + ' ' + 
+                            this.data.responsible.firstName + ' ' +
+                            this.data.responsible.patronymic
+                        }}
+                    </div>
+                }
+            } @else {
+                <button mat-flat-button (click)="onEquipmentCreate()" color="primary">Создать</button>
+            }
         </div>
     </mat-dialog-actions>
 

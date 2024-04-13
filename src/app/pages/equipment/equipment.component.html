@@ -1,23 +1,7 @@
-<div class="h-full">
-    <div class="tools flex ml-[25px] mt-[25px] mb-[25px]">
-        <div class="mr-[25px] ">
-            <button mat-raised-button>Главная</button>
-        </div>
-        <div class="mr-[25px] w-40">
-            <button mat-raised-button class="w-full">Категории</button>
-        </div>
-        <form class="flex w-full">
-            <div class="h-full w-full">
-                <input class="h-full w-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[25px]" placeholder="Поиск оборудования">
-            </div>
-            <div class="mr-[25px] ml-[25px]">
-                <button mat-raised-button>Найти</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="content flex">
-        <div class="filter-class h-[40%] ml-[25px] w-[250px] border-4 rounded-md p-2 mr-[25px]">
+<div class="">
+    <div class="content flex w-full mt-[25px] mr-[25px]">
+        <form class="filter-class h-[40%] ml-[25px] min-w-[20.5vw] border-4 rounded-md p-2 mr-[25px]" 
+        [formGroup]="equipmentFilterForm">
             <mat-accordion multi>
                 <mat-expansion-panel >
                     <mat-expansion-panel-header>
@@ -25,13 +9,16 @@
                             <span class="">Начальная стоимость</span>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <div class="flex">
-                        <div class="w-21 h-7 mr-[25px]">
-                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" placeholder="От">
-                        </div>
-                        <div class="w-21 h-7">
-                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" placeholder="До">
-                        </div>
+                    <div class="w-full">
+                        <mat-form-field class="mr-[25px] h-16 w-full">
+                            <input matInput class=" w-full h-full" type="number"
+                            placeholder="От" formControlName="initialCostFrom">
+                        </mat-form-field>
+                        
+                        <mat-form-field class="w-full h-16">
+                            <input matInput class="w-full h-full" type="number" 
+                                placeholder="До" formControlName="initialCostTo">
+                        </mat-form-field> 
                     </div>
                 </mat-expansion-panel>
                 
@@ -41,19 +28,21 @@
                             <span class="">Дата ввода в экплуатацию</span>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <div class="flex">
-                        <div class="w-[100px] h-7 mr-[10px]">
+                    <div class="">
+                        <div class="w-full h-7 mr-[10px] mb-[10px]">
                             <!-- <label class="text-xs" for="commissioning-date-from">От</label> -->
-                            <input id="commissioning-date-from" 
+                            <input matInput id="commissioning-date-from" 
                             class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
-                            type="date" placeholder="От" required="" type="text" 
+                            formControlName="commissioningDateFrom"
+                            placeholder="От" required="" type="text" 
                             onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
                         </div>
-                        <div class="w-[100px] h-7">
+                        <div class="w-full h-7">
                             <!-- <label class="text-xs" for="commissioning-date-to">До</label> -->
-                            <input id="commissioning-date-to" 
+                            <input matInput id="commissioning-date-to" 
                             class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
-                            type="date" placeholder="До" required="" type="text" 
+                            formControlName="commissioningDateTo"
+                            placeholder="До" required=""
                             onfocus="(this.type='date')" 
                             onblur="if(this.value==''){this.type='text'}">
                         </div>
@@ -66,20 +55,22 @@
                             <span class="">Дата вывода из экплуатации</span>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <div class="flex">
-                        <div class="w-[100px] h-7 mr-[10px]">
+                    <div class="">
+                        <div class="w-full h-7 mr-[10px] mb-[10px]">
                             <!-- <label class="text-xs" for="commissioning-date-from">От</label> -->
                             <input id="commissioning-date-from" 
                             class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
+                            formControlName="decommissioningDateFrom"
                             type="date" placeholder="От" 
                             required="" type="text" 
                             onfocus="(this.type='date')" 
                             onblur="if(this.value==''){this.type='text'}">
                         </div>
-                        <div class="w-[100px] h-7">
+                        <div class="w-full h-7">
                             <!-- <label class="text-xs" for="commissioning-date-to">До</label> -->
                             <input id="commissioning-date-to" 
-                            class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
+                            class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]"
+                            formControlName="decommissioningDateTo" 
                             type="date" placeholder="До" 
                             required="" type="text" 
                             onfocus="(this.type='date')" 
@@ -87,40 +78,81 @@
                         </div>
                     </div>
                 </mat-expansion-panel>
-
-                <mat-expansion-panel >
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            <span class="">Номер акта о вводе в эксплуатацию</span>
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="flex">
-                        <div class="w-full h-7 mr-[25px]">
-                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
-                            placeholder="Номер акта">
-                        </div>
-                    </div>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel >
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            <span class="">Номер акта о выводе из эксплуатации</span>
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="flex">
-                        <div class="w-full h-7 mr-[25px]">
-                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
-                            placeholder="Номер акта">
-                        </div>
-                    </div>
-                </mat-expansion-panel>
-              </mat-accordion>
+              
+              <mat-expansion-panel class="mb-[10px]">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <span class="">Подкатегория</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-form-field class="w-full">
+                    <mat-label>Подкатегория</mat-label>
+                    <!--[(ngModel)]="selectedDepartment"   -->
+                    <mat-select formControlName="subcategory" name="selectedDepartment">
+                        <mat-option>Ничего не выбирать</mat-option>
+                        
+                        <mat-option *ngFor="let subcategory of subcategories" 
+                        [value]="subcategory">{{subcategory.name}}</mat-option>
+                        
+                    </mat-select>
+                  </mat-form-field>
+            </mat-expansion-panel>
+            <mat-expansion-panel >
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <span class="">Материально ответственный</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-form-field class="w-full">
+                    <mat-label>Материально ответственный</mat-label>
+                    <!--[(ngModel)]="selectedDepartment"   -->
+                    <mat-select formControlName="responsible" name="selectedDepartment">
+                        <mat-option>Ничего не выбирать</mat-option>
+                        
+                        <mat-option *ngFor="let responsible of responsibleData" 
+                        [value]="responsible">
+                        {{
+                            responsible.lastName + ' ' 
+                            + responsible.firstName + ' ' 
+                            + responsible.patronymic 
+                        }}
+                        </mat-option>
+                        
+                    </mat-select>
+                  </mat-form-field>
+            </mat-expansion-panel>
+            <mat-expansion-panel >
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <span class="">Помещение</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-form-field class="w-full">
+                    <mat-label>Помещение</mat-label>
+                    <!--[(ngModel)]="selectedDepartment"   -->
+                    <mat-select formControlName="placement" name="selectedDepartment">
+                        <mat-option>Ничего не выбирать</mat-option>
+                        
+                        <mat-option *ngFor="let placement of placements" 
+                        [value]="placement">{{placement.name}}</mat-option>
+                        
+                    </mat-select>
+                  </mat-form-field>
+            </mat-expansion-panel>
+        </mat-accordion>
               <div class="flex justify-center mt-4 w-full">
-                <button mat-flat-button color="primary" class="w-full">Применить</button>
+                <button mat-flat-button color="primary" class="w-full" (click)="applyFilters()">Применить</button>
               </div>
-        </div>
-        <div class="equipment-list w-full mr-[25px]">
+              <div class="flex justify-center mt-4 w-full">
+                <button mat-flat-button color="primary" class="w-full" (click)="resetFilters()">Сбросить</button>
+              </div>
+        </form>
+        <div class="equipment-list mr-[25px] w-full">
+            <mat-form-field class="w-full">
+                <mat-label>Поиск оборудования</mat-label>
+                <input matInput placeholder="Поиск оборудования по инветарному номеру / названию / актам" 
+                (keyup)="searchByName($event)"  #input>
+            </mat-form-field>
             <table mat-table [dataSource]="dataSource" class="border-4 rounded-lg">
             
                 <ng-container matColumnDef="id">
@@ -161,7 +193,8 @@
                 </ng-container>
     
                 <tr mat-header-row *matHeaderRowDef="displayedColumns" class="ronded-md"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="clickRow(row)"></tr>
             </table>
     
             <mat-paginator

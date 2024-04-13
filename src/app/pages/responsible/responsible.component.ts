@@ -96,11 +96,8 @@ export class ResponsibleComponent implements AfterViewInit {
 
     if (formValues.department) { params.departmentId = formValues.department.id };
     if (formValues.isFinanciallyResponsible !== 'none') {
-          console.log("!!!");
         params.isFinanciallyResponsible = formValues.isFinanciallyResponsible;
     }
-
-    console.log(params);
 
     this.responsibleService.getAll(params).subscribe({
       next: (data : Responsible[]) => { 
