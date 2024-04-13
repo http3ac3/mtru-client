@@ -1,20 +1,7 @@
-<div>
-    <div class="tools flex ml-[25px] mt-[25px]">
-        <div class="mr-[25px]">
-            <button mat-raised-button>Главная</button>
-        </div>
-        <form class="flex w-full">
-            <div class="h-full w-full">
-                <input class="h-full w-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[25px]" placeholder="Поиск ответственного">
-            </div>
-            <div class="mr-[25px] ml-[25px]">
-                <button mat-raised-button>Найти</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="content flex mt-[25px]">
-        <div class="filter-class h-[40%] ml-[25px] min-w-[250px] border-4 rounded-md p-2 mr-[25px]">
+<div >
+    <div class="content mr-[25px] flex mt-[25px] w-full">
+        <form class="filter-class h-[40%] ml-[25px] min-w-[20.5vw] border-4 rounded-md p-2 mr-[25px]" 
+        [formGroup]="filterForm">
             <mat-accordion multi>
                 <mat-expansion-panel >
                     <mat-expansion-panel-header>
@@ -22,11 +9,17 @@
                             <span class="">Структурное подразделение</span>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <div class="flex w-full">
-                        <div class="w-full h-7 mr-[25px]">
-                            <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" placeholder="Структурное подразделение">
-                        </div>
-                    </div>
+                    <mat-form-field class="w-full">
+                        <mat-label>Структурное подразделение</mat-label>
+                        <!--[(ngModel)]="selectedDepartment"   -->
+                        <mat-select formControlName="department" name="selectedDepartment">
+                            <mat-option>Ничего не выбирать</mat-option>
+                            
+                            <mat-option *ngFor="let department of departments" 
+                            [value]="department">{{department.name}}</mat-option>
+                            
+                        </mat-select>
+                      </mat-form-field>
                 </mat-expansion-panel>
                 
                 <mat-expansion-panel >
@@ -35,18 +28,33 @@
                             <span class="">Материально ответственные</span>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <section class="example-section">
-                        <mat-checkbox color="primary" class="example-margin"><span class="text-xs">Материально ответственные</span></mat-checkbox>
-                    </section>
+                    <!--[(ngModel)]="selectedFinanciallyResponsibility"-->
+                    <mat-radio-group aria-label="Выберите" formControlName="isFinanciallyResponsible">
+                        <mat-radio-button [value]="'none'" checked>Не указывать</mat-radio-button>
+                        
+                        <mat-radio-button [value]="true" 
+                        >Да</mat-radio-button>
+                        
+                        <mat-radio-button [value]="false" 
+                        >Нет</mat-radio-button>
+                        
+                      </mat-radio-group>
                 </mat-expansion-panel>
             
-              </mat-accordion>
-              <div class="flex justify-center mt-4 w-full">
-                <button mat-flat-button color="primary" class="w-full">Применить</button>
-              </div>
-        </div>
-        <div class="mr-[25px]">
-            <table mat-table [dataSource]="dataSource" class="border-4 rounded-lg">
+            </mat-accordion>
+            <div class="flex justify-center mt-4 w-full">
+                <button mat-flat-button color="primary" class="w-full" (click)="applyFilters()">Применить</button>
+            </div>
+            <div class="flex justify-center mt-4 w-full">
+                <button mat-flat-button color="primary" class="w-full" (click)="resetFilters()">Сбросить</button>
+            </div>
+        </form>
+        <div class="mr-[25px] w-full">
+            <mat-form-field class="w-full">
+                <mat-label>Поиск ответственного</mat-label>
+                <input matInput placeholder="Поиск ответственного по фамилии / имени / отчетству / телефону / должности" (keyup)="searchByName($event)"  #input>
+            </mat-form-field>
+            <table mat-table [dataSource]="dataSource" class="border-4 rounded-lg w-full">
             
                 <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -86,7 +94,7 @@
                 <ng-container matColumnDef="isFinanciallyResponsible">
                     <th mat-header-cell *matHeaderCellDef>Материально ответственен</th>
                     <td mat-cell *matCellDef="let responsible"> 
-                        @if (responsible.isFinanciallyResponsible) { Да }
+                        @if (responsible.financiallyResponsible) { Да }
                         @else { Нет }
                     </td>
                 </ng-container>
@@ -98,7 +106,8 @@
                 </ng-container>
     
                 <tr mat-header-row *matHeaderRowDef="displayedColumns" class="ronded-md"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="clickRow(row)"></tr>
             </table>
     
             <mat-paginator

@@ -8,6 +8,6 @@ export class Responsible {
         public patronymic : string,
         public position : string, 
         public phoneNumber : string,
-        public isFinanciallyResponsible : boolean,
+        public financiallyResponsible : boolean,
         public department : Department) {}
 }

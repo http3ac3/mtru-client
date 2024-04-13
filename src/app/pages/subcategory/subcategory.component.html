@@ -30,7 +30,7 @@
         <div class="w-full">
             <mat-form-field class="w-full">
                 <mat-label>Поиск подкатегории</mat-label>
-                <input matInput placeholder="Поиск подкатегории по названию" (keyup)="searchByName($event)"  #input>
+                <input matInput placeholder="Поиск подкатегории по названию" (keyup)="searchByName($event)" #input>
             </mat-form-field>
             <table mat-table [dataSource]="dataSource" class="border-4 rounded-lg">
             
