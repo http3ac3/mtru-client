@@ -1,0 +1,89 @@
+<div>
+    <div class="flex items-center mr-[20px] w-full">
+        <h2 mat-dialog-title>Подробные сведения</h2>
+        <span class="flex-auto"></span>
+        <button mat-icon-button (click)="onCancel()" class="mr-[15px]">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <mat-dialog-content>
+        <form [formGroup]="rentForm">
+            <div class="flex flex-col w-full">
+                
+                <div class=" flex w-full">
+
+                    <div class="mr-[25px] w-[20vw]">
+                        <mat-form-field class="w-full">
+                            <mat-label>Наименование оборудования</mat-label>
+                            <input matInput placeholder="Наименование" formControlName="name">
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="w-[20vw]">
+                        <mat-form-field class="w-full">
+                            <mat-label>Инвентарный номер</mat-label>
+                            <input matInput placeholder="Инвентарный номер" formControlName="inventoryNumber">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="flex w-full">
+                    <div class="w-[50%] mr-[25px] ">
+                        <mat-form-field class="w-full">
+                            <mat-label>Дата и время взятия</mat-label>
+                            <input type="datetime-local" matInput placeholder="Дата и время взятия" formControlName="createDateTime">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="w-[50%]">
+                        <mat-form-field class="w-full">
+                            <mat-label>Дата и время завершения взятия</mat-label>
+                            @if (this.data.endDateTime) {
+                                <input type="datetime-local" matInput placeholder="Дата и время завершения взятия" formControlName="endDateTime">                               
+                            } @else {
+                                <input matInput placeholder="Дата и время завершения взятия" formControlName="endDateTime">                               
+                            } 
+                            
+                        </mat-form-field>
+                    </div>
+                </div>
+                
+                
+                <div class="flex w-full">
+
+                    <div class="w-[50%] mr-[25px]">
+                        <mat-form-field class=" w-full">
+                            <mat-label>ФИО взявшего</mat-label>
+                            <input matInput placeholder="ФИО" formControlName="responsible">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="w-[50%]">
+                        <mat-form-field class=" w-full">
+                            <mat-label>Помещение</mat-label>
+                            <input matInput placeholder="Помещение" formControlName="placement">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="w-full">
+                    <mat-form-field class="mb-[25px] w-full">
+                        <mat-label>Описание</mat-label>
+                        <textarea matInput placeholder="Описание" formControlName="description"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            
+        </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="">
+        <div class="mb-[10px] ml-[15px] flex w-full justify-between">
+            <button mat-flat-button (click)="onRentDelete()" class="mr-[15px] w-full" color="warn">Удалить</button>
+        </div>
+    </mat-dialog-actions>
+
+    
+</div>

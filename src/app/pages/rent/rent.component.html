@@ -1,19 +1,7 @@
 <div>
-    <div class="tools flex ml-[25px] mt-[25px] mb-[25px]">
-        <div class="mr-[25px] ">
-            <button mat-raised-button>Главная</button>
-        </div>
-        <form class="flex w-full">
-            <div class="h-full w-full">
-                <input class="h-full w-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[25px]" placeholder="Поиск взятия">
-            </div>
-            <div class="mr-[25px] ml-[25px]">
-                <button mat-raised-button>Найти</button>
-            </div>
-        </form>
-    </div>
-    <div class="content mr-[25px] flex">
-        <div class="filter-class h-[40%] ml-[25px] min-w-[250px] border-4 rounded-md p-2 mr-[25px]">
+    <div class="content mr-[25px] flex mt-[25px] ml-[25px] ">
+        <form class="filter-class h-[40%] w-[20.5vw] border-4 rounded-md p-2 mr-[25px]"
+        [formGroup]="rentFilterForm">
             <mat-accordion multi>
                 <mat-expansion-panel >
                     <mat-expansion-panel-header>
@@ -21,14 +9,23 @@
                             <span class="">Ответственный</span>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <div class="flex w-20 h-10 mr-[25px]" >       
-                        <select class="border-2 rounded-md w-48 h-10">
-                            <option>Ответственный</option>
-                            <option>Иванов Иван Иванович</option>
-                            <option>Кириллов Кирилл Кириллович</option>
-                        </select>
-                        <!-- <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" placeholder="Категория"> -->
-                    </div>
+                    <mat-form-field class="w-full">
+                        <mat-label>Ответственный</mat-label>
+                        <!--[(ngModel)]="selectedDepartment"   -->
+                        <mat-select formControlName="responsible" name="responsible">
+                            <mat-option>Ничего не выбирать</mat-option>
+                            
+                            <mat-option *ngFor="let responsible of responsibleData" 
+                            [value]="responsible">
+                            {{
+                                responsible.lastName + ' ' +
+                                responsible.firstName + ' ' + 
+                                responsible.patronymic 
+                            }}
+                            </mat-option>
+                            
+                        </mat-select>
+                    </mat-form-field>
                 </mat-expansion-panel>
                 <mat-expansion-panel >
                     <mat-expansion-panel-header>
@@ -36,25 +33,64 @@
                             <span class="">Помещение</span>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <div class="flex h-10 mr-[25px] w-48" >       
-                        <select class="border-2 w-full rounded-md h-10">
-                            <option>Помещение</option>
-                            <option>303-3</option>
-                            <option>302-3</option>
-                        </select>
-                        <!-- <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" placeholder="Категория"> -->
-                    </div>
+                    <mat-form-field class="w-full">
+                        <mat-label>Помещение</mat-label>
+                        <!--[(ngModel)]="selectedDepartment"   -->
+                        <mat-select formControlName="placement" name="placement">
+                            <mat-option>Ничего не выбирать</mat-option>
+                            
+                            <mat-option *ngFor="let placement of placements" 
+                            [value]="placement"> {{ placement.name }}
+                            </mat-option>
+                            
+                        </mat-select>
+                    </mat-form-field>
                 </mat-expansion-panel>
+
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="">Оборудование</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="flex">
+                        <mat-form-field class="w-full mr-[10px]">
+                            <mat-label>Поиск оборудования</mat-label>
+                            <input matInput placeholder="Инветарный номер" formControlName="equipmentSearchValue">
+                        </mat-form-field>
+                        <button mat-icon-button color="primary" aria-label="" (click)="updateEquipmentSelectBySearch()">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
+                    
+                    <mat-form-field class="w-full">
+                        <mat-label>Оборудование</mat-label>
+                        <!--[(ngModel)]="selectedDepartment"   -->
+                        <mat-select formControlName="equipment" name="equipment">
+                            <mat-option>Ничего не выбирать</mat-option>
+                            
+                            <mat-option *ngFor="let equipment of equipmentData" 
+                            [value]="equipment"> {{ equipment.name + '(№' + equipment.inventoryNumber + ')' }}
+                            </mat-option>
+                            
+                        </mat-select>
+                    </mat-form-field>
+                </mat-expansion-panel>
+
                 <mat-expansion-panel >
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <span class="">Закрытые взятия</span>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <div class="flex h-10">
-                        <mat-checkbox color="primary">Закрытые взятия</mat-checkbox>
-                        <!-- <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" placeholder="Категория"> -->
-                    </div>
+                    <mat-radio-group aria-label="Выберите" formControlName="isClosed">
+                        <mat-radio-button [value]="'none'" checked>Не указывать</mat-radio-button>
+                        
+                        <mat-radio-button [value]="true">Завершенные</mat-radio-button>
+                        
+                        <mat-radio-button [value]="false">Незавершенные</mat-radio-button>
+                        
+                      </mat-radio-group>
                 </mat-expansion-panel>
                 <mat-expansion-panel >
                     <mat-expansion-panel-header>
@@ -66,12 +102,14 @@
                         <div class="w-21 h-7 mb-[10px]">
                             <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
                             type="text"
+                            formControlName="createDateTimeFrom"
                             placeholder="От"
                             onfocus="(this.type='datetime-local')" onblur="if(this.value==''){this.type='text'}">
                         </div>
                         <div class="w-21 h-7">
                             <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
                             type="text"
+                            formControlName="createDateTimeTo"
                             placeholder="До"
                             onfocus="(this.type='datetime-local')" onblur="if(this.value==''){this.type='text'}">
                         </div>
@@ -88,22 +126,27 @@
                         <div class="w-21 h-7 mb-[10px]">
                             <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
                             type="text"
+                            formControlName="endDateTimeFrom"
                             placeholder="От"
                             onfocus="(this.type='datetime-local')" onblur="if(this.value==''){this.type='text'}">
                         </div>
                         <div class="w-21 h-7">
                             <input class="text-[10px] w-full h-full border-2 rounded-md  shadow-gray-500 shadow-sm pl-[10px]" 
                             type="text"
+                            formControlName="endDateTimeTo"
                             placeholder="До"
                             onfocus="(this.type='datetime-local')" onblur="if(this.value==''){this.type='text'}">
                         </div>
                     </div>
                 </mat-expansion-panel>
-              </mat-accordion>
-              <div class="flex justify-center mt-4 w-full">
-                <button mat-flat-button color="primary" class="w-full">Применить</button>
-              </div>
-        </div>
+            </mat-accordion>
+            <div class="flex justify-center mt-4 w-full">
+                <button mat-flat-button color="primary" class="w-full" (click)="applyFilters()">Применить</button>
+            </div>
+            <div class="flex justify-center mt-4 w-full">
+                <button mat-flat-button color="primary" class="w-full" (click)="resetFilters()">Сбросить</button>
+            </div>
+        </form>
         <div class="rows w-full">
             <table mat-table [dataSource]="dataSource" class="border-4 rounded-lg">
             
@@ -114,7 +157,9 @@
     
                 <ng-container matColumnDef="createDateTime">
                     <th mat-header-cell *matHeaderCellDef>Дата и время создания</th>
-                    <td mat-cell *matCellDef="let rent">{{ rent.createDateTime }}</td>
+                    <td mat-cell *matCellDef="let rent">
+                        <input disabled type="datetime-local" value="{{rent.createDateTime}}">
+                    </td>
                 </ng-container>
 
                 <ng-container matColumnDef="equipment">
@@ -140,11 +185,16 @@
 
                 <ng-container matColumnDef="endDateTime">
                     <th mat-header-cell *matHeaderCellDef>Дата и время окончания</th>
-                    <td mat-cell *matCellDef="let rent">{{ rent.endDateTime }}</td>
+                    <td mat-cell *matCellDef="let rent">
+                        @if (rent.endDateTime) {
+                            <input disabled type="datetime-local" value="{{rent.endDateTime}}">
+                        }
+                    </td>
                 </ng-container>
     
                 <tr mat-header-row *matHeaderRowDef="displayedColumns" class="ronded-md"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="clickRow(row)"></tr>
             </table>
     
             <mat-paginator

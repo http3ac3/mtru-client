@@ -22,6 +22,18 @@ export class PlacementService {
   }
 
   /**
+   * Получение спика записей помещений по названию
+   * 
+   * @param name название помещения
+   * @returns 
+   */
+  getAllByNameStartingWith(name : string) : Observable<Placement[]> {
+    return this.http.get<Placement[]>(PLACEMENTS_API_URL, {
+      params : { name : name }  
+    });
+  }
+
+  /**
    * Создание нового помещения
    * 
    * @param placement новое помещение

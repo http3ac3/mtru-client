@@ -65,7 +65,7 @@ export class AppComponent implements OnInit{
       this.isAdmin = this.roles.some(role => role.name === "ROLE_ADMIN");
       this.isLabhead = this.roles.some(role => role.name === "ROLE_LABHEAD");
       this.isUser = this.roles.some(role => role.name === "ROLE_USER");
-      console.log(this.isAdmin);
+      console.log(this.isUser);
     }
   }
 

@@ -19,4 +19,16 @@ export class UserService {
       })
     );
   } 
+
+  getAll() : Observable<User[]> {
+    return this.http.get<User[]>(USER_API);
+  }
+
+  create(user : User) : Observable<string> {
+    return this.http.post('http://localhost:8080/auth/register', user, {responseType : 'text'});
+  } 
+
+  delete(id : number) : Observable<string> {
+    return this.http.delete(USER_API + `/${id}`, {responseType: 'text'});
+  }
 }

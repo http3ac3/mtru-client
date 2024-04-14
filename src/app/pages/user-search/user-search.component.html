@@ -1,14 +1,66 @@
 <div class="w-full">
     <div class="h-[90vh] w-full flex justify-center items-center">
         <div class="flex flex-col border-2 rounded-md p-[25px]">
-            <form class="w-full flex flex-col text-center items-center">
-                <span class="mb-[25px]">Чтобы взять оборудование, введите инвентарный номер</span>
-                <mat-form-field  class="w-[30vw]">
-                    <mat-label>Инвентарный номер</mat-label>
-                    <input matInput placeholder="Инвентарный номер" value="00000001">
+            <form class="w-full flex flex-col text-center items-center" [formGroup]="searchEquipmentForm">
+                <span class="mb-[25px]">
+                    Чтобы взять оборудование, выберите оборудование из выпадающего списка</span>
+                <div class="flex w-full">
+                    <mat-form-field  class="w-full mr-[10px]">
+                        <mat-label>Поиск оборудования</mat-label>
+                        <input matInput placeholder="Инвентарный номер" value="" formControlName="searchEquipmentValue">
+                    </mat-form-field>
+                    <button mat-icon-button color="primary" (click)="searchByInventoryNumber()">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" (click)="resetSearch()">
+                        <mat-icon>refresh</mat-icon>
+                    </button>
+                </div>
+                
+                <mat-form-field class="w-full">
+                    <mat-label>Оборудование</mat-label>
+                    <!--[(ngModel)]="selectedDepartment"   -->
+                    <mat-select formControlName="equipment" name="equipment">
+                        <mat-option *ngFor="let equipment of equipmentData" 
+                        [value]="equipment"> {{ equipment.name + '(№' + equipment.inventoryNumber + ')' }}
+                        </mat-option>
+                        
+                    </mat-select>
                 </mat-form-field>
+                <span class="mb-[25px]">Выберите из выпадающего списка помещение, в которое оборудование будет перемещено</span>
+                <div class="w-full">
+                    <div class="flex">
+                        <mat-form-field  class="w-[30vw] mr-[10px]">
+                            <mat-label>Поиск помещения</mat-label>
+                            <input matInput placeholder="Название помещения" value="" formControlName="searchPlacementValue">
+                        </mat-form-field>
+                        <button mat-icon-button color="primary" (click)="searchByPlacementName()">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                        <button mat-icon-button color="primary" (click)="resetSearchPlacement()">
+                            <mat-icon>refresh</mat-icon>
+                        </button>
+                    </div>
+
+                    <mat-form-field class="w-full">
+                        <mat-label>Помещение</mat-label>
+                    <!--[(ngModel)]="selectedDepartment"   -->
+                    <mat-select formControlName="placement" name="placement">
+                        <mat-option *ngFor="let placement of placements" 
+                        [value]="placement"> {{ placement.name }}
+                        </mat-option>
+                        
+                    </mat-select>
+                    </mat-form-field>
+                </div>
+                
+                <mat-form-field class="w-full">
+                    <mat-label>Описание</mat-label>
+                    <textarea matInput placeholder="Описание" value=""></textarea>
+                </mat-form-field>
+
                 <div class="text-center">
-                    <button class="w-[30vw]" mat-flat-button color="primary" type="submit">Найти</button>
+                    <button class="w-[30vw]" mat-flat-button color="primary" (click)="take()">Взять оборудование</button>
                 </div>
             </form>
         </div>

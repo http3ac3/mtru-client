@@ -6,13 +6,21 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HeaderComponent } from '../header/header.component';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/Auth/auth.service';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [MatToolbarModule, MatIconModule, MatButtonModule, FormsModule, MatInputModule, MatFormFieldModule, HeaderComponent],
+  imports: [
+    MatToolbarModule, 
+    MatIconModule, 
+    MatButtonModule, 
+    FormsModule, 
+    MatInputModule, 
+    MatFormFieldModule, 
+    HeaderComponent,
+    RouterLink],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -52,5 +60,9 @@ export class MainComponent {
 
   goToDepartments() {
     this.router.navigate(['departments']);
+  }
+
+  goToUsers() {
+    this.router.navigate(['users']);
   }
 }

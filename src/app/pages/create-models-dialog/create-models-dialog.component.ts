@@ -15,6 +15,7 @@ import { CreateEquipmentFormDialogComponent } from '../create-equipment-form-dia
 import { CreateResponsibleFormDialogComponent } from '../create-responsible-form-dialog/create-responsible-form-dialog.component';
 import { CreatePlacementFormDialogComponent } from '../create-placement-form-dialog/create-placement-form-dialog.component';
 import { CreateDepartmentFormDialogComponent } from '../create-department-form-dialog/create-department-form-dialog.component';
+import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 
 @Component({
   selector: 'app-create-models-dialog',
@@ -66,6 +67,11 @@ export class CreateModelsDialogComponent {
 
   onDepartmentDialogOpen() {
     this.dialog.open(CreateDepartmentFormDialogComponent);
+    this.dialogRef.close();
+  }
+
+  onUserDialogOpen() {
+    this.dialog.open(UserDialogComponent);
     this.dialogRef.close();
   }
 }

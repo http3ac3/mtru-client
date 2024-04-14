@@ -1,7 +1,8 @@
 <div class="w-full">
     <div class="flex flex-col justify-center items-center mt-[25px]">
-        <app-user-rent-row/>
-        <app-user-rent-row/>
+        @for (rent of rents; track rent) {
+            <app-user-rent-row [rent]="rent"/>
+        }   
     </div>
     
 </div>

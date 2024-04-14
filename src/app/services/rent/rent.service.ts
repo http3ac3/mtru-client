@@ -42,8 +42,8 @@ export class RentService {
    * @param rent новая информация о взятии
    * @returns http-ответ
    */
-  update(rent : Rent) : Observable<string> {
-    return this.http.put(RENT_API_URL + `/${rent.id}`, rent, {
+  update(id : number) : Observable<string> {
+    return this.http.put<string>(RENT_API_URL + `/${id}`, {
       responseType : 'text'
     });
   }
@@ -58,6 +58,12 @@ export class RentService {
     return this.http.delete(RENT_API_URL + `/${id}`, {
       responseType : 'text'
     });
+  }
+
+  getUserRents(params? : any) : Observable<Rent[]> {
+    return this.http.get<Rent[]>(RENT_API_URL + '/my', {
+      params : params ? this.getHttpParams(params) : {}
+    })
   }
 
   /**

@@ -1,24 +1,24 @@
 <div class="flex flex-col items-center text-center border-2 rounded-md p-[25px] mb-[25px] w-[80vw]">
     <form class="w-full">
-        <h2 class="block mb-[25px]">Взятие №</h2>
+        <h2 class="block mb-[25px]">Информация о взятии</h2>
         <mat-form-field class="example-full-width w-full">
             <mat-label>Инвентарый номер</mat-label>
-            <input matInput placeholder="Инвентарый номер">
+            <input matInput placeholder="Инвентарый номер" value="{{rent.equipment.inventoryNumber}}">
         </mat-form-field>
         <mat-form-field class="example-full-width w-full">
             <mat-label>Наименование</mat-label>
-            <input matInput placeholder="Наименование">
+            <input matInput placeholder="Наименование" value="{{rent.equipment.name}}">
         </mat-form-field>
         <mat-form-field class="example-full-width w-full">
             <mat-label>Дата и время взятия</mat-label>
-            <input matInput placeholder="Дата и время взятия" type="datetime-local">
+            <input matInput type="datetime-local" placeholder="Дата и время взятия" type="datetime-local" value="{{rent.createDateTime}}">
         </mat-form-field>
         <mat-form-field class="example-full-width w-full">
             <mat-label>Помещение</mat-label>
-            <input matInput placeholder="Помещение" type="text">
+            <input matInput placeholder="Помещение" type="text" value="{{rent.placement.name}}">
         </mat-form-field>
         <div class="text-center">
-            <button mat-flat-button color="primary" class="w-[20vw]">Вернуть</button>
+            <button mat-flat-button color="primary" class="w-[20vw]" (click)="closeRent()">Вернуть</button>
         </div>
     </form>
 </div>

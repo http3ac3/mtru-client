@@ -18,10 +18,12 @@ import { ResponsibleComponent } from './pages/responsible/responsible.component'
 import { httpInterceptor } from './helpers/http.interceptor';
 import { UserRentsComponent } from './pages/user-rents/user-rents.component';
 import { DepartmentComponent } from './pages/department/department.component';
+import { UsersComponent } from './pages/users/users.component';
 
 const appRoutes: Routes = [
   { path: "main", component: MainComponent },
   { path: "login", component: LoginComponent },
+  { path: "users", component: UsersComponent },
   { path: "user-search", component: UserSearchComponent },
   { path: "user-rents", component: UserRentsComponent },
   { path: "new-rent", component: CreateRentComponent },
