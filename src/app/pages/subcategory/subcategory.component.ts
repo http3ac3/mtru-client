@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { NgFor } from '@angular/common';
 import { CreateSubcategoryFormDialogComponent } from '../create-subcategory-form-dialog/create-subcategory-form-dialog.component';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-subcategory',
@@ -30,6 +31,7 @@ import { CreateSubcategoryFormDialogComponent } from '../create-subcategory-form
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatSortModule,
     NgFor
   ],
   templateUrl: './subcategory.component.html',
@@ -43,6 +45,7 @@ export class SubcategoryComponent implements AfterViewInit {
   displayedColumns : string[] = ['id', 'name', 'category'];
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor (
     private categoryService : CategoryService,
@@ -64,6 +67,7 @@ export class SubcategoryComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;    
+    this.dataSource.sort = this.sort;
   }
 
   applyFilters() {

@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { DepartmentService } from '../../services/department/department.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateDepartmentFormDialogComponent } from '../create-department-form-dialog/create-department-form-dialog.component';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-department',
@@ -22,7 +23,8 @@ import { CreateDepartmentFormDialogComponent } from '../create-department-form-d
     MatButtonModule,
     MatInputModule,
     FormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSortModule,
   ],
   templateUrl: './department.component.html',
   styleUrl: './department.component.css'
@@ -33,6 +35,7 @@ export class DepartmentComponent {
   displayedColumns : string[] = ['id', 'name'];
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor (
     private departmentService : DepartmentService,
@@ -53,6 +56,7 @@ export class DepartmentComponent {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   clickRow(row : Department) {

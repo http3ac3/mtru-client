@@ -25,6 +25,7 @@ import { PlacementService } from '../../services/placement/placement.service';
 import { NgFor } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { CreateEquipmentFormDialogComponent } from '../create-equipment-form-dialog/create-equipment-form-dialog.component';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-equipment',
@@ -39,7 +40,8 @@ import { CreateEquipmentFormDialogComponent } from '../create-equipment-form-dia
     MatExpansionModule, 
     MatTableModule,
     MatSelectModule,
-    NgFor
+    NgFor,
+    MatSortModule
   ],
   templateUrl: './equipment.component.html',
   styleUrl: './equipment.component.css'
@@ -63,7 +65,7 @@ export class EquipmentComponent implements AfterViewInit {
   ];
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-
+  @ViewChild(MatSort) sort!: MatSort;
   constructor (
     private subcategoryService : SubcategoryService,
     private responsibleService : ResponsibleService,
@@ -96,6 +98,7 @@ export class EquipmentComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   getAllEquipmentData() {

@@ -11,6 +11,7 @@ import { PlacementService } from '../../services/placement/placement.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePlacementFormDialogComponent } from '../create-placement-form-dialog/create-placement-form-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 @Component({
   selector: 'app-placement',
   standalone: true,
@@ -22,7 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatPaginatorModule, 
     MatIconModule,
     MatFormFieldModule, 
-    MatInputModule
+    MatInputModule,
+    MatSortModule
   ],
   templateUrl: './placement.component.html',
   styleUrl: './placement.component.css'
@@ -33,6 +35,7 @@ export class PlacementComponent {
   displayedColumns : string[] = ['id', 'name'];
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor (
     private placementService : PlacementService, 
@@ -53,6 +56,7 @@ export class PlacementComponent {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   searchByName(event : Event) {

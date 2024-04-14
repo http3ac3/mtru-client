@@ -27,6 +27,7 @@ import { RentService } from '../../services/rent/rent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { RentInformationDialogComponent } from '../rent-information-dialog/rent-information-dialog.component';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-rent',
@@ -46,6 +47,7 @@ import { RentInformationDialogComponent } from '../rent-information-dialog/rent-
     MatRadioGroup,
     MatRadioButton,
     MatIconModule,
+    MatSortModule,
     NgFor
   ],
   templateUrl: './rent.component.html',
@@ -70,6 +72,7 @@ export class RentComponent {
   ];
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor (
     private equipmentService : EquipmentService,
@@ -109,6 +112,7 @@ export class RentComponent {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilters() {

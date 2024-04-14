@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateCategoryFormDialogComponent } from '../create-category-form-dialog/create-category-form-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-category',
@@ -22,7 +23,8 @@ import { MatInputModule } from '@angular/material/input';
     MatPaginatorModule, 
     MatIconModule,
     MatFormFieldModule, 
-    MatInputModule
+    MatInputModule,
+    MatSortModule
   ],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
@@ -33,6 +35,7 @@ export class CategoryComponent implements AfterViewInit{
   displayedColumns : string[] = ['id', 'name'];
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private categoryService: CategoryService, private dialog : MatDialog) { }
 
@@ -50,6 +53,7 @@ export class CategoryComponent implements AfterViewInit{
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   clickRow(row: Category) {

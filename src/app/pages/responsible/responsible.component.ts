@@ -20,6 +20,7 @@ import { NgFor } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateResponsibleFormDialogComponent } from '../create-responsible-form-dialog/create-responsible-form-dialog.component';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 @Component({
   selector: 'app-responsible',
   standalone: true,
@@ -36,7 +37,8 @@ import { CreateResponsibleFormDialogComponent } from '../create-responsible-form
     MatTableModule,
     MatSelectModule,
     MatRadioModule,
-    NgFor
+    NgFor,
+    MatSortModule
   ],
   templateUrl: './responsible.component.html',
   styleUrl: './responsible.component.css'
@@ -59,6 +61,7 @@ export class ResponsibleComponent implements AfterViewInit {
   ];
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor (
     private fb : FormBuilder,
@@ -85,6 +88,7 @@ export class ResponsibleComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {  
     this.dataSource.paginator = this.paginator; 
+    this.dataSource.sort = this.sort;
   }
 
   applyFilters() {
