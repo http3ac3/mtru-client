@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
@@ -48,9 +48,9 @@ export class UserDialogComponent {
   ) {
     this.userForm = new FormGroup({
       id : new FormControl(),
-      username : new FormControl(),
-      password : new FormControl(),
-      responsible : new FormControl(),
+      username : new FormControl(null, [Validators.required, Validators.minLength(8)]),
+      password : new FormControl(null, [Validators.required, Validators.minLength(8)]),
+      responsible : new FormControl(null, [Validators.required]),
       isAdmin : new FormControl(),
       isLabhead : new FormControl(),
       isUser : new FormControl()
@@ -126,6 +126,11 @@ export class UserDialogComponent {
     if (formValues.isAdmin) roles.push(new Role(0, 'ROLE_ADMIN'));
     if (formValues.isUser) roles.push(new Role(0, 'ROLE_USER'));
     if (formValues.isLabhead) roles.push(new Role(0, 'ROLE_LABHEAD'));
+
+    if (roles.length == 0) {
+      alert('Выберите хотя бы одну роль для пользователя!');
+      return;
+    }
 
     let user : User =  new User(0, formValues.username, formValues.password, formValues.responsible, roles);
     this.userService.create(user).subscribe({

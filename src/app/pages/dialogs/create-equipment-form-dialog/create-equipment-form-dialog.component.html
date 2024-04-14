@@ -131,7 +131,7 @@
         <div class="mb-[10px] ml-[15px] flex w-full justify-between">
             @if (this.data) {
                 @if (this.currentUser.responsible.id === this.data.responsible.id || this.userIsAdmin) {
-                    <button mat-stroked-button (click)="onEquipmentChange()" class="w-[50%]" color="primary">Изменить</button>
+                    <button [disabled]="!equipmentForm.valid" mat-stroked-button (click)="onEquipmentChange()" class="w-[50%]" color="primary">Изменить</button>
                     <button mat-flat-button (click)="onEquipmentDelete()" class="mr-[15px] w-[50%]" color="warn">Удалить</button>
                 } @else {
                     <div>Вы не можете управлять этим оборудованием, так как оно закреплено за 
@@ -143,7 +143,7 @@
                     </div>
                 }
             } @else {
-                <button mat-flat-button (click)="onEquipmentCreate()" color="primary">Создать</button>
+                <button [disabled]="!equipmentForm.valid" mat-flat-button (click)="onEquipmentCreate()" color="primary">Создать</button>
             }
         </div>
     </mat-dialog-actions>

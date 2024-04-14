@@ -5,7 +5,7 @@ import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { Equipment } from '../../models/equipment/equipment';
 import { RentService } from '../../services/rent/rent.service';
@@ -46,9 +46,9 @@ export class UserSearchComponent {
     private storageService : StorageService,
     public dialog : MatDialog) {
     this.searchEquipmentForm = new FormGroup({
-      equipment : new FormControl(),
+      equipment : new FormControl(null, [Validators.required]),
       searchEquipmentValue : new FormControl(),
-      placement : new FormControl(),
+      placement : new FormControl(null, [Validators.required]),
       searchPlacementValue : new FormControl()
     });
   }

@@ -12,9 +12,9 @@ import {
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
-import { Category } from '../../models/category/category';
+import { Category } from '../../../models/category/category';
 import { MatIconModule } from '@angular/material/icon';
-import { CategoryService } from '../../services/category/category.service';
+import { CategoryService } from '../../../services/category/category.service';
 
 @Component({
   selector: 'app-create-category-form-dialog',
@@ -56,6 +56,12 @@ export class CreateCategoryFormDialogComponent {
 
   onCategoryCreate() {
     this.category.name = this.category.name.trim();
+
+    if (this.category.name === '') {
+      alert('Поле не должно быть пустым!');
+      return;
+    }
+
     this.categoryService.create(this.category).subscribe({
       complete: () => {
         alert(`Категория ${this.category.name} была успешно сохранена!`)
@@ -71,6 +77,12 @@ export class CreateCategoryFormDialogComponent {
   
   onCategoryChange() {
     this.category.name = this.category.name.trim();
+
+    if (this.category.name === '') {
+      alert('Поле не должно быть пустым!');
+      return;
+    }
+
     this.categoryService.update(this.category).subscribe({
       complete: () => {
         alert('Данные были успешно обновлены!');

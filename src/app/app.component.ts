@@ -19,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { StorageService } from './services/storage/storage.service';
 import { Role } from './models/role/role';
 import { MatButton, MatButtonModule } from '@angular/material/button';
-import { CreateModelsDialogComponent } from './pages/create-models-dialog/create-models-dialog.component';
+import { CreateModelsDialogComponent } from './pages/dialogs/create-models-dialog/create-models-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 

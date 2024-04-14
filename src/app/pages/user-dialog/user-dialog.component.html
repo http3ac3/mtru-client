@@ -65,7 +65,7 @@
             @if (this.data) {
                 <button mat-flat-button (click)="onUserDelete()" class="mr-[15px] w-full" color="warn">Удалить</button>
             } @else {
-                <button mat-flat-button (click)="onUserCreate()" color="primary">Создать</button>
+                <button [disabled]="!userForm.valid" mat-flat-button (click)="onUserCreate()" color="primary">Создать</button>
             }
         </div>
     </mat-dialog-actions>

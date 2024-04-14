@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -14,15 +14,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Equipment } from '../../models/equipment/equipment';
-import { SubcategoryService } from '../../services/subcategory/subcategory.service';
-import { ResponsibleService } from '../../services/responsible/responsible.service';
-import { PlacementService } from '../../services/placement/placement.service';
-import { EquipmentService } from '../../services/equipment/equipment.service';
-import { Subcategory } from '../../models/subcategory/subcategory';
-import { Placement } from '../../models/placement/placement';
-import { Responsible } from '../../models/responsible/responsible';
-import { StorageService } from '../../services/storage/storage.service';
+import { Equipment } from '../../../models/equipment/equipment';
+import { SubcategoryService } from '../../../services/subcategory/subcategory.service';
+import { ResponsibleService } from '../../../services/responsible/responsible.service';
+import { PlacementService } from '../../../services/placement/placement.service';
+import { EquipmentService } from '../../../services/equipment/equipment.service';
+import { Subcategory } from '../../../models/subcategory/subcategory';
+import { Placement } from '../../../models/placement/placement';
+import { Responsible } from '../../../models/responsible/responsible';
+import { StorageService } from '../../../services/storage/storage.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 
@@ -67,17 +67,17 @@ export class CreateEquipmentFormDialogComponent {
   ) {
     this.equipmentForm = new FormGroup({
       id : new FormControl(),
-      inventoryNumber : new FormControl(),
-      name : new FormControl(),
-      initialCost : new FormControl(),
-      commissioningDate : new FormControl(),
-      commissioningActNumber : new FormControl(),
+      inventoryNumber : new FormControl(null, [Validators.required]),
+      name : new FormControl(null, [Validators.required]),
+      initialCost : new FormControl(null, [Validators.required]),
+      commissioningDate : new FormControl(null, [Validators.required]),
+      commissioningActNumber : new FormControl(null, [Validators.required]),
       decommissioningDate : new FormControl(),
       decommissioningActNumber : new FormControl(),
       description : new FormControl(),
-      subcategory : new FormControl(),
-      responsible : new FormControl(),
-      placement : new FormControl(),
+      subcategory : new FormControl(null, [Validators.required]),
+      responsible : new FormControl(null, [Validators.required]),
+      placement : new FormControl(null, [Validators.required]),
       imageData : new FormControl()
     });
       

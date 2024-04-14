@@ -14,7 +14,7 @@ import { SubcategoryService } from '../../services/subcategory/subcategory.servi
 import { MatDialog } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { NgFor } from '@angular/common';
-import { CreateSubcategoryFormDialogComponent } from '../create-subcategory-form-dialog/create-subcategory-form-dialog.component';
+import { CreateSubcategoryFormDialogComponent } from '../dialogs/create-subcategory-form-dialog/create-subcategory-form-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({

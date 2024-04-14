@@ -60,7 +60,7 @@
                 </mat-form-field>
 
                 <div class="text-center">
-                    <button class="w-[30vw]" mat-flat-button color="primary" (click)="take()">Взять оборудование</button>
+                    <button [disabled]="!searchEquipmentForm.valid" class="w-[30vw]" mat-flat-button color="primary" (click)="take()">Взять оборудование</button>
                 </div>
             </form>
         </div>

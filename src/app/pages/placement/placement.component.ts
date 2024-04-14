@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PlacementService } from '../../services/placement/placement.service';
 import { MatDialog } from '@angular/material/dialog';
-import { CreatePlacementFormDialogComponent } from '../create-placement-form-dialog/create-placement-form-dialog.component';
+import { CreatePlacementFormDialogComponent } from '../dialogs/create-placement-form-dialog/create-placement-form-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 @Component({

@@ -11,12 +11,12 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Responsible } from '../../models/responsible/responsible';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DepartmentService } from '../../services/department/department.service';
-import { ResponsibleService } from '../../services/responsible/responsible.service';
+import { Responsible } from '../../../models/responsible/responsible';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DepartmentService } from '../../../services/department/department.service';
+import { ResponsibleService } from '../../../services/responsible/responsible.service';
 import { MatIconModule } from '@angular/material/icon';
-import { Department } from '../../models/department/department';
+import { Department } from '../../../models/department/department';
 import { NgFor } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -54,13 +54,13 @@ export class CreateResponsibleFormDialogComponent {
   ) {
     this.responsibleForm = new FormGroup({
       id : new FormControl(),
-      lastName : new FormControl(),
-      firstName : new FormControl(),
+      lastName : new FormControl(null, [Validators.required]),
+      firstName : new FormControl(null, [Validators.required]),
       patronymic : new FormControl(),
-      position : new FormControl(),
-      phoneNumber : new FormControl(),
+      position : new FormControl(null, [Validators.required]),
+      phoneNumber : new FormControl(null, [Validators.required, Validators.pattern("79[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]")]),
       financiallyResponsible : new FormControl(),
-      department : new FormControl()
+      department : new FormControl(null, [Validators.required])
     });
    }
 

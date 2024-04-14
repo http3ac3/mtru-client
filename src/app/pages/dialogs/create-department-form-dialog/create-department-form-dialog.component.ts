@@ -13,8 +13,8 @@ import {
 import { MatFormField } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Department } from '../../models/department/department';
-import { DepartmentService } from '../../services/department/department.service';
+import { Department } from '../../../models/department/department';
+import { DepartmentService } from '../../../services/department/department.service';
 
 @Component({
   selector: 'app-create-department-form-dialog',
@@ -54,6 +54,12 @@ export class CreateDepartmentFormDialogComponent {
   
   onDepartmentCreate() {
     this.department.name = this.department.name.trim();
+
+    if (this.department.name === '') {
+      alert('Поле не должно быть пустым!');
+      return;
+    }
+
     this.departmentService.create(this.department).subscribe({
       complete: () => {
         alert(`Структурное подразделение "${this.department.name}" было успешно сохранено!`)
@@ -68,6 +74,12 @@ export class CreateDepartmentFormDialogComponent {
   }
   onDepartmentChange() {
     this.department.name = this.department.name.trim();
+
+    if (this.department.name === '') {
+      alert('Поле не должно быть пустым!');
+      return;
+    }
+
     this.departmentService.update(this.department).subscribe({
       complete: () => {
         alert('Данные были успешно обновлены!');

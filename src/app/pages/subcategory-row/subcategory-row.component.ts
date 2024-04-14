@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 
 @Component({
@@ -9,5 +9,6 @@ import { MatButton } from '@angular/material/button';
   styleUrl: './subcategory-row.component.css'
 })
 export class SubcategoryRowComponent {
-
+  @Input() subcategoryId : number = -1;
+  @Input() subcategoryName : string = "";
 }

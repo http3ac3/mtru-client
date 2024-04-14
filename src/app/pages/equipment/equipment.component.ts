@@ -24,7 +24,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PlacementService } from '../../services/placement/placement.service';
 import { NgFor } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
-import { CreateEquipmentFormDialogComponent } from '../create-equipment-form-dialog/create-equipment-form-dialog.component';
+import { CreateEquipmentFormDialogComponent } from '../dialogs/create-equipment-form-dialog/create-equipment-form-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({

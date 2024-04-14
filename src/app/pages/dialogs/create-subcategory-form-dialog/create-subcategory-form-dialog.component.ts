@@ -13,10 +13,10 @@ import { MatFormField } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Subcategory } from '../../models/subcategory/subcategory';
-import { CategoryService } from '../../services/category/category.service';
-import { SubcategoryService } from '../../services/subcategory/subcategory.service';
-import { Category } from '../../models/category/category';
+import { Subcategory } from '../../../models/subcategory/subcategory';
+import { CategoryService } from '../../../services/category/category.service';
+import { SubcategoryService } from '../../../services/subcategory/subcategory.service';
+import { Category } from '../../../models/category/category';
 import { NgFor } from '@angular/common';
 
 @Component({
@@ -75,6 +75,12 @@ export class CreateSubcategoryFormDialogComponent {
   
   onSubcategoryCreate() {
     this.subcategory.name = this.subcategory.name.trim();
+
+    if (this.subcategory.name === '') {
+      alert('Поле не должно быть пустым!');
+      return;
+    }
+
     this.subcategory.category = this.selectedCategory;
 
     this.subcategoryService.create(this.subcategory).subscribe({
@@ -92,6 +98,12 @@ export class CreateSubcategoryFormDialogComponent {
 
   onSubcategoryChange() {
     this.subcategory.name = this.subcategory.name.trim();
+
+    if (this.subcategory.name === '') {
+      alert('Поле не должно быть пустым!');
+      return;
+    }
+    
     this.subcategory.category = this.selectedCategory;
 
     this.subcategoryService.update(this.subcategory).subscribe({

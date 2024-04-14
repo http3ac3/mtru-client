@@ -7,7 +7,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { CategoryService } from '../../services/category/category.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateCategoryFormDialogComponent } from '../create-category-form-dialog/create-category-form-dialog.component';
+import { CreateCategoryFormDialogComponent } from '../dialogs/create-category-form-dialog/create-category-form-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSort, MatSortModule } from '@angular/material/sort';

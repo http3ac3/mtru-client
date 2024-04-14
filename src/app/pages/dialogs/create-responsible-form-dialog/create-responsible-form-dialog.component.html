@@ -70,10 +70,10 @@
     <mat-dialog-actions class="">
         <div class="mb-[10px] ml-[15px] flex w-full justify-between">
             @if (this.data) {
-                <button mat-stroked-button (click)="onResponsibleChange()" class="w-[50%]" color="primary">Изменить</button>
+                <button [disabled]="!responsibleForm.valid" mat-stroked-button (click)="onResponsibleChange()" class="w-[50%]" color="primary">Изменить</button>
                 <button mat-flat-button (click)="onResponsibleDelete()" class="mr-[15px] w-[50%]" color="warn">Удалить</button>
             } @else {
-                <button mat-flat-button (click)="onResponsibleCreate()" color="primary">Создать</button>
+                <button [disabled]="!responsibleForm.valid" mat-flat-button (click)="onResponsibleCreate()" color="primary">Создать</button>
             }
         </div>
     </mat-dialog-actions>

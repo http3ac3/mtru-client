@@ -10,7 +10,7 @@ import { _MatInternalFormField } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DepartmentService } from '../../services/department/department.service';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateDepartmentFormDialogComponent } from '../create-department-form-dialog/create-department-form-dialog.component';
+import { CreateDepartmentFormDialogComponent } from '../dialogs/create-department-form-dialog/create-department-form-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({

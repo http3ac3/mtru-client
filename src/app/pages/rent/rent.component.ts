@@ -26,7 +26,7 @@ import { PlacementService } from '../../services/placement/placement.service';
 import { RentService } from '../../services/rent/rent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { RentInformationDialogComponent } from '../rent-information-dialog/rent-information-dialog.component';
+import { RentInformationDialogComponent } from '../dialogs/rent-information-dialog/rent-information-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({

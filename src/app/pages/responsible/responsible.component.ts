@@ -19,7 +19,7 @@ import { ResponsibleService } from '../../services/responsible/responsible.servi
 import { NgFor } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateResponsibleFormDialogComponent } from '../create-responsible-form-dialog/create-responsible-form-dialog.component';
+import { CreateResponsibleFormDialogComponent } from '../dialogs/create-responsible-form-dialog/create-responsible-form-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 @Component({
   selector: 'app-responsible',

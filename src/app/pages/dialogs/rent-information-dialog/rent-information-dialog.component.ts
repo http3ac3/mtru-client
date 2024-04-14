@@ -14,11 +14,11 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
-import { RentService } from '../../services/rent/rent.service';
-import { Rent } from '../../models/rent/rent';
-import { Responsible } from '../../models/responsible/responsible';
-import { Placement } from '../../models/placement/placement';
-import { Equipment } from '../../models/equipment/equipment';
+import { RentService } from '../../../services/rent/rent.service';
+import { Rent } from '../../../models/rent/rent';
+import { Responsible } from '../../../models/responsible/responsible';
+import { Placement } from '../../../models/placement/placement';
+import { Equipment } from '../../../models/equipment/equipment';
 
 
 @Component({

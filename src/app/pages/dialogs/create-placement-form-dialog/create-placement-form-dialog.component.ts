@@ -12,8 +12,8 @@ import {
 } from '@angular/material/dialog';
 import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
-import { Placement } from '../../models/placement/placement';
-import { PlacementService } from '../../services/placement/placement.service';
+import { Placement } from '../../../models/placement/placement';
+import { PlacementService } from '../../../services/placement/placement.service';
 import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-create-placement-form-dialog',
@@ -55,6 +55,12 @@ export class CreatePlacementFormDialogComponent {
 
   onPlacementCreate() { 
     this.placement.name = this.placement.name.trim();
+
+    if (this.placement.name === '') {
+      alert('Поле не должно быть пустым!');
+      return;
+    }
+
     this.placementService.create(this.placement).subscribe({
       complete: () => {
         alert(`Помещение ${this.placement.name} было успешно сохранено!`)
@@ -70,6 +76,12 @@ export class CreatePlacementFormDialogComponent {
 
   onPlacementChange() {
     this.placement.name = this.placement.name.trim();
+
+    if (this.placement.name === '') {
+      alert('Поле не должно быть пустым!');
+      return;
+    }
+
     this.placementService.update(this.placement).subscribe({
       complete: () => {
         alert('Данные были успешно обновлены!');
