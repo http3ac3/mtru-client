@@ -11,6 +11,8 @@ import { CreateCategoryFormDialogComponent } from '../dialogs/create-category-fo
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { StorageService } from '../../services/storage/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -37,9 +39,26 @@ export class CategoryComponent implements AfterViewInit{
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private categoryService: CategoryService, private dialog : MatDialog) { }
+  constructor(
+    private categoryService: CategoryService, 
+    private dialog : MatDialog,
+    private storageService : StorageService,
+    private router : Router
+  ) { }
 
   ngOnInit() {
+    if (this.storageService.getUser() == null) {
+      alert('Вы не авторизованы!');
+      this.router.navigate(['login']);
+      return;
+    }
+    let currentUserRoles = this.storageService.getUser().roles;
+    if (!currentUserRoles.some((r : any) => r.name === 'ROLE_ADMIN') &&
+      !currentUserRoles.some((r : any) => r.name === 'ROLE_LABHEAD')) {
+        alert('Вы не имеете роли администратора или заведующего лабораторией для доступа к данной странице!');
+        this.router.navigate(['user-search']);
+      }
+
     this.paginator._intl = new MyCustomPaginatorIntl;
     this.categoryService.getAll().subscribe({
       next: (data: Category[]) => {

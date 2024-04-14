@@ -12,6 +12,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreatePlacementFormDialogComponent } from '../dialogs/create-placement-form-dialog/create-placement-form-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { Router } from '@angular/router';
+import { StorageService } from '../../services/storage/storage.service';
 @Component({
   selector: 'app-placement',
   standalone: true,
@@ -39,10 +41,24 @@ export class PlacementComponent {
 
   constructor (
     private placementService : PlacementService, 
-    private dialog : MatDialog
+    private dialog : MatDialog,
+    private router : Router,
+    private storageService : StorageService
   ) { }
 
   ngOnInit() {
+    if (this.storageService.getUser() == null) {
+      alert('Вы не авторизованы!');
+      this.router.navigate(['login']);
+      return;
+    }
+    let currentUserRoles = this.storageService.getUser().roles;
+    if (!currentUserRoles.some((r : any) => r.name === 'ROLE_ADMIN') &&
+      !currentUserRoles.some((r : any) => r.name === 'ROLE_LABHEAD')) {
+        alert('Вы не имеете роли администратора или заведующего лабораторией для доступа к данной странице!');
+        this.router.navigate(['user-search']);
+      }
+
     this.paginator._intl = new MyCustomPaginatorIntl;
     this.placementService.getAll().subscribe({
       next: (data : Placement[]) => {

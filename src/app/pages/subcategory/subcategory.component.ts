@@ -16,6 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { NgFor } from '@angular/common';
 import { CreateSubcategoryFormDialogComponent } from '../dialogs/create-subcategory-form-dialog/create-subcategory-form-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { StorageService } from '../../services/storage/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subcategory',
@@ -50,10 +52,24 @@ export class SubcategoryComponent implements AfterViewInit {
   constructor (
     private categoryService : CategoryService,
     private subcategoryService : SubcategoryService,
-    public dialog : MatDialog
+    public dialog : MatDialog,
+    private storageService : StorageService,
+    private router : Router
   ) {}
 
   ngOnInit() {
+    if (this.storageService.getUser() == null) {
+      alert('Вы не авторизованы!');
+      this.router.navigate(['login']);
+      return;
+    }
+    let currentUserRoles = this.storageService.getUser().roles;
+    if (!currentUserRoles.some((r : any) => r.name === 'ROLE_ADMIN') && 
+      !currentUserRoles.some((r : any) => r.name === 'ROLE_LABHEAD')) {
+        alert('Вы не имеете роли администратора или заведующего лабораторией для доступа к данной странице!');
+        this.router.navigate(['user-search']);
+      }
+
     this.paginator._intl = new MyCustomPaginatorIntl;
 
     this.categoryService.getAll().subscribe({

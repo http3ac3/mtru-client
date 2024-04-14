@@ -16,6 +16,7 @@ import { PlacementService } from '../../services/placement/placement.service';
 import {MatDividerModule} from '@angular/material/divider';
 import { StorageService } from '../../services/storage/storage.service';
 import { Rent } from '../../models/rent/rent';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-search',
@@ -44,7 +45,9 @@ export class UserSearchComponent {
     private placementService : PlacementService, 
     private equipmentService : EquipmentService,
     private storageService : StorageService,
-    public dialog : MatDialog) {
+    public dialog : MatDialog,
+    private router : Router  
+  ) {
     this.searchEquipmentForm = new FormGroup({
       equipment : new FormControl(null, [Validators.required]),
       searchEquipmentValue : new FormControl(),
@@ -54,6 +57,19 @@ export class UserSearchComponent {
   }
 
   ngOnInit() {
+    if (this.storageService.getUser() == null) {
+      alert('Вы не авторизованы!');
+      this.router.navigate(['login']);
+      return;
+    }
+    
+    let currentUserRoles = this.storageService.getUser().roles;
+    
+    if (!currentUserRoles.some((r : any) => r.name === 'ROLE_USER')) {
+      alert('Вы не имеете роли обычного пользователя для доступа к данной странице!');
+      this.router.navigate(['login']);
+    }
+
     this.equipmentService.getAll().subscribe({
       next: (data : Equipment[]) => this.equipmentData = data,
       complete: () => this.searchEquipmentForm.patchValue({ equipment : this.equipmentData[0] })

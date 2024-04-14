@@ -8,6 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { HeaderComponent } from '../header/header.component';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/Auth/auth.service';
+import { StorageService } from '../../services/storage/storage.service';
 
 @Component({
   selector: 'app-main',
@@ -26,12 +27,24 @@ import { AuthService } from '../../services/Auth/auth.service';
 })
 export class MainComponent {
   
-  constructor (private router: Router, public authService: AuthService) {
-    
-  }
+  constructor (
+    private router: Router, 
+    public authService: AuthService,
+    private storageService : StorageService
+  ) { }
 
   ngOnInit() {
-    
+    if (this.storageService.getUser() == null) {
+      alert('Вы не авторизованы!');
+      this.router.navigate(['login']);
+      return;
+    }
+    let currentUserRoles = this.storageService.getUser().roles;
+    if (!currentUserRoles.some((r : any) => r.name === 'ROLE_ADMIN') &&
+      !currentUserRoles.some((r : any) => r.name === 'ROLE_LABHEAD')) {
+        alert('Вы не имеете роли администратора или заведующего лабораторией для доступа к данной странице!');
+        this.router.navigate(['user-search']);
+    }
   }
 
   goToEquipment() {

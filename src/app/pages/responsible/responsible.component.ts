@@ -21,6 +21,8 @@ import { HttpParams } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateResponsibleFormDialogComponent } from '../dialogs/create-responsible-form-dialog/create-responsible-form-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { StorageService } from '../../services/storage/storage.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-responsible',
   standalone: true,
@@ -67,7 +69,9 @@ export class ResponsibleComponent implements AfterViewInit {
     private fb : FormBuilder,
     private departmentService : DepartmentService,
     private responsibleService : ResponsibleService,
-    public dialog : MatDialog
+    public dialog : MatDialog,
+    private storageService : StorageService, 
+    private router : Router
   ) {
     this.filterForm = new FormGroup({
       department : new FormControl(),
@@ -76,6 +80,18 @@ export class ResponsibleComponent implements AfterViewInit {
   }
 
   ngOnInit() {
+    if (this.storageService.getUser() == null) {
+      alert('Вы не авторизованы!');
+      this.router.navigate(['login']);
+      return;
+    }
+    let currentUserRoles = this.storageService.getUser().roles;
+    if (!currentUserRoles.some((r : any) => r.name === 'ROLE_ADMIN') &&
+      !currentUserRoles.some((r : any) => r.name === 'ROLE_LABHEAD')) {
+        alert('Вы не имеете роли администратора или заведующего лабораторией для доступа к данной странице!');
+        this.router.navigate(['user-search']);
+      }
+
     this.paginator._intl = new MyCustomPaginatorIntl;
     this.departmentService.getAll().subscribe({
       next: (data : Department[]) => {
