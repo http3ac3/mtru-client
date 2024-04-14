@@ -8,11 +8,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Responsible } from '../../models/responsible/responsible';
-import { ResponsibleService } from '../../services/responsible/responsible.service';
-import { UserService } from '../../services/user/user.service';
-import { User } from '../../models/user/user';
-import { Role } from '../../models/role/role';
+import { Responsible } from '../../../models/responsible/responsible';
+import { ResponsibleService } from '../../../services/responsible/responsible.service';
+import { UserService } from '../../../services/user/user.service';
+import { User } from '../../../models/user/user';
+import { Role } from '../../../models/role/role';
 
 @Component({
   selector: 'app-user-dialog',

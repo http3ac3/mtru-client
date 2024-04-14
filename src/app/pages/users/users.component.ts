@@ -6,7 +6,7 @@ import { User } from '../../models/user/user';
 import { UserService } from '../../services/user/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { UserDialogComponent } from '../user-dialog/user-dialog.component';
+import { UserDialogComponent } from '../dialogs/user-dialog/user-dialog.component';
 
 @Component({
   selector: 'app-users',
