@@ -76,7 +76,7 @@ export class CreatePlacementFormDialogComponent {
 
   onPlacementChange() {
     this.placement.name = this.placement.name.trim();
-
+    if (!confirm(`Вы уверены, что хотите изменить выбранное помещение?`)) return;
     if (this.placement.name === '') {
       alert('Поле не должно быть пустым!');
       return;
@@ -95,6 +95,7 @@ export class CreatePlacementFormDialogComponent {
   }
 
   onPlacementDelete() {
+    if (!confirm(`Вы уверены, что хотите удалить выбранное помещение?`)) return;
     this.placementService.delete(this.placement.id).subscribe({
       complete: () => {
         alert('Данные были успешно удалены!');

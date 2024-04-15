@@ -77,7 +77,7 @@ export class CreateCategoryFormDialogComponent {
   
   onCategoryChange() {
     this.category.name = this.category.name.trim();
-
+    if (!confirm(`Вы уверены, что хотите изменить выбранную категорию?`)) return;
     if (this.category.name === '') {
       alert('Поле не должно быть пустым!');
       return;
@@ -96,6 +96,7 @@ export class CreateCategoryFormDialogComponent {
   }
 
   onCategoryDelete() {
+    if (!confirm(`Вы уверены, что хотите удалить выбранную категорию?`)) return;
     this.categoryService.delete(this.category.id!).subscribe({
       complete: () => {
         alert('Данные были успешно удалены!');

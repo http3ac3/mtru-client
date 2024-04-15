@@ -81,6 +81,7 @@ export class RentInformationDialogComponent {
 
   onRentDelete() {
     let rent = this.rentForm.value;
+    if (!confirm(`Вы уверены, что хотите удалить выбранное взятие пользователя?`)) return;
     console.log(rent);
     this.rentService.delete(rent.id).subscribe({
       complete: () => {

@@ -98,7 +98,7 @@ export class CreateSubcategoryFormDialogComponent {
 
   onSubcategoryChange() {
     this.subcategory.name = this.subcategory.name.trim();
-
+    if (!confirm(`Вы уверены, что хотите изменить выбранную подкатегорию?`)) return;
     if (this.subcategory.name === '') {
       alert('Поле не должно быть пустым!');
       return;
@@ -119,6 +119,7 @@ export class CreateSubcategoryFormDialogComponent {
   }
 
   onSubcategoryDelete() {
+    if (!confirm(`Вы уверены, что хотите удалить выбранную подкатегорию?`)) return;
     this.subcategoryService.delete(this.subcategory.id).subscribe({
       complete: () => {
         alert(`Данные о "${this.subcategory.name}" были успешно удалены!`);

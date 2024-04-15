@@ -45,6 +45,7 @@ export class CreateDepartmentFormDialogComponent {
   ngOnInit() {
     if (this.data) {
       this.department = this.data
+      this.dialogHeader = "Подробные сведения"
     }
   }
 
@@ -74,7 +75,7 @@ export class CreateDepartmentFormDialogComponent {
   }
   onDepartmentChange() {
     this.department.name = this.department.name.trim();
-
+    if (!confirm(`Вы уверены, что хотите изменить выбранное структурное подразделение?`)) return;
     if (this.department.name === '') {
       alert('Поле не должно быть пустым!');
       return;
@@ -93,6 +94,7 @@ export class CreateDepartmentFormDialogComponent {
   }
 
   onDepartmentDelete() {
+    if (!confirm(`Вы уверены, что хотите удалить выбранное структурное подразделение?`)) return;
     this.departmentService.delete(this.department.id).subscribe({
       complete: () => {
         alert(`Данные о "${this.department.name}" были успешно удалены!`);

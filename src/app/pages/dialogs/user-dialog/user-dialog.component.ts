@@ -74,6 +74,7 @@ export class UserDialogComponent {
         }
       })
     } else {
+      this.dialogHeader = "Подробные сведения";
       this.responsibleData = [this.data.responsible!];
       this.userForm.patchValue({ responsible : this.responsibleData[0] })
       this.loadDataToForm();
@@ -139,7 +140,7 @@ export class UserDialogComponent {
         this.dialogRef.close();
         window.location.reload();
       }, 
-      error: (err) => { alert(err); }
+      error: (err) => { alert('Пользователь с таким логином уже существует!'); }
     })
   }
 }

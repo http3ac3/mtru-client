@@ -19,6 +19,7 @@ import { httpInterceptor } from './helpers/http.interceptor';
 import { UserRentsComponent } from './pages/user-rents/user-rents.component';
 import { DepartmentComponent } from './pages/department/department.component';
 import { UsersComponent } from './pages/users/users.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 const appRoutes: Routes = [
   { path: "main", component: MainComponent },
@@ -41,6 +42,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withInterceptors([httpInterceptor])), 
     provideRouter(appRoutes), 
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    { provide: MAT_DATE_LOCALE, useValue : 'ru-RU' }
   ]
 };

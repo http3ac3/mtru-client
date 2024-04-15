@@ -147,9 +147,11 @@ export class CreateEquipmentFormDialogComponent {
     else {
       this.equipmentForm.patchValue({ commissioningDate : new Date().toISOString().substring(0, 10) });
     }
-    
-    
-    
+  }
+
+  convertDateTOISOFormat(s : string) : string {
+    let date = new Date(s + " EDT");
+    return date.toISOString();
   }
   
   onCancel() : void {
@@ -158,6 +160,10 @@ export class CreateEquipmentFormDialogComponent {
   
   onEquipmentCreate() {
     let equipment = this.createEquipmentFromForm(this.equipmentForm.value);
+    equipment.commissioningDate = this.convertDateTOISOFormat(equipment.commissioningDate);
+    if (equipment.decommissioningDate) {
+      equipment.decommissioningDate = this.convertDateTOISOFormat(equipment.decommissioningDate);
+    }
     this.equipmentService.create(equipment).subscribe({
       complete: () => {
         alert(`Информация о ${equipment.name} (инв. № ${equipment.inventoryNumber}) была успешно сохранена`);
@@ -172,6 +178,10 @@ export class CreateEquipmentFormDialogComponent {
 
   onEquipmentChange() {
     let equipment = this.createEquipmentFromForm(this.equipmentForm.value);
+    equipment.commissioningDate = this.convertDateTOISOFormat(equipment.commissioningDate);
+    if (equipment.decommissioningDate) {
+      equipment.decommissioningDate = this.convertDateTOISOFormat(equipment.decommissioningDate);
+    }
     if (!confirm(`Вы уверены что хотите изменить данные о ` +
         `${equipment.name} (инв. № ${equipment.inventoryNumber})?`)) return;
     this.equipmentService.update(equipment).subscribe({
