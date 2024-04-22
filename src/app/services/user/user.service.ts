@@ -12,12 +12,8 @@ export class UserService {
 
   constructor(public http : HttpClient) { }
 
-  getCurrentUser() : Observable<User> {
-    return this.http.get(`${USER_API}/current-user`).pipe(
-      map( (data : any) => {
-        return new User(data.id, data.username, '', data.responsible, data.roles) 
-      })
-    );
+  getCurrentUser() : Observable<any> {
+    return this.http.get(`${USER_API}/current-user`);
   } 
 
   getAll() : Observable<User[]> {

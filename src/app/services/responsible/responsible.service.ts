@@ -49,6 +49,10 @@ export class ResponsibleService {
     });
   }
 
+  getByPrincipal() {
+    return this.http.get<any>(API_URL + "/responsible/current-user");
+  }
+
   /**
    * Создание нового ответственного
    * 

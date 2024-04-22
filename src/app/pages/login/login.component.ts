@@ -11,6 +11,7 @@ import { UserService } from '../../services/user/user.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { Role } from '../../models/role/role';
 import { User } from '../../models/user/user';
+import { ResponsibleService } from '../../services/responsible/responsible.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -46,6 +47,7 @@ export class LoginComponent {
     public authService: AuthService, 
     public userService : UserService,
     public storageService : StorageService, 
+    public responsibleService : ResponsibleService,
     private router: Router) {}
 
   ngOnInit() {
@@ -69,19 +71,23 @@ export class LoginComponent {
     }
   }
 
-    onLogin() : void {
+  onLogin() : void {
     const { username, password } = this.form;
 
     this.authService.login(username, password).subscribe({
       next: data => {
         this.storageService.saveToken(data.token);
-        console.log('мы здесь!')
+        
         this.userService.getCurrentUser().subscribe({
           next: data => {
-            console.log("а теперь здесь")
-            this.user = new User(data.id, data.username, data.password, data.responsible, data.roles);
-            console.log("user: ", this.user);
+            this.user = data;
             this.storageService.saveUser(this.user);
+          }
+        });
+
+        this.responsibleService.getByPrincipal().subscribe({
+          next: data => {
+            this.storageService.saveResponsible(data);
           },
           complete() {
             window.location.reload();
@@ -90,7 +96,6 @@ export class LoginComponent {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        console.log(this.isLoggedIn, " ", this.isLoginFailed)
       }, error: err => {
         alert('Неправильный логин или пароль, попробуйте еще раз');
         console.log(err);

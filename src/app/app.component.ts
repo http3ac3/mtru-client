@@ -40,6 +40,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class AppComponent implements OnInit{
   user : any = null;
+  responsible : any = null;
 
   title = 'mtru-client';
   isLoggedIn = false;
@@ -60,12 +61,11 @@ export class AppComponent implements OnInit{
 
     if (this.isLoggedIn) {
       this.user = this.storageService.getUser();
+      this.responsible = this.storageService.getResponsible();
       this.roles = this.user.roles;
-      console.log(this.user);
       this.isAdmin = this.roles.some(role => role.name === "ROLE_ADMIN");
       this.isLabhead = this.roles.some(role => role.name === "ROLE_LABHEAD");
       this.isUser = this.roles.some(role => role.name === "ROLE_USER");
-      console.log(this.isUser);
     }
   }
 
