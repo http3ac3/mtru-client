@@ -18,8 +18,8 @@ export class CategoryService {
    * 
    * @returns список категорий
    */
-  getAll() : Observable<Category[]>{
-    return this.http.get<Category[]>(API_URL + '/categories/all');
+  getAll() : Observable<any>{
+    return this.http.get<any>(API_URL + '/categories');
   }
 
   /**
@@ -28,8 +28,8 @@ export class CategoryService {
    * @param category сохраняемая категория
    * @returns http-ответ
    */
-  create(category: Category) : Observable<Category> {
-    return this.http.post<Category>(API_URL + '/categories', category);
+  create(category: any) : Observable<any> {
+    return this.http.post<any>(API_URL + '/categories', category);
   }
 
 
@@ -39,8 +39,8 @@ export class CategoryService {
    * @param category - новая информация о категории
    * @returns http-ответ
    */
-  update(category : Category) : Observable<string> {
-    return this.http.put(API_URL + '/categories/' + category.id, category, {
+  update(category : any) : Observable<string> {
+    return this.http.put(API_URL + '/categories', category, {
       responseType: 'text'
     });
   }
@@ -52,7 +52,7 @@ export class CategoryService {
    * @param id идентификатор удаляемой категории
    * @returns http-ответ
    */
-  delete(id : number): Observable<Category> {
-    return this.http.delete<Category>(API_URL + '/categories/' + id);
+  delete(id : number): Observable<any> {
+    return this.http.delete<any>(API_URL + '/categories/' + id);
   }
 }

@@ -32,7 +32,7 @@ import { Router } from '@angular/router';
   styleUrl: './category.component.css'
 })
 export class CategoryComponent implements AfterViewInit{ 
-  categories : Category[] = [];
+  categories : any[] = [];
   dataSource = new MatTableDataSource<Category>(this.categories);
   displayedColumns : string[] = ['id', 'name'];
 
@@ -61,7 +61,7 @@ export class CategoryComponent implements AfterViewInit{
 
     this.paginator._intl = new MyCustomPaginatorIntl;
     this.categoryService.getAll().subscribe({
-      next: (data: Category[]) => {
+      next: (data: any[]) => {
         this.categories = data;
       },
       complete: () => {
@@ -75,7 +75,7 @@ export class CategoryComponent implements AfterViewInit{
     this.dataSource.sort = this.sort;
   }
 
-  clickRow(row: Category) {
+  clickRow(row: any) {
     /* объявление объекта category связано с тем, что при передаче в качестве data
        объекта row в родительской таблице при изменении значения в поле input в таблице также изменяется */
     let category = {
