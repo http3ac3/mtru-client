@@ -18,7 +18,7 @@ export class PlacementService {
    * @returns список помещений
    */
   getAll() : Observable<Placement[]> {
-    return this.http.get<Placement[]>(PLACEMENTS_API_URL + '/all');
+    return this.http.get<Placement[]>(PLACEMENTS_API_URL);
   }
 
   /**

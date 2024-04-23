@@ -19,7 +19,7 @@ export class SubcategoryService {
    * @returns список подкатегорий
    */
   getAll() : Observable<Subcategory[]> {
-    return this.http.get<Subcategory[]>(API_URL + '/subcategories/all');
+    return this.http.get<Subcategory[]>(API_URL + '/subcategories');
   }
 
   /**

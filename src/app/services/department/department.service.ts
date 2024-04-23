@@ -18,7 +18,7 @@ export class DepartmentService {
    * @returns список структурных подразделений
    */
   getAll() : Observable<Department[]> {
-    return this.http.get<Department[]>(DEPARTMENTS_API_URL + '/all');
+    return this.http.get<Department[]>(DEPARTMENTS_API_URL);
   }
 
   /**
