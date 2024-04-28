@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MyCustomPaginatorIntl, PaginatorComponent } from '../paginator/paginator.component';
 import { Placement } from '../../models/placement/placement';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -13,12 +13,12 @@ import { CreatePlacementFormDialogComponent } from '../dialogs/create-placement-
 import { MatIconModule } from '@angular/material/icon';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { StorageService } from '../../services/storage/storage.service';
+import { AccessService } from '../../services/access/access.service';
 @Component({
   selector: 'app-placement',
   standalone: true,
   imports: [
-    MatButton,
+    MatButtonModule,
     PaginatorComponent,  
     MatTableModule, 
     MatPaginator, 
@@ -43,21 +43,21 @@ export class PlacementComponent {
     private placementService : PlacementService, 
     private dialog : MatDialog,
     private router : Router,
-    private storageService : StorageService
+    private accessService : AccessService
   ) { }
 
   ngOnInit() {
-    if (this.storageService.getUser() == null) {
+    if (!this.accessService.isAuthorized()) {
       alert('Вы не авторизованы!');
       this.router.navigate(['login']);
       return;
     }
-    let currentUserRoles = this.storageService.getUser().roles;
-    if (!currentUserRoles.some((r : any) => r.name === 'ROLE_ADMIN') &&
-      !currentUserRoles.some((r : any) => r.name === 'ROLE_LABHEAD')) {
+
+    if (!this.accessService.isAdmin() && !this.accessService.isLabhead()) {
         alert('Вы не имеете роли администратора или заведующего лабораторией для доступа к данной странице!');
-        this.router.navigate(['user-search']);
-      }
+        this.router.navigate(['login']);
+        return;
+    }
 
     this.paginator._intl = new MyCustomPaginatorIntl;
     this.placementService.getAll().subscribe({

@@ -15,6 +15,7 @@ import { MatInput, MatInputModule } from '@angular/material/input';
 import { Placement } from '../../../models/placement/placement';
 import { PlacementService } from '../../../services/placement/placement.service';
 import { MatIconModule } from '@angular/material/icon';
+import { AccessService } from '../../../services/access/access.service';
 @Component({
   selector: 'app-create-placement-form-dialog',
   standalone: true,
@@ -39,7 +40,8 @@ export class CreatePlacementFormDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data : Placement,
     public dialogRef: MatDialogRef<CreatePlacementFormDialogComponent>,
-    private placementService : PlacementService
+    private placementService : PlacementService,
+    public accessService : AccessService
   ) { }
 
   ngOnInit() {
