@@ -67,16 +67,16 @@
         </form>
     </mat-dialog-content>
 
-    <mat-dialog-actions class="">
-        <div class="mb-[10px] ml-[15px] flex w-full justify-between">
-            @if (this.data) {
-                <button [disabled]="!responsibleForm.valid" mat-stroked-button (click)="onResponsibleChange()" class="w-[50%]" color="primary">Изменить</button>
-                <button mat-flat-button (click)="onResponsibleDelete()" class="mr-[15px] w-[50%]" color="warn">Удалить</button>
-            } @else {
-                <button [disabled]="!responsibleForm.valid" mat-flat-button (click)="onResponsibleCreate()" color="primary">Создать</button>
-            }
-        </div>
-    </mat-dialog-actions>
-
-    
+    @if (this.accessService.isAdmin()) {
+        <mat-dialog-actions class="">
+            <div class="mb-[10px] ml-[15px] flex w-full justify-between">
+                @if (this.data) {
+                    <button [disabled]="!responsibleForm.valid" mat-stroked-button (click)="onResponsibleChange()" class="w-[50%]" color="primary">Изменить</button>
+                    <button mat-flat-button (click)="onResponsibleDelete()" class="mr-[15px] w-[50%]" color="warn">Удалить</button>
+                } @else {
+                    <button [disabled]="!responsibleForm.valid" mat-flat-button (click)="onResponsibleCreate()" color="primary">Создать</button>
+                }
+            </div>
+        </mat-dialog-actions>
+    }
 </div>
