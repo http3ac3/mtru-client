@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { Category } from '../../../models/category/category';
 import { MatIconModule } from '@angular/material/icon';
 import { CategoryService } from '../../../services/category/category.service';
+import { AccessService } from '../../../services/access/access.service';
 
 @Component({
   selector: 'app-create-category-form-dialog',
@@ -40,6 +41,7 @@ export class CreateCategoryFormDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: Category,
     public dialogRef: MatDialogRef<CreateCategoryFormDialogComponent>, 
     public categoryService : CategoryService,
+    public accessService : AccessService,
     public router : Router
   ) { }
 

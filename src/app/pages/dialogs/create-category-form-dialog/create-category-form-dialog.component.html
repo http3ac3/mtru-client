@@ -14,15 +14,20 @@
             </mat-form-field>
         </form>
     </mat-dialog-content>
-    <mat-dialog-actions class="flex">
-        <div class="mb-[10px] ml-[15px] flex w-full justify-between">
-            @if (this.data) {
-                <button mat-stroked-button (click)="onCategoryChange()" class="w-[50%]" color="primary">Изменить</button>
-                <button mat-flat-button (click)="onCategoryDelete()" class="mr-[15px] w-[50%]" color="warn">Удалить</button>
+    @if (this.accessService.isAdmin()) {
+        <mat-dialog-actions class="flex">
+            
+            <div class="mb-[10px] ml-[15px] flex w-full justify-between">
                 
-            } @else {
-                <button mat-flat-button (click)="onCategoryCreate()" color="primary">Создать</button>
-            }
-        </div>
-    </mat-dialog-actions>
+                    @if (this.data) {
+                        <button mat-stroked-button (click)="onCategoryChange()" class="w-[50%]" color="primary">Изменить</button>
+                        <button mat-flat-button (click)="onCategoryDelete()" class="mr-[15px] w-[50%]" color="warn">Удалить</button>
+                        
+                    } @else {
+                        <button mat-flat-button (click)="onCategoryCreate()" color="primary">Создать</button>
+                    } 
+            </div>
+            
+        </mat-dialog-actions> 
+    }
 </div>
