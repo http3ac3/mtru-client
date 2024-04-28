@@ -17,8 +17,8 @@ export class PlacementService {
    * 
    * @returns список помещений
    */
-  getAll() : Observable<Placement[]> {
-    return this.http.get<Placement[]>(PLACEMENTS_API_URL);
+  getAll() : Observable<any[]> {
+    return this.http.get<any[]>(PLACEMENTS_API_URL);
   }
 
   /**
@@ -27,8 +27,8 @@ export class PlacementService {
    * @param name название помещения
    * @returns 
    */
-  getAllByNameStartingWith(name : string) : Observable<Placement[]> {
-    return this.http.get<Placement[]>(PLACEMENTS_API_URL, {
+  getAllByNameStartingWith(name : string) : Observable<any[]> {
+    return this.http.get<any[]>(PLACEMENTS_API_URL, {
       params : { name : name }  
     });
   }
@@ -39,7 +39,7 @@ export class PlacementService {
    * @param placement новое помещение
    * @returns http-ответ
    */
-  create(placement : Placement) : Observable<string> {
+  create(placement : any) : Observable<string> {
     return this.http.post(PLACEMENTS_API_URL, placement, {
       responseType : 'text'
     });
@@ -51,7 +51,7 @@ export class PlacementService {
    * @param placement новая информация о помещении
    * @returns http-ответ
    */
-  update(placement : Placement) : Observable<string> {
+  update(placement : any) : Observable<string> {
     return this.http.put(PLACEMENTS_API_URL + `/${placement.id}`, placement, {
       responseType : 'text'
     });

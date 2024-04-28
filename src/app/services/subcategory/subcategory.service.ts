@@ -18,8 +18,8 @@ export class SubcategoryService {
    * 
    * @returns список подкатегорий
    */
-  getAll() : Observable<Subcategory[]> {
-    return this.http.get<Subcategory[]>(API_URL + '/subcategories');
+  getAll() : Observable<any[]> {
+    return this.http.get<any[]>(API_URL + '/subcategories');
   }
 
   /**
@@ -28,8 +28,8 @@ export class SubcategoryService {
    * @param category категория
    * @returns список записей
    */
-  getByCategory(category : Category) : Observable<Subcategory[]> {
-    return this.http.get<Subcategory[]>(API_URL + `/categories/${category.id}/subcategories`);
+  getByCategory(category : any) : Observable<any[]> {
+    return this.http.get<any[]>(API_URL + `/categories/${category.id}/subcategories`);
   }
 
   /**
@@ -38,7 +38,7 @@ export class SubcategoryService {
    * @param subcategory новая подкатегория
    * @returns http-ответ
    */
-  create(subcategory : Subcategory) : Observable<string> {
+  create(subcategory : any) : Observable<string> {
     return this.http.post(API_URL + `/categories/${subcategory.category.id}/subcategories`, subcategory, {
       responseType : 'text'
     });
@@ -51,7 +51,7 @@ export class SubcategoryService {
    * @param subcategory обновленная информация о категории
    * @returns http-ответ
    */
-  update(subcategory : Subcategory) : Observable<string> {
+  update(subcategory : any) : Observable<string> {
     return this.http.put(API_URL + `/subcategories/${subcategory.id}`, subcategory, {
       params: {
         categoryId : subcategory.category.id

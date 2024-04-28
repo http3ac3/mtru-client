@@ -84,6 +84,7 @@
                     </mat-form-field>
                 </div>
                     
+                
                 <div class="flex w-full" >
 
                     <div class="mr-[25px] w-[33%]">
@@ -130,7 +131,7 @@
     <mat-dialog-actions class="">
         <div class="mb-[10px] ml-[15px] flex w-full justify-between">
             @if (this.data) {
-                @if (this.currentUser.responsible.id === this.data.responsible.id || this.userIsAdmin) {
+                @if (this.currentResponsible.id === this.data.responsible.id || this.userIsAdmin) {
                     <button [disabled]="!equipmentForm.valid" mat-stroked-button (click)="onEquipmentChange()" class="w-[50%]" color="primary">Изменить</button>
                     <button mat-flat-button (click)="onEquipmentDelete()" class="mr-[15px] w-[50%]" color="warn">Удалить</button>
                 } @else {

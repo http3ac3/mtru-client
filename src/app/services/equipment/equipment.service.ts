@@ -18,8 +18,8 @@ export class EquipmentService {
    * @param params необязательные параметры
    * @returns список оборудования
    */
-  getAll(params? : any) : Observable<Equipment[]> {
-    return this.http.get<Equipment[]>(EQUIPMENT_API_URL, {
+  getAll(params? : any) : Observable<any[]> {
+    return this.http.get<any[]>(EQUIPMENT_API_URL, {
       params : params ? this.getHttpParams(params) : {}
     })
   }
@@ -30,7 +30,7 @@ export class EquipmentService {
    * @param equipment новое оборудование
    * @returns http-ответ 
    */
-  create(equipment : Equipment) : Observable<string> {
+  create(equipment : any) : Observable<string> {
     return this.http.post(EQUIPMENT_API_URL, equipment, { responseType: 'text'});
   }
 
@@ -41,7 +41,7 @@ export class EquipmentService {
    * @param equipment оборудование
    * @returns http-ответ
    */
-  update(equipment : Equipment) : Observable<string> {
+  update(equipment : any) : Observable<string> {
     return this.http.put(EQUIPMENT_API_URL + `/${equipment.id}`, equipment, { responseType: 'text'});
   }
 

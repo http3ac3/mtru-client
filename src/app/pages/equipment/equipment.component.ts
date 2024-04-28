@@ -51,12 +51,12 @@ import { Router } from '@angular/router';
 export class EquipmentComponent implements AfterViewInit {
   equipmentFilterForm : FormGroup;
 
-  responsibleData : Responsible[] = [];
-  placements : Placement[] = [];
-  equipmentData : Equipment[] = [];
-  subcategories : Subcategory[] = [];
+  responsibleData : any[] = [];
+  placements : any[] = [];
+  equipmentData : any[] = [];
+  subcategories : any[] = [];
 
-  dataSource = new MatTableDataSource<Equipment>(this.equipmentData);
+  dataSource = new MatTableDataSource<any>(this.equipmentData);
   displayedColumns : string[] = [
     'id',
     'inventoryNumber',
@@ -104,11 +104,11 @@ export class EquipmentComponent implements AfterViewInit {
       }
 
     this.paginator._intl = new MyCustomPaginatorIntl;
-    this.subcategoryService.getAll().subscribe((data : Subcategory[]) => { this.subcategories = data });
+    this.subcategoryService.getAll().subscribe((data : any[]) => { this.subcategories = data });
     this.responsibleService.getAll({isFinanciallyResponsible : true}).subscribe(
-      (data : Responsible[]) => { this.responsibleData = data }
+      (data : any[]) => { this.responsibleData = data }
     );
-    this.placementService.getAll().subscribe((data : Placement[]) => { this.placements = data });
+    this.placementService.getAll().subscribe((data : any[]) => { this.placements = data });
     this.getAllEquipmentData();
   }
 
@@ -119,7 +119,7 @@ export class EquipmentComponent implements AfterViewInit {
 
   getAllEquipmentData() {
     this.equipmentService.getAll().subscribe({
-      next: (data : Equipment[]) => { this.equipmentData = data; },
+      next: (data : any[]) => { this.equipmentData = data; },
       complete: () => { this.dataSource.data = this.equipmentData; }
     });
   }
@@ -148,7 +148,7 @@ export class EquipmentComponent implements AfterViewInit {
     if (formValues.placement != null) params.placementId = formValues.placement.id;
 
     this.equipmentService.getAll(params).subscribe({
-      next: (data : Equipment[]) => { this.equipmentData = data },
+      next: (data : any[]) => { this.equipmentData = data },
       complete: () => { this.dataSource.data = this.equipmentData }
     })
   }

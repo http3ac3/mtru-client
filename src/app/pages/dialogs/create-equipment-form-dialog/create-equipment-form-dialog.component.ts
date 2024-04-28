@@ -50,20 +50,21 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 export class CreateEquipmentFormDialogComponent {
   dialogHeader = "Новое оборудование";
   equipmentForm : FormGroup;
-  subcategories : Subcategory[] = [];
-  placements : Placement[] = [];
-  responsibleData : Responsible[] = [];
+  subcategories : any[] = [];
+  placements : any[] = [];
+  responsibleData : any[] = [];
   currentUser : any;
+  currentResponsible : any;
   userIsAdmin : boolean = false;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data : Equipment,
+    @Inject(MAT_DIALOG_DATA) public data : any,
     public dialogRef: MatDialogRef<CreateEquipmentFormDialogComponent>,
     private subcategoryService : SubcategoryService,
     private responsibleService : ResponsibleService,
     private placementService : PlacementService,
     private equipmentService : EquipmentService,
-    private stoageService : StorageService
+    private storageService : StorageService
   ) {
     this.equipmentForm = new FormGroup({
       id : new FormControl(),
@@ -84,11 +85,11 @@ export class CreateEquipmentFormDialogComponent {
   }
 
   ngOnInit() {
-    this.currentUser = this.stoageService.getUser();
+    this.currentUser = this.storageService.getUser();
+    this.currentResponsible = this.storageService.getResponsible();
     this.userIsAdmin = this.currentUser.roles.some((r : any) => r.name === 'ROLE_ADMIN');
-
     this.subcategoryService.getAll().subscribe({ 
-      next: (data : Subcategory[]) => this.subcategories = data,
+      next: (data : any[]) => this.subcategories = data,
       complete: () => { 
         if (!this.data) this.equipmentForm.patchValue({subcategory : this.subcategories[0]});
         else {
@@ -101,7 +102,7 @@ export class CreateEquipmentFormDialogComponent {
     });
 
     this.placementService.getAll().subscribe({
-      next: (data : Placement[]) => this.placements = data,
+      next: (data : any[]) => this.placements = data,
       complete: () => { 
         if (!this.data) this.equipmentForm.patchValue({ placement : this.placements[0] })
         else {
@@ -113,14 +114,14 @@ export class CreateEquipmentFormDialogComponent {
     });
 
     this.responsibleService.getAll({isFinanciallyResponsible : true}).subscribe({
-      next: (data : Responsible[]) => this.responsibleData = data,
+      next: (data : any) => this.responsibleData = data,
       complete: () => {
         if (!this.data) {
           if (this.userIsAdmin) {
             this.equipmentForm.patchValue({ responsible : this.responsibleData[0] });
           }
           else {
-            this.responsibleData = [this.currentUser.responsible];
+            this.responsibleData = [this.currentResponsible];
             this.equipmentForm.patchValue({ responsible : this.responsibleData[0]})
           }
         } 
@@ -138,9 +139,6 @@ export class CreateEquipmentFormDialogComponent {
         }
       }
     });
-
-    
-
     if (this.data) {
       this.loadDataToForm(this.data);
     }
@@ -235,21 +233,22 @@ export class CreateEquipmentFormDialogComponent {
     });
   }
 
-  createEquipmentFromForm(formValues : any) : Equipment {
-    return new Equipment(
-      formValues.id, 
-      formValues.inventoryNumber.trim(), 
-      formValues.name.trim(), 
-      formValues.initialCost, 
-      formValues.commissioningDate, 
-      formValues.commissioningActNumber.trim(),
-      formValues.responsible, 
-      formValues.subcategory, 
-      formValues.placement, 
-      formValues.imageData,
-      formValues.description,
-      formValues.decommissioningDate,
-      formValues.decommissioningActNumber
-    );
-  }
+  createEquipmentFromForm(formValues : any) : any {
+    let form  = {
+      id : formValues.id, 
+      inventoryNumber : formValues.inventoryNumber.trim(), 
+      name : formValues.name.trim(), 
+      initialCost: formValues.initialCost, 
+      commissioningDate: formValues.commissioningDate, 
+      commissioningActNumber : formValues.commissioningActNumber.trim(),
+      responsible : formValues.responsible, 
+      subcategory : formValues.subcategory, 
+      placement : formValues.placement, 
+      imageData : formValues.imageData,
+      description : formValues.description,
+      decommissioningDate : formValues.decommissioningDate,
+      decommissioningActNumber : formValues.decommissioningActNumber
+    };
+    return form;
+  } 
 }
