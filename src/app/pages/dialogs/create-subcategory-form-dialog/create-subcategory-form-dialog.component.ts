@@ -18,6 +18,7 @@ import { CategoryService } from '../../../services/category/category.service';
 import { SubcategoryService } from '../../../services/subcategory/subcategory.service';
 import { Category } from '../../../models/category/category';
 import { NgFor } from '@angular/common';
+import { AccessService } from '../../../services/access/access.service';
 
 @Component({
   selector: 'app-create-subcategory-form-dialog',
@@ -52,7 +53,8 @@ export class CreateSubcategoryFormDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data : Subcategory,
     public dialogRef: MatDialogRef<CreateSubcategoryFormDialogComponent>,
     private categoryService : CategoryService,
-    private subcategoryService : SubcategoryService
+    private subcategoryService : SubcategoryService,
+    public accessService : AccessService
   ) {}
 
   ngOnInit() {
