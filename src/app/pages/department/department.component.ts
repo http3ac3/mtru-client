@@ -12,8 +12,8 @@ import { DepartmentService } from '../../services/department/department.service'
 import { MatDialog } from '@angular/material/dialog';
 import { CreateDepartmentFormDialogComponent } from '../dialogs/create-department-form-dialog/create-department-form-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';
+import { AccessService } from '../../services/access/access.service';
 
 @Component({
   selector: 'app-department',
@@ -42,22 +42,22 @@ export class DepartmentComponent {
   constructor (
     private departmentService : DepartmentService,
     public dialog : MatDialog,
-    private storageService : StorageService,
+    private accessService : AccessService,
     private router : Router
   ) { }
   
   ngOnInit() {
-    if (this.storageService.getUser() == null) {
+    if (!this.accessService.isAuthorized()) {
       alert('Вы не авторизованы!');
       this.router.navigate(['login']);
       return;
     }
-    let currentUserRoles = this.storageService.getUser().roles;
-    if (!currentUserRoles.some((r : any) => r.name === 'ROLE_ADMIN') &&
-      !currentUserRoles.some((r : any) => r.name === 'ROLE_LABHEAD')) {
-        alert('Вы не имеете роли администратора или заведующего лабораторией для доступа к данной странице!');
-        this.router.navigate(['user-search']);
-      }
+
+    if (!this.accessService.isAdmin() && !this.accessService.isLabhead()) {
+      alert('Вы не имеете роли администратора или заведующего лабораторией для доступа к данной странице!');
+      this.router.navigate(['login']);
+      return;
+    }
 
     this.paginator._intl = new MyCustomPaginatorIntl;
     this.departmentService.getAll().subscribe({

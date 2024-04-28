@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Department } from '../../../models/department/department';
 import { DepartmentService } from '../../../services/department/department.service';
+import { AccessService } from '../../../services/access/access.service';
 
 @Component({
   selector: 'app-create-department-form-dialog',
@@ -39,7 +40,8 @@ export class CreateDepartmentFormDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data : Department,
     public dialogRef: MatDialogRef<CreateDepartmentFormDialogComponent>,
-    private departmentService : DepartmentService
+    private departmentService : DepartmentService,
+    public accessService : AccessService
   ) { }
 
   ngOnInit() {
