@@ -60,7 +60,7 @@ export class ResponsibleService {
    * @returns http-ответ
    */
   create(responsible : Responsible) : Observable<string> {
-    return this.http.post(API_URL + `/departments/${responsible.department.id}/responsible`, responsible, {
+    return this.http.post(API_URL + '/responsible', responsible, {
       responseType : 'text'
     });
   }
@@ -72,7 +72,7 @@ export class ResponsibleService {
    * @returns http-ответ
    */
   update(responsible : Responsible) : Observable<string> {
-    return this.http.put(API_URL + `/responsible/${responsible.id}`, responsible, {
+    return this.http.put(API_URL + '/responsible', responsible, {
       responseType : 'text'
     });
   }

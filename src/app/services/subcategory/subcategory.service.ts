@@ -39,7 +39,7 @@ export class SubcategoryService {
    * @returns http-ответ
    */
   create(subcategory : any) : Observable<string> {
-    return this.http.post(API_URL + `/categories/${subcategory.category.id}/subcategories`, subcategory, {
+    return this.http.post(API_URL + `/subcategories`, subcategory, {
       responseType : 'text'
     });
   }
@@ -52,7 +52,7 @@ export class SubcategoryService {
    * @returns http-ответ
    */
   update(subcategory : any) : Observable<string> {
-    return this.http.put(API_URL + `/subcategories/${subcategory.id}`, subcategory, {
+    return this.http.put(API_URL + `/subcategories`, subcategory, {
       params: {
         categoryId : subcategory.category.id
       },

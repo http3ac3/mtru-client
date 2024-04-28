@@ -40,7 +40,7 @@ export class DepartmentService {
    * @returns http-ответ
    */
   update(department : Department) : Observable<string> {
-    return this.http.put(DEPARTMENTS_API_URL + `/${department.id}`, department, {
+    return this.http.put(DEPARTMENTS_API_URL, department, {
       responseType : 'text'
     });
   }

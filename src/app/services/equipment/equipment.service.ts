@@ -42,7 +42,7 @@ export class EquipmentService {
    * @returns http-ответ
    */
   update(equipment : any) : Observable<string> {
-    return this.http.put(EQUIPMENT_API_URL + `/${equipment.id}`, equipment, { responseType: 'text'});
+    return this.http.put(EQUIPMENT_API_URL, equipment, { responseType: 'text'});
   }
 
   

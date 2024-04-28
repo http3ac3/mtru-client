@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Placement } from '../../models/placement/placement';
 
 const PLACEMENTS_API_URL = 'http://localhost:8080/api/v1/placements'
 
@@ -52,7 +51,7 @@ export class PlacementService {
    * @returns http-ответ
    */
   update(placement : any) : Observable<string> {
-    return this.http.put(PLACEMENTS_API_URL + `/${placement.id}`, placement, {
+    return this.http.put(PLACEMENTS_API_URL, placement, {
       responseType : 'text'
     });
   }
