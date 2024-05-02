@@ -24,6 +24,10 @@ export class EquipmentService {
     })
   }
 
+  getBase64Image(id : number) : Observable<any> {
+    return this.http.get<any>(EQUIPMENT_API_URL + `/${id}/image`);
+  }
+
   /**
    * Создание нового оборудования
    * 
@@ -31,7 +35,19 @@ export class EquipmentService {
    * @returns http-ответ 
    */
   create(equipment : any) : Observable<string> {
-    return this.http.post(EQUIPMENT_API_URL, equipment, { responseType: 'text'});
+    let formData : FormData = new FormData();
+    formData.append('inventoryNumber', equipment.inventoryNumber);
+    formData.append('initialCost', equipment.initialCost);
+    formData.append('name', equipment.name);
+    formData.append('commissioningDate', equipment.commissioningDate.substring(0, 10));
+    formData.append('commissioningActNumber', equipment.commissioningActNumber);
+    formData.append('description', equipment.description);
+    formData.append('subcategoryId', equipment.subcategory.id);
+    formData.append('placementId', equipment.placement.id);
+    formData.append('responsibleId', equipment.responsible.id);
+    formData.append('image', equipment.imageData);
+    console.log(formData.get('image'));
+    return this.http.post(EQUIPMENT_API_URL, formData, { responseType: 'text'});
   }
 
   

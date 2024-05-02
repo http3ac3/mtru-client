@@ -56,7 +56,8 @@ export class CreateEquipmentFormDialogComponent {
   currentUser : any;
   currentResponsible : any;
   userIsAdmin : boolean = false;
-
+  imageSrc : any;
+  selectedImage : any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data : any,
     public dialogRef: MatDialogRef<CreateEquipmentFormDialogComponent>,
@@ -81,7 +82,7 @@ export class CreateEquipmentFormDialogComponent {
       placement : new FormControl(null, [Validators.required]),
       imageData : new FormControl()
     });
-      
+    
   }
 
   ngOnInit() {
@@ -135,12 +136,14 @@ export class CreateEquipmentFormDialogComponent {
             this.responsibleData = [this.data.responsible];
             this.equipmentForm.patchValue({ responsible : this.responsibleData[0]})
           }
-          
         }
       }
     });
     if (this.data) {
       this.loadDataToForm(this.data);
+      this.equipmentService.getBase64Image(this.data.id).subscribe(
+        (data: any) => this.imageSrc = data.imageBase64
+      );
     }
     else {
       this.equipmentForm.patchValue({ commissioningDate : new Date().toISOString().substring(0, 10) });
@@ -162,6 +165,7 @@ export class CreateEquipmentFormDialogComponent {
     if (equipment.decommissioningDate) {
       equipment.decommissioningDate = this.convertDateTOISOFormat(equipment.decommissioningDate);
     }
+    console.log(this.equipmentForm.value);
     this.equipmentService.create(equipment).subscribe({
       complete: () => {
         alert(`Информация о ${equipment.name} (инв. № ${equipment.inventoryNumber}) была успешно сохранена`);
@@ -231,6 +235,22 @@ export class CreateEquipmentFormDialogComponent {
       decommissioningActNumber : data.decommissioningActNumber,
       description : data.description,
     });
+  }
+
+  onFileChange(event : any) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+      }
+
+      this.equipmentForm.patchValue({
+        imageData : file
+      })
+    }
   }
 
   createEquipmentFromForm(formValues : any) : any {

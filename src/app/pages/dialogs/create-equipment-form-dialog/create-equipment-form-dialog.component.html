@@ -9,34 +9,46 @@
     <mat-dialog-content>
         <form [formGroup]="equipmentForm">
             <div class="flex flex-col w-full">
-                <div class="mb-[25px] flex w-full">
+                <div class="flex w-full">
 
-                    <div class="mr-[25px] w-[20vw]">
-                        <mat-form-field class="w-full">
-                            <mat-label>Наименование</mat-label>
-                            <input matInput placeholder="Наименование" formControlName="name">
-                        </mat-form-field>
+                    <div class="rounded-md border-2 w-[25%] h-[25%] mr-[25px]">
+                        <img class="rounded-md border-2" [src]="imageSrc">
+                        <input class="h-full w-full" placeholder="Загрузите изображение" type="file"
+                        formControlName="imageData"
+                        accept="image/*"
+                        (change)="onFileChange($event)"> 
+                    </div>
+
+                    <div class="flex-col flex w-full">
+                        <div class="w-[full]">
+                            <mat-form-field class="w-full">
+                                <mat-label>Наименование</mat-label>
+                                <input matInput placeholder="Наименование" formControlName="name">
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="w-[full]">
+                            <mat-form-field class="w-full">
+                                <mat-label>Инвентарный номер</mat-label>
+                                <input matInput placeholder="Инвентарный номер" formControlName="inventoryNumber">
+                            </mat-form-field>
+                        </div>
                     </div>
                     
-                    <div class="w-[20vw] mr-[25px]">
-                        <mat-form-field class="w-full">
-                            <mat-label>Инвентарный номер</mat-label>
-                            <input matInput placeholder="Инвентарный номер" formControlName="inventoryNumber">
-                        </mat-form-field>
-                    </div>
-
-                    <div class="w-[20vw]">
-                        <mat-form-field class="w-full">
-                            <mat-label>Начальная стоимость</mat-label>
-                            <input matInput placeholder="Начальная стоимость" type="number" formControlName="initialCost">
-                        </mat-form-field>
-                    </div>
                 </div>
                 
-                <div class="flex flex-col mb-[25px] w-full">
-                    
+                <div class="flex flex-col w-full">
+
                     <div class="flex w-full mr-[25px]">
-                        <div class="w-[50%] mr-[25px]">
+
+                        <div class="w-[33%] mr-[25px]">
+                            <mat-form-field class="w-full">
+                                <mat-label>Начальная стоимость</mat-label>
+                                <input matInput placeholder="Начальная стоимость" type="number" formControlName="initialCost">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="w-[33%] mr-[25px]">
                             <mat-form-field class="w-full">
                                 <mat-label>Дата ввода в эксплуатацию</mat-label>
                                 <input matInput [matDatepicker]="dp3" formControlName="commissioningDate">
@@ -45,7 +57,7 @@
                             </mat-form-field>
                         </div>
     
-                        <div class="w-[50%]">
+                        <div class="w-[33%]">
                             <mat-form-field class="w-full">
                                 <mat-label>Номер акта о вводе в экслуатацию</mat-label>
                                 <input matInput placeholder="Номер акта" formControlName="commissioningActNumber">
@@ -78,7 +90,7 @@
                 </div>
 
                 <div class="w-full">
-                    <mat-form-field class="mb-[25px] w-full">
+                    <mat-form-field class="w-full">
                         <mat-label>Описание</mat-label>
                         <textarea matInput placeholder="Описание" formControlName="description"></textarea>
                     </mat-form-field>
@@ -129,7 +141,7 @@
     </mat-dialog-content>
 
     <mat-dialog-actions class="">
-        <div class="mb-[10px] ml-[15px] flex w-full justify-between">
+        <div class="ml-[15px] flex w-full justify-between">
             @if (this.data) {
                 @if (this.currentResponsible.id === this.data.responsible.id || this.userIsAdmin) {
                     <button [disabled]="!equipmentForm.valid" mat-stroked-button (click)="onEquipmentChange()" class="w-[50%]" color="primary">Изменить</button>
