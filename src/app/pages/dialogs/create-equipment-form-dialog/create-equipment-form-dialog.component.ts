@@ -80,9 +80,8 @@ export class CreateEquipmentFormDialogComponent {
       subcategory : new FormControl(null, [Validators.required]),
       responsible : new FormControl(null, [Validators.required]),
       placement : new FormControl(null, [Validators.required]),
-      imageData : new FormControl()
+      imageData : new FormControl(),
     });
-    
   }
 
   ngOnInit() {
@@ -165,7 +164,6 @@ export class CreateEquipmentFormDialogComponent {
     if (equipment.decommissioningDate) {
       equipment.decommissioningDate = this.convertDateTOISOFormat(equipment.decommissioningDate);
     }
-    console.log(this.equipmentForm.value);
     this.equipmentService.create(equipment).subscribe({
       complete: () => {
         alert(`Информация о ${equipment.name} (инв. № ${equipment.inventoryNumber}) была успешно сохранена`);
@@ -183,6 +181,9 @@ export class CreateEquipmentFormDialogComponent {
     equipment.commissioningDate = this.convertDateTOISOFormat(equipment.commissioningDate);
     if (equipment.decommissioningDate) {
       equipment.decommissioningDate = this.convertDateTOISOFormat(equipment.decommissioningDate);
+    }
+    if (typeof equipment.imageData === 'string') {
+      equipment.imageData = null;
     }
     if (!confirm(`Вы уверены что хотите изменить данные о ` +
         `${equipment.name} (инв. № ${equipment.inventoryNumber})?`)) return;

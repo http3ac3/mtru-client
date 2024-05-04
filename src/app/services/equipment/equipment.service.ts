@@ -35,18 +35,7 @@ export class EquipmentService {
    * @returns http-ответ 
    */
   create(equipment : any) : Observable<string> {
-    let formData : FormData = new FormData();
-    formData.append('inventoryNumber', equipment.inventoryNumber);
-    formData.append('initialCost', equipment.initialCost);
-    formData.append('name', equipment.name);
-    formData.append('commissioningDate', equipment.commissioningDate.substring(0, 10));
-    formData.append('commissioningActNumber', equipment.commissioningActNumber);
-    formData.append('description', equipment.description);
-    formData.append('subcategoryId', equipment.subcategory.id);
-    formData.append('placementId', equipment.placement.id);
-    formData.append('responsibleId', equipment.responsible.id);
-    formData.append('image', equipment.imageData);
-    console.log(formData.get('image'));
+    let formData : FormData = this.convertToFormData(equipment);
     return this.http.post(EQUIPMENT_API_URL, formData, { responseType: 'text'});
   }
 
@@ -58,7 +47,8 @@ export class EquipmentService {
    * @returns http-ответ
    */
   update(equipment : any) : Observable<string> {
-    return this.http.put(EQUIPMENT_API_URL, equipment, { responseType: 'text'});
+    let formData : FormData = this.convertToFormData(equipment);
+    return this.http.put(EQUIPMENT_API_URL, formData, { responseType: 'text'});
   }
 
   
@@ -86,4 +76,29 @@ export class EquipmentService {
     });
      return httpParams;
   } 
+
+  convertToFormData(equipment : any) : FormData {
+    let formData : FormData = new FormData();
+    formData.append('inventoryNumber', equipment.inventoryNumber);
+    formData.append('initialCost', equipment.initialCost);
+    formData.append('name', equipment.name);
+    formData.append('commissioningDate', equipment.commissioningDate.substring(0, 10));
+    formData.append('commissioningActNumber', equipment.commissioningActNumber);
+    formData.append('subcategoryId', equipment.subcategory.id);
+    formData.append('placementId', equipment.placement.id);
+    formData.append('responsibleId', equipment.responsible.id);
+
+    if (equipment.id != null) 
+      formData.append("id", equipment.id);
+    if (equipment.imageData != null)
+      formData.append('image', equipment.imageData);
+    if (equipment.description != null) 
+      formData.append('description', equipment.description);
+    if (equipment.decommissioningDate != null) 
+      formData.append("decommissioningDate", equipment.decommissioningDate);
+    if (equipment.decommissioningActNumber != null) 
+      formData.append("decommissioningActNumber", equipment.decommissioningActNumber);
+
+    return formData;
+  }
 }
