@@ -113,8 +113,8 @@
                         [value]="responsible">
                         {{
                             responsible.lastName + ' ' 
-                            + responsible.firstName + ' ' 
-                            + responsible.patronymic 
+                            + responsible.firstName.substring(0, 1) + '. ' 
+                            + responsible.patronymic.substring(0, 1) + '.' 
                         }}
                         </mat-option>
                         
@@ -181,8 +181,8 @@
                     <td mat-cell *matCellDef="let equipment">
                         {{ 
                             equipment.responsible.lastName + ' ' +
-                            equipment.responsible.firstName + ' ' + 
-                            equipment.responsible.patronymic
+                            equipment.responsible.firstName.substring(0, 1) + '. ' +
+                            equipment.responsible.patronymic.substring(0, 1) + '.' 
                         }}
                     </td>
                 </ng-container>
