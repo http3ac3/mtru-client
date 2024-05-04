@@ -100,11 +100,11 @@
             <mat-expansion-panel >
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <span class="">Материально ответственный</span>
+                        <span class="">Ответственный</span>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-form-field class="w-full">
-                    <mat-label>Материально ответственный</mat-label>
+                    <mat-label>Ответственный</mat-label>
                     <!--[(ngModel)]="selectedDepartment"   -->
                     <mat-select formControlName="responsible" name="selectedDepartment">
                         <mat-option>Ничего не выбирать</mat-option>
@@ -177,7 +177,7 @@
 
                 
                 <ng-container matColumnDef="responsible">
-                    <th mat-header-cell *matHeaderCellDef>Материально ответственный</th>
+                    <th mat-header-cell *matHeaderCellDef>Ответственный</th>
                     <td mat-cell *matCellDef="let equipment">
                         {{ 
                             equipment.responsible.lastName + ' ' +
