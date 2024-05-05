@@ -1,22 +1,13 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { EquipmentRowComponent } from '../equipment-row/equipment-row.component';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { MyCustomPaginatorIntl, PaginatorComponent } from '../paginator/paginator.component';
-import { HeaderComponent } from '../header/header.component';
 import { MatTable, MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Equipment } from '../../models/equipment/equipment';
-import { Responsible } from '../../models/responsible/responsible';
-import { Department } from '../../models/department/department';
-import { Subcategory } from '../../models/subcategory/subcategory';
-import { Category } from '../../models/category/category';
-import { Placement } from '../../models/placement/placement';
 import { ResponsibleService } from '../../services/responsible/responsible.service';
 import { EquipmentService } from '../../services/equipment/equipment.service';
 import { SubcategoryService } from '../../services/subcategory/subcategory.service';
@@ -28,6 +19,7 @@ import { CreateEquipmentFormDialogComponent } from '../dialogs/create-equipment-
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-equipment',
@@ -45,6 +37,13 @@ import { Router } from '@angular/router';
     NgFor,
     MatSortModule
   ],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
   templateUrl: './equipment.component.html',
   styleUrl: './equipment.component.css'
 })
@@ -57,7 +56,7 @@ export class EquipmentComponent implements AfterViewInit {
   subcategories : any[] = [];
 
   dataSource = new MatTableDataSource<any>(this.equipmentData);
-  displayedColumns : string[] = [
+  displayedColumns = [
     'id',
     'inventoryNumber',
     'name',
@@ -65,6 +64,12 @@ export class EquipmentComponent implements AfterViewInit {
     'responsible',
     'placement'
   ];
+  displayedColumnsWithExpand = [...this.displayedColumns, 'expand'];
+  
+  expandedEquipment : any;
+  expandedEquipmentImage : any;
+
+  loadedEquipmentImages : any[] = [];
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -168,7 +173,7 @@ export class EquipmentComponent implements AfterViewInit {
     this.applyFilters();
   }
 
-  clickRow(row : Equipment) {
+  onOpenDialog(row : Equipment) {
     let equipment = {
       id : row.id,
       inventoryNumber : row.inventoryNumber,
@@ -188,5 +193,17 @@ export class EquipmentComponent implements AfterViewInit {
       data : equipment,
       autoFocus : false
     });
+  }
+
+  onExpand(equipment : any) {
+    if (this.expandedEquipment == null) return;
+    this.equipmentService.getBase64Image(this.expandedEquipment.id).subscribe({
+      next: (data : any) => {
+        equipment.imageData = data.imageBase64;
+      },
+      error: (err) => {
+        if (err.status == 400) return;
+      }  
+    });  
   }
 }
