@@ -113,7 +113,7 @@ export class RentComponent {
       }
 
     this.paginator._intl = new MyCustomPaginatorIntl;
-    this.equipmentService.getAll().subscribe((data : Equipment[]) => this.equipmentData = data);
+    //this.equipmentService.getAll().subscribe((data : Equipment[]) => this.equipmentData = data);
     this.placementService.getAll().subscribe((data : Placement[]) => this.placements = data);
     this.responsibleService.getAll().subscribe((data : Responsible[]) => this.responsibleData = data);
 
@@ -163,7 +163,7 @@ export class RentComponent {
   updateEquipmentSelectBySearch() {
     let equipmentSearchValue = this.rentFilterForm.value.equipmentSearchValue; 
     console.log(equipmentSearchValue);
-    this.equipmentService.getAll({inventoryNumber : equipmentSearchValue}).subscribe({
+    this.equipmentService.getAll({name : equipmentSearchValue}).subscribe({
       next: (data : Equipment[]) => this.equipmentData = data
     })
   }
