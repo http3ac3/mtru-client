@@ -7,9 +7,9 @@
                 <div class="flex w-full">
                     <mat-form-field  class="w-full mr-[10px]">
                         <mat-label>Поиск оборудования</mat-label>
-                        <input matInput placeholder="Инвентарный номер" value="" formControlName="searchEquipmentValue">
+                        <input matInput placeholder="Название оборудования" value="" formControlName="searchEquipmentValue">
                     </mat-form-field>
-                    <button mat-icon-button color="primary" (click)="searchByInventoryNumber()">
+                    <button mat-icon-button color="primary" (click)="searchByEquipmentName()">
                         <mat-icon>search</mat-icon>
                     </button>
                     <button mat-icon-button color="primary" (click)="resetSearch()">

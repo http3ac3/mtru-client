@@ -81,9 +81,9 @@ export class UserSearchComponent {
     });
   }
 
-  searchByInventoryNumber() {
-    let number = this.searchEquipmentForm.value.searchEquipmentValue;
-    this.equipmentService.getAll({ inventoryNumber : number }).subscribe({
+  searchByEquipmentName() {
+    let name = this.searchEquipmentForm.value.searchEquipmentValue;
+    this.equipmentService.getAll({ name : name }).subscribe({
       next: (data : Equipment[]) => this.equipmentData = data,
       complete: () => this.searchEquipmentForm.patchValue({ equipment : this.equipmentData[0] })
     });
@@ -91,7 +91,7 @@ export class UserSearchComponent {
 
   resetSearch() {
     this.searchEquipmentForm.patchValue({searchEquipmentValue : null});
-    this.searchByInventoryNumber();
+    this.searchByEquipmentName();
     //this.equipmentService.getAll().subscribe((data : Equipment[]) => this.equipmentData = data);
   }
 
