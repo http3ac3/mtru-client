@@ -152,7 +152,7 @@ export class CreateEquipmentFormDialogComponent {
 
   convertDateTOISOFormat(s : string) : string {
     let date = new Date(s + " EDT");
-    return date.toISOString();
+    return date.toISOString().substring(0, 10);
   }
   
   onCancel() : void {

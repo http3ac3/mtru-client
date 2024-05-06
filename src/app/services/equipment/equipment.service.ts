@@ -82,7 +82,7 @@ export class EquipmentService {
     formData.append('inventoryNumber', equipment.inventoryNumber);
     formData.append('initialCost', equipment.initialCost);
     formData.append('name', equipment.name);
-    formData.append('commissioningDate', equipment.commissioningDate.substring(0, 10));
+    formData.append('commissioningDate', equipment.commissioningDate);
     formData.append('commissioningActNumber', equipment.commissioningActNumber);
     formData.append('subcategoryId', equipment.subcategory.id);
     formData.append('placementId', equipment.placement.id);
