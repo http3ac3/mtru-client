@@ -281,8 +281,6 @@ export class CreateEquipmentFormDialogComponent {
     let decommissioiningDateValueIsEmpty = decommissioiningDateControl?.value == null;
     let decommissioiningActValueIsEmpty = (decommissioiningActControl?.value == "" || decommissioiningActControl?.value == null);
 
-    console.log(decommissioiningActControl?.value);
-    console.log(decommissioiningDateControl?.value)
     if (!decommissioiningActValueIsEmpty && decommissioiningDateValueIsEmpty) {
       decommissioiningDateControl?.setValidators([Validators.required]);
       decommissioiningDateControl?.setErrors({unfilled : true});
