@@ -125,7 +125,7 @@ export class EquipmentComponent implements AfterViewInit {
   getAllEquipmentData() {
     this.equipmentService.getAll().subscribe({
       next: (data : any[]) => { this.equipmentData = data; },
-      complete: () => { this.dataSource.data = this.equipmentData; }
+      complete: () => { this.dataSource.data = this.equipmentData; console.log(this.equipmentData)}
     });
   }
 
