@@ -76,7 +76,7 @@ export class CreateEquipmentFormDialogComponent {
       commissioningDate : new FormControl(null, [Validators.required]),
       commissioningActNumber : new FormControl(null, [Validators.required]),
       decommissioningDate : new FormControl(),
-      decommissioningActNumber : new FormControl(),
+      decommissioningActNumber : new FormControl(""),
       description : new FormControl(),
       subcategory : new FormControl(null, [Validators.required]),
       responsible : new FormControl(null, [Validators.required]),
@@ -278,20 +278,26 @@ export class CreateEquipmentFormDialogComponent {
     let decommissioiningDateControl = this.equipmentForm.get("decommissioningDate");
     let decommissioiningActControl = this.equipmentForm.get("decommissioningActNumber");
 
-    if (decommissioiningActControl?.value != "" && decommissioiningDateControl?.value == null) {
+    let decommissioiningDateValueIsEmpty = decommissioiningDateControl?.value == null;
+    let decommissioiningActValueIsEmpty = (decommissioiningActControl?.value == "" || decommissioiningActControl?.value == null);
+
+    console.log(decommissioiningActControl?.value);
+    console.log(decommissioiningDateControl?.value)
+    if (!decommissioiningActValueIsEmpty && decommissioiningDateValueIsEmpty) {
       decommissioiningDateControl?.setValidators([Validators.required]);
       decommissioiningDateControl?.setErrors({unfilled : true});
       decommissioiningDateControl?.updateValueAndValidity();
     }
 
-    if (decommissioiningDateControl?.value != null && decommissioiningActControl?.value == "") {
+    if (!decommissioiningDateValueIsEmpty && decommissioiningActValueIsEmpty) 
+    {
       decommissioiningActControl?.setValidators([Validators.required]);
       decommissioiningActControl?.setErrors({unfilled : true});
       decommissioiningActControl?.updateValueAndValidity();
     }
 
-    if ((decommissioiningActControl?.value == "" && decommissioiningDateControl?.value == null) 
-        || (decommissioiningActControl?.value != "" && decommissioiningDateControl?.value != null)
+    if ((decommissioiningActValueIsEmpty && decommissioiningDateValueIsEmpty) ||  
+        (!decommissioiningActValueIsEmpty && !decommissioiningDateValueIsEmpty)
     ) {
       decommissioiningDateControl?.removeValidators([Validators.required]);
       decommissioiningActControl?.removeValidators([Validators.required]);

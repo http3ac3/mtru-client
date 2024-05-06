@@ -70,7 +70,7 @@
                                 <mat-form-field class="w-full">
                                     <mat-label>Дата вывода из эксплуатации</mat-label>
                                     <input matInput [matDatepicker]="dp4" formControlName="decommissioningDate"
-                                    (dateInput)="OnDecommissionFilling()">
+                                    (dateChange)="OnDecommissionFilling()">
                                     <mat-datepicker-toggle matIconSuffix [for]="dp4"></mat-datepicker-toggle>
                                     <mat-datepicker #dp4 disabled="false"></mat-datepicker>
                                 </mat-form-field>
