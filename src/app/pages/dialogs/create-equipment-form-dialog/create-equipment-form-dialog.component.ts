@@ -58,6 +58,7 @@ export class CreateEquipmentFormDialogComponent {
   userIsAdmin : boolean = false;
   imageSrc : any;
   selectedImage : any;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data : any,
     public dialogRef: MatDialogRef<CreateEquipmentFormDialogComponent>,
@@ -272,4 +273,31 @@ export class CreateEquipmentFormDialogComponent {
     };
     return form;
   } 
+
+  OnDecommissionFilling() {
+    let decommissioiningDateControl = this.equipmentForm.get("decommissioningDate");
+    let decommissioiningActControl = this.equipmentForm.get("decommissioningActNumber");
+
+    if (decommissioiningActControl?.value != "" && decommissioiningDateControl?.value == null) {
+      decommissioiningDateControl?.setValidators([Validators.required]);
+      decommissioiningDateControl?.setErrors({unfilled : true});
+      decommissioiningDateControl?.updateValueAndValidity();
+    }
+
+    if (decommissioiningDateControl?.value != null && decommissioiningActControl?.value == "") {
+      decommissioiningActControl?.setValidators([Validators.required]);
+      decommissioiningActControl?.setErrors({unfilled : true});
+      decommissioiningActControl?.updateValueAndValidity();
+    }
+
+    if ((decommissioiningActControl?.value == "" && decommissioiningDateControl?.value == null) 
+        || (decommissioiningActControl?.value != "" && decommissioiningDateControl?.value != null)
+    ) {
+      decommissioiningDateControl?.removeValidators([Validators.required]);
+      decommissioiningActControl?.removeValidators([Validators.required]);
+
+      decommissioiningDateControl?.setErrors(null);
+      decommissioiningActControl?.setErrors(null);
+    }
+  }
 }

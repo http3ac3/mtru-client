@@ -69,7 +69,8 @@
                             <div class="w-[50%] mr-[25px]">
                                 <mat-form-field class="w-full">
                                     <mat-label>Дата вывода из эксплуатации</mat-label>
-                                    <input matInput [matDatepicker]="dp4" formControlName="decommissioningDate">
+                                    <input matInput [matDatepicker]="dp4" formControlName="decommissioningDate"
+                                    (dateInput)="OnDecommissionFilling()">
                                     <mat-datepicker-toggle matIconSuffix [for]="dp4"></mat-datepicker-toggle>
                                     <mat-datepicker #dp4 disabled="false"></mat-datepicker>
                                 </mat-form-field>
@@ -78,7 +79,8 @@
                             <div class="w-[50%]">
                                 <mat-form-field class="w-full">
                                     <mat-label>Номер акта о выводе из экслуатации</mat-label>
-                                    <input matInput placeholder="Номер акта" formControlName="decommissioningActNumber">
+                                    <input matInput placeholder="Номер акта" formControlName="decommissioningActNumber"
+                                    (change)="OnDecommissionFilling()">
                                 </mat-form-field>
                             </div>
                         </div>
