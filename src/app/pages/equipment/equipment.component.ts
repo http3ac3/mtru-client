@@ -110,7 +110,7 @@ export class EquipmentComponent implements AfterViewInit {
 
     this.paginator._intl = new MyCustomPaginatorIntl;
     this.subcategoryService.getAll().subscribe((data : any[]) => { this.subcategories = data });
-    this.responsibleService.getAll({isFinanciallyResponsible : true}).subscribe(
+    this.responsibleService.getAll().subscribe(
       (data : any[]) => { this.responsibleData = data }
     );
     this.placementService.getAll().subscribe((data : any[]) => { this.placements = data });

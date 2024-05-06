@@ -116,9 +116,9 @@
                                 <mat-option *ngFor="let responsible of responsibleData" 
                                 [value]="responsible">
                                 {{ 
-                                    responsible.lastName + ' ' + 
-                                    responsible.firstName + ' ' + 
-                                    responsible.patronymic
+                                    responsible.lastName + ' ' +
+                                    responsible.firstName.substring(0, 1) + '. ' +
+                                    responsible.patronymic.substring(0, 1) + '.' 
                                 }}
                                 </mat-option>
                             </mat-select>

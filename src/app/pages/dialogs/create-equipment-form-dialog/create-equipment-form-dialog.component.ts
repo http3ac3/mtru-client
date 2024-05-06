@@ -114,7 +114,7 @@ export class CreateEquipmentFormDialogComponent {
       } 
     });
 
-    this.responsibleService.getAll({isFinanciallyResponsible : true}).subscribe({
+    this.responsibleService.getAll().subscribe({
       next: (data : any) => this.responsibleData = data,
       complete: () => {
         if (!this.data) {
