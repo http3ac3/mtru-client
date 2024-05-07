@@ -32,8 +32,11 @@ export class EquipmentService {
     return this.http.get<any>('http://localhost:8080/api/v1/qr/' + inventoryNumber, {responseType: 'blob' as 'json'});
   }
 
-  getExportExcelFile() : Observable<any> {
-    return this.http.get<any>('http://localhost:8080/api/v1/export/excel', {responseType: 'blob' as 'json'});
+  getExportExcelFile(params? : any) : Observable<any> {
+    return this.http.get<any>('http://localhost:8080/api/v1/export/excel', {
+      responseType: 'blob' as 'json',
+      params : params ? this.getHttpParams(params) : {}
+    });
   }
 
   /**

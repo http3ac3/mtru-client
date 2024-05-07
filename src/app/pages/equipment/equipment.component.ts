@@ -225,10 +225,26 @@ export class EquipmentComponent implements AfterViewInit {
   } 
 
   onExport() {
-    this.equipmentService.getExportExcelFile().subscribe({
+    let formValues = this.equipmentFilterForm.value;
+    let params = {
+      initialCostFrom : formValues.initialCostFrom,
+      initialCostTo : formValues.initialCostTo,
+      commissioningDateFrom : formValues.commissioningDateFrom,
+      commissioningDateTo : formValues.commissioningDateTo,
+      decommissioningDateFrom : formValues.decommissioningDateFrom,
+      decommissioningDateTo : formValues.decommissioningDateTo,
+      subcategoryId : null,
+      responsibleId : null,
+      placementId : null
+    }
+
+    if (formValues.subcategory != null) params.subcategoryId = formValues.subcategory.id;
+    if (formValues.responsible != null) params.responsibleId = formValues.responsible.id;
+    if (formValues.placement != null) params.placementId = formValues.placement.id;
+
+    this.equipmentService.getExportExcelFile(params).subscribe({
       next: (data: any) => {
         let dataType = data.type;
-        console.log(dataType)
         let binaryData = [];
         binaryData.push(data);
         let downloadLink = document.createElement('a');
