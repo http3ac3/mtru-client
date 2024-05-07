@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { MatFormField, MatInput, MatInputModule, MatLabel } from '@angular/material/input';
-import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -13,7 +12,7 @@ import { EquipmentService } from '../../services/equipment/equipment.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Placement } from '../../models/placement/placement';
 import { PlacementService } from '../../services/placement/placement.service';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { StorageService } from '../../services/storage/storage.service';
 import { Rent } from '../../models/rent/rent';
 import { Router } from '@angular/router';
@@ -92,7 +91,6 @@ export class UserSearchComponent {
   resetSearch() {
     this.searchEquipmentForm.patchValue({searchEquipmentValue : null});
     this.searchByEquipmentName();
-    //this.equipmentService.getAll().subscribe((data : Equipment[]) => this.equipmentData = data);
   }
 
   take() {
@@ -106,14 +104,14 @@ export class UserSearchComponent {
       '',
       formValues.description
     );
-    console.log(rent);
+
     this.rentService.create(rent).subscribe({
       complete: () => { 
         alert(`Взятие оборудования ${rent.equipment.name} (инв. №${rent.equipment.inventoryNumber} было успешно сохранено!)`)
         window.location.reload();
       },
       error: (err) => {
-        alert(`Оборудование ${rent.equipment.name} (инв. №${rent.equipment.inventoryNumber} уже взято другим работником!`)
+        alert(`Оборудование ${rent.equipment.name} (инв. №${rent.equipment.inventoryNumber}) вынести невозможно!`)
       }
     });
     
