@@ -28,6 +28,10 @@ export class EquipmentService {
     return this.http.get<any>(EQUIPMENT_API_URL + `/${id}/image`);
   }
 
+  getQrCodeImage(inventoryNumber : string) : Observable<any> {
+    return this.http.get<any>('http://localhost:8080/api/v1/qr/' + inventoryNumber, {responseType: 'blob' as 'json'});
+  }
+
   /**
    * Создание нового оборудования
    * 

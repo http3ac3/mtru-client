@@ -206,4 +206,20 @@ export class EquipmentComponent implements AfterViewInit {
       }  
     });  
   }
+
+  onQrGenerate(inventoryNumber : string) {
+    this.equipmentService.getQrCodeImage(inventoryNumber).subscribe({
+      next: (data: any) => {
+        let dataType = data.type;
+        let binaryData = [];
+        binaryData.push(data);
+        let downloadLink = document.createElement('a');
+        downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));
+        downloadLink.setAttribute('download', inventoryNumber);
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      }
+    })
+  } 
 }
