@@ -211,6 +211,7 @@ export class EquipmentComponent implements AfterViewInit {
     this.equipmentService.getQrCodeImage(inventoryNumber).subscribe({
       next: (data: any) => {
         let dataType = data.type;
+        
         let binaryData = [];
         binaryData.push(data);
         let downloadLink = document.createElement('a');
@@ -222,4 +223,21 @@ export class EquipmentComponent implements AfterViewInit {
       }
     })
   } 
+
+  onExport() {
+    this.equipmentService.getExportExcelFile().subscribe({
+      next: (data: any) => {
+        let dataType = data.type;
+        console.log(dataType)
+        let binaryData = [];
+        binaryData.push(data);
+        let downloadLink = document.createElement('a');
+        downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));
+        downloadLink.setAttribute('download', "report");
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      } 
+    })
+  }
 }
