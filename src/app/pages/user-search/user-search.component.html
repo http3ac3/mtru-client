@@ -3,7 +3,7 @@
         <div class="flex flex-col border-2 rounded-md p-[25px]">
             <form class="w-full flex flex-col text-center items-center" [formGroup]="searchEquipmentForm">
                 <span class="mb-[25px]">
-                    Чтобы взять оборудование, выберите оборудование из выпадающего списка</span>
+                    Чтобы вынести оборудование, выберите оборудование из выпадающего списка</span>
                 <div class="flex w-full">
                     <mat-form-field  class="w-full mr-[10px]">
                         <mat-label>Поиск оборудования</mat-label>
@@ -60,7 +60,7 @@
                 </mat-form-field>
 
                 <div class="text-center">
-                    <button [disabled]="!searchEquipmentForm.valid" class="w-[30vw]" mat-flat-button color="primary" (click)="take()">Взять оборудование</button>
+                    <button [disabled]="!searchEquipmentForm.valid" class="w-[30vw]" mat-flat-button color="primary" (click)="take()">Вынести оборудование</button>
                 </div>
             </form>
         </div>

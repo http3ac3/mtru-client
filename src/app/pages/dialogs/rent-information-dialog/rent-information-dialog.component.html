@@ -31,14 +31,14 @@
                 <div class="flex w-full">
                     <div class="w-[50%] mr-[25px] ">
                         <mat-form-field class="w-full">
-                            <mat-label>Дата и время взятия</mat-label>
+                            <mat-label>Дата и время выноса</mat-label>
                             <input type="datetime-local" matInput placeholder="Дата и время взятия" formControlName="createDateTime">
                         </mat-form-field>
                     </div>
 
                     <div class="w-[50%]">
                         <mat-form-field class="w-full">
-                            <mat-label>Дата и время завершения взятия</mat-label>
+                            <mat-label>Дата и время завершения выноса</mat-label>
                             @if (this.data.endDateTime) {
                                 <input type="datetime-local" matInput placeholder="Дата и время завершения взятия" formControlName="endDateTime">                               
                             } @else {
