@@ -22,6 +22,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { CreateModelsDialogComponent } from './pages/dialogs/create-models-dialog/create-models-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ImportComponent } from './pages/dialogs/import-dialog/import/import.component';
 
 @Component({
   selector: 'app-root',
@@ -90,5 +91,11 @@ export class AppComponent implements OnInit{
         }
       })
     }
+  }
+
+  onOpenImportDialog() {
+    this.dialog.open(ImportComponent, {
+      autoFocus: false
+    });
   }
 }

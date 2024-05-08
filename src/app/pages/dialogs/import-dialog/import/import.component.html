@@ -1,0 +1,42 @@
+<div>
+    <div class="flex items-center mr-[20px] w-full">
+        <h2 mat-dialog-title>Импорт оборудования из Excel файла</h2>
+        <span class="flex-auto"></span>
+        <button mat-icon-button (click)="onCancel()" class="mr-[15px]">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <mat-dialog-content>
+        <form [formGroup]="importForm">
+            <input type="file" formControlName="fileSelect" (change)="onFileChange($event)" accept=".xlsx">
+            <div>
+                @if (proccess) {
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                }
+                @if (imported) {
+                    <div>
+                        <mat-icon [ngStyle]="{'color':'green'}">done</mat-icon>
+                        <span>Успешно импортировано: {{response.savesCount}}</span>
+                    </div>
+                    <span>Ошибки:</span>
+                    <div class="overflow-y-scroll h-56">
+                        <div *ngFor="let error of response.errors" >
+                            <mat-icon [ngStyle]="{'color':'red'}">error</mat-icon>
+                            <span>Номер строки: {{error.row}} </span>
+                            <span>Текст ошибки: {{error.message}}</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </form>
+            
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="">
+        <div class="">
+            <button [disabled]="!importForm.valid" mat-flat-button (click)="onImport()">Импортировать</button>
+        </div>
+    </mat-dialog-actions>
+
+    
+</div>
