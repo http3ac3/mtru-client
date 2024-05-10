@@ -23,6 +23,7 @@ import { CreateModelsDialogComponent } from './pages/dialogs/create-models-dialo
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ImportComponent } from './pages/dialogs/import-dialog/import/import.component';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-root',

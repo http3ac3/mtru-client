@@ -9,6 +9,7 @@ import { HeaderComponent } from '../header/header.component';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/Auth/auth.service';
 import { StorageService } from '../../services/storage/storage.service';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-main',
@@ -21,7 +22,9 @@ import { StorageService } from '../../services/storage/storage.service';
     MatInputModule, 
     MatFormFieldModule, 
     HeaderComponent,
-    RouterLink],
+    RouterLink,
+    NgStyle
+  ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })

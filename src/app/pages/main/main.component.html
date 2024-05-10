@@ -1,28 +1,34 @@
 <div>
-    <div class="pages flex mt-[25px] ml-[25px] mb-[25px] justify-between flex-wrap ">
-        <div class="page w-[23%] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full" (click)="goToEquipment()">Оборудование</button>
+    <div class="pages flex mt-[25px] ml-[25px] mb-[25px] flex-wrap justify-center ">
+        <div class="page equipment h-[250px]  mb-[25px]" (click)="goToEquipment()">
+            <p>Оборудование</p>
         </div>
-        <div class="page w-[23%] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full" (click)="goToResponsible()">Ответственные</button>
+        <div class="page responsible h-[250px] border-4 rounded-md  mb-[25px]" (click)="goToResponsible()">
+            <p>Ответственные</p>
         </div>
-        <div class="page w-[23%] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full" (click)="goToRents()">Выносы оборудования</button>
+        <div class="page rent   h-[250px] border-4 rounded-md  mb-[25px]">
+            <p>Выносы оборудования</p>
+            <button class="w-full h-full" (click)="goToRents()"></button>
         </div>
-        <div class="page w-[23%] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full" (click)="goToDepartments()">Структурные подразделения</button>
+        <div class="page department   h-[250px] border-4 rounded-md mb-[25px]">
+            <p>Структурные подразделения</p>
+            <button class="w-full h-full" (click)="goToDepartments()"></button>
         </div>
-        <div class="page w-[23%] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full" (click)="goToPlacements()">Помещения</button>
+        <div class="page placement   h-[250px] border-4 rounded-md  mb-[25px]">
+            <p>Помещения</p>
+            <button class="w-full h-full" (click)="goToPlacements()"></button>
         </div>
-        <div class="page w-[23%] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full" (click)="goToCategories()">Категории</button>
+        <div class="page category   h-[250px] border-4 rounded-md  mb-[25px]">
+            <p>Категории</p>
+            <button class="w-full h-full" (click)="goToCategories()"></button>
         </div>
-        <div class="page w-[23%] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full" (click)="goToSubategories()">Подкатегории</button>
+        <div class="page subcategory   h-[250px] border-4 rounded-md  mb-[25px]">
+            <p>Подкатегории</p>
+            <button class="w-full h-full" (click)="goToSubategories()"></button>
         </div>
-        <div class="page w-[23%] h-[250px] border-4 rounded-md mr-[25px] mb-[25px]">
-            <button class="w-full h-full" [routerLink]="['users']" (click)="goToUsers()">Пользователи</button>
+        <div class="page user   h-[250px] border-4 rounded-md mb-[25px]">
+            <p>Пользователи</p>
+            <button class="w-full h-full" [routerLink]="['users']" (click)="goToUsers()"></button>
         </div>
     </div>
 </div>
