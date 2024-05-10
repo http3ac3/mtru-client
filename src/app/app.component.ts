@@ -35,7 +35,8 @@ import { NgStyle } from '@angular/common';
     MatButtonModule,
     CreateModelsDialogComponent, 
     RouterLink,
-    MatTooltipModule
+    MatTooltipModule,
+    NgStyle
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

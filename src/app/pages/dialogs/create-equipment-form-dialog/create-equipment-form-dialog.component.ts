@@ -277,7 +277,6 @@ export class CreateEquipmentFormDialogComponent {
   OnDecommissionFilling() {
     let decommissioiningDateControl = this.equipmentForm.get("decommissioningDate");
     let decommissioiningActControl = this.equipmentForm.get("decommissioningActNumber");
-
     let decommissioiningDateValueIsEmpty = decommissioiningDateControl?.value == null;
     let decommissioiningActValueIsEmpty = (decommissioiningActControl?.value == "" || decommissioiningActControl?.value == null);
 

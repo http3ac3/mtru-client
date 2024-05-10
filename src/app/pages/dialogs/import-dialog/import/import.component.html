@@ -14,16 +14,20 @@
                     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
                 }
                 @if (imported) {
-                    <div>
-                        <mat-icon [ngStyle]="{'color':'green'}">done</mat-icon>
-                        <span>Успешно импортировано: {{response.savesCount}}</span>
+                    <div class="flex items-center">
+                        <div class="mr-2">
+                            <mat-icon [ngStyle]="{'color':'green'}">done</mat-icon>
+                        </div>
+                        <span class="text-black">Успешно импортировано: {{response.savesCount}}</span>
                     </div>
-                    <span>Ошибки:</span>
+                    <span class="text-red-500">Ошибки:</span>
                     <div class="overflow-y-scroll h-56">
-                        <div *ngFor="let error of response.errors" >
-                            <mat-icon [ngStyle]="{'color':'red'}">error</mat-icon>
-                            <span>Номер строки: {{error.row}} </span>
-                            <span>Текст ошибки: {{error.message}}</span>
+                        <div *ngFor="let error of response.errors" class="flex items-center">
+                            <div class="mr-2">
+                                <mat-icon [ngStyle]="{'color':'red'}">error</mat-icon>
+                            </div>
+                            <p class="text-black">Номер строки: {{error.row}}</p>
+                            <p>Текст ошибки: {{error.message}}</p>
                         </div>
                     </div>
                 }

@@ -4,7 +4,7 @@
         <mat-toolbar color="primary" class="w-full">
             @if (!isLoggedIn) { 
                 <span class="flex-auto"></span>
-                <span>Авторизуйтесь для начала работы</span>
+                <span class="text-[1.3vw]">Авторизуйтесь для начала работы</span>
             }
             @else {
                 @if (isAdmin || isLabhead) {
@@ -19,7 +19,8 @@
                     </button>
                 }
                 @if (isUser){
-                    <button mat-raised-button class="ml-2" color="" aria-label="" [routerLink]="['user-rents']">
+                    <button mat-raised-button class="ml-2" color="" aria-label="" [routerLink]="['user-rents']"
+                            [ngStyle]="{'font-size':'0.5vw'}">
                         Мои выносы
                     </button>
                     <button mat-raised-button class="ml-2" color="" aria-label="" [routerLink]="['user-search']">
@@ -28,8 +29,8 @@
                 }
                 
                 <span class="flex-auto"></span>
-                <span>{{ responsible.lastName + ' ' + responsible.firstName + ' ' + responsible.patronymic }}</span>
-                <button mat-icon-button class="example-icon" (click)="logout()" aria-label="" matTooltip="Выйти">
+                <span class="text-[1.3vw]">{{ responsible.lastName + ' ' + responsible.firstName + ' ' + responsible.patronymic }}</span>
+                <button mat-icon-button (click)="logout()" aria-label="" matTooltip="Выйти">
                     <mat-icon>logout</mat-icon>
                 </button>
             }
