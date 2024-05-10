@@ -13,13 +13,15 @@ import { EquipmentService } from '../../services/equipment/equipment.service';
 import { SubcategoryService } from '../../services/subcategory/subcategory.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PlacementService } from '../../services/placement/placement.service';
-import { NgFor } from '@angular/common';
+import { NgFor, NgStyle } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { CreateEquipmentFormDialogComponent } from '../dialogs/create-equipment-form-dialog/create-equipment-form-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatIconModule } from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-equipment',
@@ -34,7 +36,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     MatExpansionModule, 
     MatTableModule,
     MatSelectModule,
+    MatTooltipModule,
+    MatIconModule,
     NgFor,
+    NgStyle,
     MatSortModule
   ],
   animations: [

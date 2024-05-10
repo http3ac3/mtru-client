@@ -1,9 +1,9 @@
-<div>
+<div class="w-full">
     
-    <div class="header m-0 p-0">
-        <mat-toolbar color="primary" class="">
+    <div class="header m-0 p-0 w-full">
+        <mat-toolbar color="primary" class="w-full">
             @if (!isLoggedIn) { 
-                <span class="spacer"></span>
+                <span class="flex-auto"></span>
                 <span>Авторизуйтесь для начала работы</span>
             }
             @else {
@@ -27,7 +27,7 @@
                     </button>
                 }
                 
-                <span class="spacer"></span>
+                <span class="flex-auto"></span>
                 <span>{{ responsible.lastName + ' ' + responsible.firstName + ' ' + responsible.patronymic }}</span>
                 <button mat-icon-button class="example-icon" (click)="logout()" aria-label="" matTooltip="Выйти">
                     <mat-icon>logout</mat-icon>
@@ -35,7 +35,7 @@
             }
         </mat-toolbar>
     </div>
-    <div>
+    <div class="w-full">
         <router-outlet />
     </div>
 </div>
