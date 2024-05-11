@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgStyle } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,7 +41,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatSelectModule,
     MatDatepickerModule,
     ReactiveFormsModule,
-    NgFor
+    NgFor, 
+    NgStyle
   ],
   templateUrl: './create-equipment-form-dialog.component.html',
   styleUrl: './create-equipment-form-dialog.component.css',

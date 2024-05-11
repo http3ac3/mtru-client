@@ -11,12 +11,21 @@
             <div class="flex flex-col w-full">
                 <div class="flex w-full">
 
-                    <div class="rounded-md border-2 w-[25%] h-[25%] mr-[25px]">
-                        <img class="rounded-md border-2" [src]="imageSrc">
+                    <div class=" mr-[25px] ">
+                        <div class="flex justify-center items-center w-[15vw] h-[110px] rounded-md border-2">
+                            @if (this.imageSrc) {
+                                <img class="h-full w-full object-cover rounded-md" [src]="imageSrc">
+                            } @else {
+                                <mat-icon [ngStyle]="{'transform' : 'scale(2)'}">no_photography</mat-icon>
+                            }
+                        </div>
+                       
+                        
                         <input class="h-full w-full" placeholder="Загрузите изображение" type="file"
                         accept="image/*"
                         (change)="onFileChange($event)"> 
                     </div>
+                    
 
                     <div class="flex-col flex w-full">
                         <div class="w-[full]">
