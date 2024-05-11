@@ -22,12 +22,15 @@
                     </div>
                     <span class="text-red-500">Ошибки:</span>
                     <div class="overflow-y-scroll h-56">
-                        <div *ngFor="let error of response.errors" class="flex items-center">
+                        <div *ngFor="let error of response.errors" class="flex items-center mb-4">
                             <div class="mr-2">
                                 <mat-icon [ngStyle]="{'color':'red'}">error</mat-icon>
                             </div>
-                            <p class="text-black">Номер строки: {{error.row}}</p>
-                            <p>Текст ошибки: {{error.message}}</p>
+                            <div>
+                                <span class="text-black mr-2 m-0 block">Номер строки: {{error.row}} </span>
+                                <span class="m-0 block">Текст ошибки: {{error.message}}</span>
+                            </div>
+                            
                         </div>
                     </div>
                 }
