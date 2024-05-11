@@ -6,29 +6,23 @@
         <div class="page responsible h-[250px] border-4 rounded-md  mb-[25px]" (click)="goToResponsible()">
             <p>Ответственные</p>
         </div>
-        <div class="page rent   h-[250px] border-4 rounded-md  mb-[25px]">
+        <div class="page rent   h-[250px] border-4 rounded-md  mb-[25px]" (click)="goToRents()">
             <p>Выносы оборудования</p>
-            <button class="w-full h-full" (click)="goToRents()"></button>
         </div>
-        <div class="page department   h-[250px] border-4 rounded-md mb-[25px]">
+        <div class="page department   h-[250px] border-4 rounded-md mb-[25px]" (click)="goToDepartments()">
             <p>Структурные подразделения</p>
-            <button class="w-full h-full" (click)="goToDepartments()"></button>
         </div>
-        <div class="page placement   h-[250px] border-4 rounded-md  mb-[25px]">
+        <div class="page placement   h-[250px] border-4 rounded-md  mb-[25px]" (click)="goToPlacements()">
             <p>Помещения</p>
-            <button class="w-full h-full" (click)="goToPlacements()"></button>
         </div>
-        <div class="page category   h-[250px] border-4 rounded-md  mb-[25px]">
+        <div class="page category   h-[250px] border-4 rounded-md  mb-[25px]" (click)="goToCategories()">
             <p>Категории</p>
-            <button class="w-full h-full" (click)="goToCategories()"></button>
         </div>
-        <div class="page subcategory   h-[250px] border-4 rounded-md  mb-[25px]">
+        <div class="page subcategory   h-[250px] border-4 rounded-md  mb-[25px]" (click)="goToSubategories()">
             <p>Подкатегории</p>
-            <button class="w-full h-full" (click)="goToSubategories()"></button>
         </div>
-        <div class="page user   h-[250px] border-4 rounded-md mb-[25px]">
+        <div class="page user   h-[250px] border-4 rounded-md mb-[25px]" (click)="goToUsers()">
             <p>Пользователи</p>
-            <button class="w-full h-full" [routerLink]="['users']" (click)="goToUsers()"></button>
         </div>
     </div>
 </div>
