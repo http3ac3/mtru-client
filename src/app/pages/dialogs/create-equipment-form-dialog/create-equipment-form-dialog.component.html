@@ -144,15 +144,13 @@
     <mat-dialog-actions class="">
         <div class="ml-[15px] flex w-full justify-between">
             @if (this.data) {
-                @if (this.currentResponsible.id === this.data.responsible.id || this.userIsAdmin) {
+                @if (this.currentResponsible.department.id === this.data.responsible.department.id || this.userIsAdmin) {
                     <button [disabled]="!equipmentForm.valid" mat-stroked-button (click)="onEquipmentChange()" class="w-[50%]" color="primary">Изменить</button>
                     <button mat-flat-button (click)="onEquipmentDelete()" class="mr-[15px] w-[50%]" color="warn">Удалить</button>
                 } @else {
-                    <div>Вы не можете управлять этим оборудованием, так как оно закреплено за 
+                    <div>Вы не можете управлять этим оборудованием, так как вы не находитесь в структурном подразделении
                         {{ 
-                            this.data.responsible.lastName + ' ' + 
-                            this.data.responsible.firstName + ' ' +
-                            this.data.responsible.patronymic
+                            this.data.responsible.department.name
                         }}
                     </div>
                 }

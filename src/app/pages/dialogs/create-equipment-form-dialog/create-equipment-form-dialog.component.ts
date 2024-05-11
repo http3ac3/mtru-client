@@ -122,7 +122,7 @@ export class CreateEquipmentFormDialogComponent {
             this.equipmentForm.patchValue({ responsible : this.responsibleData[0] });
           }
           else {
-            this.responsibleData = [this.currentResponsible];
+            this.responsibleData = this.responsibleData.filter((r) => r.department.id === this.currentResponsible.department.id);
             this.equipmentForm.patchValue({ responsible : this.responsibleData[0]})
           }
         } 
@@ -133,8 +133,12 @@ export class CreateEquipmentFormDialogComponent {
             });
           }
           else {
-            this.responsibleData = [this.data.responsible];
-            this.equipmentForm.patchValue({ responsible : this.responsibleData[0]})
+            if (this.currentResponsible.department.id === this.data.responsible.department.id) {
+              this.responsibleData = this.responsibleData.filter((r) => r.department.id === this.currentResponsible.department.id);
+            } else {
+              this.responsibleData = [this.data.responsible];
+            }
+            this.equipmentForm.patchValue({ responsible : this.responsibleData.find((r) => r.id === this.data.responsible.id)})
           }
         }
       }
