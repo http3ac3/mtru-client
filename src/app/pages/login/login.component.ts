@@ -51,11 +51,9 @@ export class LoginComponent {
     private router: Router) {}
 
   ngOnInit() {
-    console.log(`login component on init! flags: isAdmin - ${this.isAdmin}, isLabhead - ${this.isLabhead}, isUser - ${this.isUser}`)
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
-      console.log(this.roles);
     }
 
     this.isAdmin = this.roles.some(role => role.name === "ROLE_ADMIN");
@@ -98,7 +96,6 @@ export class LoginComponent {
         this.isLoggedIn = true;
       }, error: err => {
         alert('Неправильный логин или пароль, попробуйте еще раз');
-        console.log(err);
         this.isLoginFailed = false;
         return;
       },

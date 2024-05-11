@@ -59,7 +59,6 @@ export class AppComponent implements OnInit{
     private router: Router, public dialog: MatDialog) {}
 
   ngOnInit() {
-    console.log("app component on init!")
     this.isLoggedIn = this.storageService.isLoggedIn();
 
     if (this.isLoggedIn) {
