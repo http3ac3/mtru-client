@@ -5,3 +5,7 @@
 .mat-mdc-row .mat-mdc-cell {
     cursor: pointer;
 }
+
+.mat-mdc-row {
+    height: 30px;
+}
