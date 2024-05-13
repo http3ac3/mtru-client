@@ -254,7 +254,7 @@ export class EquipmentComponent implements AfterViewInit {
         binaryData.push(data);
         let downloadLink = document.createElement('a');
         downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));
-        downloadLink.setAttribute('download', "report");
+        downloadLink.setAttribute('download', "Отчет_" + new Date().toISOString().substring(0, 10) + ".xlsx");
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
