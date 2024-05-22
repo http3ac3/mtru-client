@@ -10,6 +10,57 @@
         <form [formGroup]="importForm">
             <input type="file" formControlName="fileSelect" (change)="onFileChange($event)" accept=".xlsx">
             <div>
+                <span>Установить у всего импортируемого оборудования</span>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Ответственный</mat-label>
+                        <mat-select formControlName="autoResponsible">
+                            <mat-option>Не устанавливать</mat-option>
+                            <mat-option *ngFor="let resp of responsibleData" [value]="resp.id">
+                                {{
+                                    resp.lastName + " " +
+                                    resp.firstName.substring(0, 1) + ". " +
+                                    resp.patronymic.substring(0, 1) + ". "
+                                }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <mat-label>Помещение</mat-label>
+                        <mat-select formControlName="autoPlacement">
+                            <mat-option>Не устанавливать</mat-option>
+                            <mat-option *ngFor="let pl of placements" [value]="pl.id">
+                                {{ pl.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <div class="w-[33%] mr-[25px]">
+                        <mat-form-field class="w-full">
+                            <mat-label>Дата ввода в эксплуатацию</mat-label>
+                            <input matInput [matDatepicker]="dp3" formControlName="autoCommissioningDate">
+                            <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+                            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="w-[33%] mr-[25px]">
+                        <mat-form-field class="w-full">
+                            <mat-label>Номер акта о вводе в эксплуатацию</mat-label>
+                            <input matInput placeholder="Номер акта" formControlName="autoCommissioningActNumber">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+            <div>
                 @if (proccess) {
                     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
                 }

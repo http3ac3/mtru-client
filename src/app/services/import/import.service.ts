@@ -18,7 +18,15 @@ export class ImportService {
 
   private convertToFormData(data : any) : FormData {
     let formData = new FormData();
-    formData.append('file', data);
+    formData.append('file', data.file);
+    if (data.autoResponsible != null)
+      formData.append('autoResponsibleId', data.autoResponsible);
+    if (data.autoPlacement != null)
+      formData.append('autoPlacementId', data.autoPlacement);
+    if (data.autoCommissioningDate != null)
+      formData.append('autoCommissioningDate', data.autoCommissioningDate);
+    if (data.autoCommissioningActNumber != null)
+      formData.append('autoCommissioningActNumber', data.autoCommissioningActNumber);
     return formData;
   }
 }
