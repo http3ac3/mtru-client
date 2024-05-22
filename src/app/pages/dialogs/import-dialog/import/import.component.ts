@@ -120,12 +120,10 @@ export class ImportComponent {
       reader.readAsDataURL(file);
 
       reader.onload = () => {
-        // this.imageSrc = reader.result as string;
+        this.importForm.patchValue({
+          file : file
+        })
       }
-
-      this.importForm.patchValue({
-        file : file
-      })
     }
   }
 }
