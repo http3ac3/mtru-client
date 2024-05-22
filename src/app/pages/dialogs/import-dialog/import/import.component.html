@@ -9,56 +9,59 @@
     <mat-dialog-content>
         <form [formGroup]="importForm">
             <input type="file" formControlName="fileSelect" (change)="onFileChange($event)" accept=".xlsx">
-            <div>
-                <span>Установить у всего импортируемого оборудования</span>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Ответственный</mat-label>
-                        <mat-select formControlName="autoResponsible">
-                            <mat-option>Не устанавливать</mat-option>
-                            <mat-option *ngFor="let resp of responsibleData" [value]="resp.id">
-                                {{
-                                    resp.lastName + " " +
-                                    resp.firstName.substring(0, 1) + ". " +
-                                    resp.patronymic.substring(0, 1) + ". "
-                                }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+            <div class="flex flex-col border-2 rounded-md p-6 mt-4 w-[40vw] flex-wrap">
+                <span class="block mb-2">Установить у всего импортируемого оборудования</span>
+                <div class="flex w-full">
+                    <div class="mr-6 w-full">
+                        <mat-form-field class="w-full">
+                            <mat-label>Ответственный</mat-label>
+                            <mat-select formControlName="autoResponsible" class="w-full">
+                                <mat-option>Не устанавливать</mat-option>
+                                <mat-option *ngFor="let resp of responsibleData" [value]="resp.id">
+                                    {{
+                                        resp.lastName + " " +
+                                        resp.firstName.substring(0, 1) + ". " +
+                                        resp.patronymic.substring(0, 1) + ". "
+                                    }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="w-full">
+                        <mat-form-field class="w-full">
+                            <mat-label>Помещение</mat-label>
+                            <mat-select formControlName="autoPlacement" class="w-full">
+                                <mat-option>Не устанавливать</mat-option>
+                                <mat-option *ngFor="let pl of placements" [value]="pl.id">
+                                    {{ pl.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
-
-                <div>
-                    <mat-form-field>
-                        <mat-label>Помещение</mat-label>
-                        <mat-select formControlName="autoPlacement">
-                            <mat-option>Не устанавливать</mat-option>
-                            <mat-option *ngFor="let pl of placements" [value]="pl.id">
-                                {{ pl.name }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-
-                <div>
-                    <div class="w-[33%] mr-[25px]">
+                
+                <div class="flex">
+                    <div class="w-full mr-6">
+                        
                         <mat-form-field class="w-full">
                             <mat-label>Дата ввода в эксплуатацию</mat-label>
-                            <input matInput [matDatepicker]="dp3" formControlName="autoCommissioningDate">
+                            <input matInput [matDatepicker]="dp3" formControlName="autoCommissioningDate" class="w-full">
                             <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
                             <mat-datepicker #dp3 disabled="false"></mat-datepicker>
                         </mat-form-field>
+                        
+                    </div>
+    
+                    <div class="w-full">
+                        <div class="w-full">
+                            <mat-form-field class="w-full">
+                                <mat-label>Номер акта о вводе в эксплуатацию</mat-label>
+                                <input matInput placeholder="Номер акта" formControlName="autoCommissioningActNumber" class="w-full">
+                            </mat-form-field>
+                        </div>
                     </div>
                 </div>
-
-                <div>
-                    <div class="w-[33%] mr-[25px]">
-                        <mat-form-field class="w-full">
-                            <mat-label>Номер акта о вводе в эксплуатацию</mat-label>
-                            <input matInput placeholder="Номер акта" formControlName="autoCommissioningActNumber">
-                        </mat-form-field>
-                    </div>
-                </div>
-
             </div>
             <div>
                 @if (proccess) {
