@@ -16,6 +16,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { StorageService } from '../../services/storage/storage.service';
 import { Rent } from '../../models/rent/rent';
 import { Router } from '@angular/router';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-user-search',
@@ -28,6 +30,8 @@ import { Router } from '@angular/router';
     MatButtonModule, 
     MatIconModule,
     MatSelectModule,
+    MatRadioModule,
+    MatTooltipModule,
     MatDividerModule
   ],
   templateUrl: './user-search.component.html',
@@ -38,6 +42,9 @@ export class UserSearchComponent {
   placements : Placement[] = [];
 
   searchEquipmentForm : FormGroup;
+  isInventoryNumberSearchMode = false;
+  equipmentInputPlaceholderValue = "Название оборудования";
+  modeTooltipText = "Изменить на поиск по инв. номеру";
 
   constructor(
     private rentService : RentService,
@@ -81,8 +88,10 @@ export class UserSearchComponent {
   }
 
   searchByEquipmentName() {
-    let name = this.searchEquipmentForm.value.searchEquipmentValue;
-    this.equipmentService.getAll({ name : name }).subscribe({
+    let value = this.searchEquipmentForm.value.searchEquipmentValue;
+    let param = (this.isInventoryNumberSearchMode) ? { inventoryNumber : value } : { name : value };
+    console.log(param)
+    this.equipmentService.getAll(param).subscribe({
       next: (data : Equipment[]) => this.equipmentData = data,
       complete: () => this.searchEquipmentForm.patchValue({ equipment : this.equipmentData[0] })
     });
@@ -128,5 +137,13 @@ export class UserSearchComponent {
   resetSearchPlacement() {
     this.searchEquipmentForm.patchValue({searchPlacementValue : null});
     this.searchByPlacementName();
+  }
+
+  changeSearchMode() {
+    this.isInventoryNumberSearchMode = !this.isInventoryNumberSearchMode
+    this.equipmentInputPlaceholderValue = 
+      (this.isInventoryNumberSearchMode) ? "Инвентарный номер" : "Название оборудования";
+    this.modeTooltipText = 
+      (this.isInventoryNumberSearchMode) ? "Изменить на поиск по названию" : "Изменить на поиск по инв. номеру";
   }
 }

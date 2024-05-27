@@ -7,12 +7,22 @@
                 <div class="flex w-full">
                     <mat-form-field  class="w-full mr-[10px]">
                         <mat-label>Поиск оборудования</mat-label>
-                        <input matInput placeholder="Название оборудования" value="" formControlName="searchEquipmentValue">
+                        <input matInput [placeholder]="equipmentInputPlaceholderValue" value="" formControlName="searchEquipmentValue">
                     </mat-form-field>
-                    <button mat-icon-button color="primary" (click)="searchByEquipmentName()">
+                    <button mat-icon-button color="primary" (click)="searchByEquipmentName()" matTooltip="Найти">
                         <mat-icon>search</mat-icon>
                     </button>
-                    <button mat-icon-button color="primary" (click)="resetSearch()">
+                    <button mat-icon-button color="primary" (click)="changeSearchMode()" [matTooltip]="modeTooltipText">
+                        <mat-icon>
+                            @if (this.isInventoryNumberSearchMode) {
+                                numbers
+                            } @else {
+                                text_fields
+                            }
+                        </mat-icon>
+                    </button>
+                    
+                    <button mat-icon-button color="primary" (click)="resetSearch()" matTooltip="Сбросить поиск">
                         <mat-icon>refresh</mat-icon>
                     </button>
                 </div>
@@ -34,10 +44,10 @@
                             <mat-label>Поиск помещения</mat-label>
                             <input matInput placeholder="Название помещения" value="" formControlName="searchPlacementValue">
                         </mat-form-field>
-                        <button mat-icon-button color="primary" (click)="searchByPlacementName()">
+                        <button mat-icon-button color="primary" (click)="searchByPlacementName()" matTooltip="Найти">
                             <mat-icon>search</mat-icon>
                         </button>
-                        <button mat-icon-button color="primary" (click)="resetSearchPlacement()">
+                        <button mat-icon-button color="primary" (click)="resetSearchPlacement()" matTooltip="Сбросить поиск">
                             <mat-icon>refresh</mat-icon>
                         </button>
                     </div>
