@@ -44,7 +44,11 @@
                     <div class="w-[33%] mr-[25px]">
                         <mat-form-field class=" w-full">
                             <mat-label>Номер телефона</mat-label>
-                            <input matInput placeholder="Номер телефона" formControlName="phoneNumber">
+                            <input matInput type="text" placeholder="Номер телефона" formControlName="phoneNumber" maxlength="11">
+                            <mat-hint>Формат: 7XXXXXXXXXX</mat-hint>
+                            @if (responsibleForm.controls["phoneNumber"].hasError('pattern')) {
+                                <mat-error>Не соответствует формату <strong>7XXXXXXXXXX</strong></mat-error>
+                            }
                         </mat-form-field>
                     </div>
 

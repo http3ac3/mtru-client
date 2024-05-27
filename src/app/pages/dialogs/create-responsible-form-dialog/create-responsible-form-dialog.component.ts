@@ -8,7 +8,7 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatError, MatFormFieldModule, MatHint } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Responsible } from '../../../models/responsible/responsible';
@@ -37,16 +37,18 @@ import { AccessService } from '../../../services/access/access.service';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatHint,
+    MatError,
     NgFor
   ],
   templateUrl: './create-responsible-form-dialog.component.html',
   styleUrl: './create-responsible-form-dialog.component.css'
 })
+
 export class CreateResponsibleFormDialogComponent { 
   responsibleForm : FormGroup;
   dialogHeader = "Новый ответственный";
-  departments : Department[] = []
-  
+  departments : Department[] = [];
   constructor(
     @Inject(MAT_DIALOG_DATA) public data : Responsible,
     public dialogRef: MatDialogRef<CreateResponsibleFormDialogComponent>, 
@@ -60,7 +62,7 @@ export class CreateResponsibleFormDialogComponent {
       firstName : new FormControl(null, [Validators.required]),
       patronymic : new FormControl(),
       position : new FormControl(null, [Validators.required]),
-      phoneNumber : new FormControl(null, [Validators.required, Validators.pattern("79[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]")]),
+      phoneNumber : new FormControl(null, [Validators.required, Validators.pattern("7[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]")]),
       financiallyResponsible : new FormControl(),
       department : new FormControl(null, [Validators.required])
     });
@@ -163,3 +165,4 @@ export class CreateResponsibleFormDialogComponent {
       formValues.phoneNumber, formValues.financiallyResponsible, formValues.department);
   }
 }
+

@@ -14,6 +14,10 @@
                         <mat-form-field class="w-full">
                             <mat-label>Логин для входа</mat-label>
                             <input matInput placeholder="Логин" formControlName="username">
+                            @if (userForm.controls["username"].hasError('minlength')) {
+                                <mat-error>Мин. длина: <strong>8 символов</strong></mat-error>
+                            }
+                            
                         </mat-form-field>
                     </div>
                     
@@ -21,7 +25,10 @@
                         <div class="w-full mr-[25px]">
                             <mat-form-field class="w-full">
                                 <mat-label>Пароль</mat-label>
-                                <input matInput type="password" placeholder="Пароль" formControlName="password">
+                                <input matInput placeholder="Пароль" formControlName="password">
+                                @if (userForm.controls["password"].hasError('minlength')) {
+                                    <mat-error>Мин. длина: <strong>8 символов</strong></mat-error>
+                                }
                             </mat-form-field>
                         </div>
                     }
