@@ -25,6 +25,7 @@ import { Responsible } from '../../../models/responsible/responsible';
 import { StorageService } from '../../../services/storage/storage.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-equipment-form-dialog',
@@ -67,7 +68,8 @@ export class CreateEquipmentFormDialogComponent {
     private responsibleService : ResponsibleService,
     private placementService : PlacementService,
     private equipmentService : EquipmentService,
-    private storageService : StorageService
+    private storageService : StorageService,
+    private router: Router
   ) {
     this.equipmentForm = new FormGroup({
       id : new FormControl(),
@@ -174,7 +176,9 @@ export class CreateEquipmentFormDialogComponent {
       complete: () => {
         alert(`Информация о ${equipment.name} (инв. № ${equipment.inventoryNumber}) была успешно сохранена`);
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([window.location.pathname.replace("/", "")]);
+        }); 
       },
       error: (err) => {
         alert('При сохранении информации произошла ошибка! Проверьте правильность заполнения формы');
@@ -197,7 +201,9 @@ export class CreateEquipmentFormDialogComponent {
       complete: () => {
         alert('Данные были успешно обновлены!');
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([window.location.pathname.replace("/", "")]);
+        }); 
       },
       error: (err) => {
         alert(`Оборудование с инвентарным номером "${equipment.inventoryNumber}" уже существует`);
@@ -214,7 +220,9 @@ export class CreateEquipmentFormDialogComponent {
             alert(`Данные об оборудовании о ` +
               `${equipment.name} (инв. № ${equipment.inventoryNumber}) были успешно удалены!`);
             this.dialogRef.close();
-            window.location.reload();
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate([window.location.pathname.replace("/", "")]);
+            }); 
           },
           error: (err) => {
             if (err.status === 404) {

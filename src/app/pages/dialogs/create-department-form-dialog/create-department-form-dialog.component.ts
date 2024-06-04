@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Department } from '../../../models/department/department';
 import { DepartmentService } from '../../../services/department/department.service';
 import { AccessService } from '../../../services/access/access.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-department-form-dialog',
@@ -41,7 +42,8 @@ export class CreateDepartmentFormDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data : Department,
     public dialogRef: MatDialogRef<CreateDepartmentFormDialogComponent>,
     private departmentService : DepartmentService,
-    public accessService : AccessService
+    public accessService : AccessService,
+    private router : Router
   ) { }
 
   ngOnInit() {
@@ -67,7 +69,9 @@ export class CreateDepartmentFormDialogComponent {
       complete: () => {
         alert(`Структурное подразделение "${this.department.name}" было успешно сохранено!`)
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([window.location.pathname.replace("/", "")]);
+        }); 
       },
       error: (err) => {
         console.log(err.status === 400);
@@ -87,7 +91,9 @@ export class CreateDepartmentFormDialogComponent {
       complete: () => {
         alert('Данные были успешно обновлены!');
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([window.location.pathname.replace("/", "")]);
+        }); 
       },
       error: (err) => {
         alert(`Структурное подраздление "${this.department.name}" уже существует`);
@@ -101,7 +107,9 @@ export class CreateDepartmentFormDialogComponent {
       complete: () => {
         alert(`Данные о "${this.department.name}" были успешно удалены!`);
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([window.location.pathname.replace("/", "")]);
+        }); 
       },
       error: (err) => {
         if (err.status === 404) {

@@ -20,6 +20,7 @@ import { Department } from '../../../models/department/department';
 import { NgFor } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { AccessService } from '../../../services/access/access.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-responsible-form-dialog',
@@ -54,7 +55,8 @@ export class CreateResponsibleFormDialogComponent {
     public dialogRef: MatDialogRef<CreateResponsibleFormDialogComponent>, 
     private departmentService : DepartmentService,
     private responsibleService : ResponsibleService,
-    public accessService : AccessService
+    public accessService : AccessService,
+    private router: Router
   ) {
     this.responsibleForm = new FormGroup({
       id : new FormControl(),
@@ -96,7 +98,9 @@ export class CreateResponsibleFormDialogComponent {
         alert(`Информация о "${responsible.lastName} ${responsible.firstName} ${responsible.patronymic}"
               была успешно сохранена`);
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([window.location.pathname.replace("/", "")]);
+        }); 
       },
       error: (err) => {
         alert('При сохранении информации произошла ошибка! Проверьте правильность заполнения формы');
@@ -113,7 +117,9 @@ export class CreateResponsibleFormDialogComponent {
       complete: () => {
         alert('Данные были успешно обновлены!');
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([window.location.pathname.replace("/", "")]);
+        }); 
       },
       error: (err) => {
         alert(`Ответственный с номером телефона "${responsible.phoneNumber}" уже существует`);
@@ -131,7 +137,9 @@ export class CreateResponsibleFormDialogComponent {
             alert(`Данные о данные о ` +
               `${responsible.lastName} ${responsible.firstName} ${responsible.patronymic} были успешно удалены!`);
             this.dialogRef.close();
-            window.location.reload();
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate([window.location.pathname.replace("/", "")]);
+            }); 
           },
           error: (err) => {
             if (err.status === 404) {

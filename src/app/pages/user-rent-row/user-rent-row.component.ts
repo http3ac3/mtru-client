@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatFormField, MatInput, MatInputModule } from '@angular/material/input';
 import { Rent } from '../../models/rent/rent';
 import { RentService } from '../../services/rent/rent.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-rent-row',
@@ -15,7 +16,7 @@ import { RentService } from '../../services/rent/rent.service';
 export class UserRentRowComponent {
   @Input() rent : any;
 
-  constructor(private rentService : RentService) {}
+  constructor(private rentService : RentService, private router: Router) {}
 
   closeRent() {
     this.rentService.update(this.rent.id).subscribe({
@@ -24,6 +25,8 @@ export class UserRentRowComponent {
         ' успешно завершено!')
       }
     });
-    window.location.reload();
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([window.location.pathname.replace("/", "")]);
+    }); 
   }
 }

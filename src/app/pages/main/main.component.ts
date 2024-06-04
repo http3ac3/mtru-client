@@ -15,12 +15,12 @@ import { NgStyle } from '@angular/common';
   selector: 'app-main',
   standalone: true,
   imports: [
-    MatToolbarModule, 
-    MatIconModule, 
-    MatButtonModule, 
-    FormsModule, 
-    MatInputModule, 
-    MatFormFieldModule, 
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
     HeaderComponent,
     RouterLink,
     NgStyle
@@ -29,9 +29,9 @@ import { NgStyle } from '@angular/common';
   styleUrl: './main.component.css'
 })
 export class MainComponent {
-  
+
   constructor (
-    private router: Router, 
+    private router: Router,
     public authService: AuthService,
     private storageService : StorageService
   ) { }

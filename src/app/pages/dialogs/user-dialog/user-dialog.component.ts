@@ -13,6 +13,7 @@ import { ResponsibleService } from '../../../services/responsible/responsible.se
 import { UserService } from '../../../services/user/user.service';
 import { User } from '../../../models/user/user';
 import { Role } from '../../../models/role/role';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dialog',
@@ -45,7 +46,8 @@ export class UserDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data : User,
     public dialogRef: MatDialogRef<UserDialogComponent>,
     private responsibleService : ResponsibleService,
-    private userService : UserService
+    private userService : UserService,
+    private router: Router
   ) {
     this.userForm = new FormGroup({
       id : new FormControl(),
@@ -109,7 +111,9 @@ export class UserDialogComponent {
         alert(`Удаление аккаунта пользователя ` + 
         `${formValues.responsible.lastName} ${formValues.responsible.firstName} ${formValues.responsible.patronymic} прошло успешно!`);
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([window.location.pathname.replace("/", "")]);
+        }); 
       },
       error: (err) => {
         alert('При удалении аккаунта возникла ошибка');
@@ -139,7 +143,9 @@ export class UserDialogComponent {
       complete: () => {
         alert('Создание пользователя прошло успешно!');
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([window.location.pathname.replace("/", "")]);
+        }); 
       }, 
       error: (err) => { alert('Пользователь с таким логином уже существует!'); }
     })

@@ -21,11 +21,11 @@ import { AccessService } from '../../../services/access/access.service';
   selector: 'app-create-category-form-dialog',
   standalone: true,
   imports: [FormsModule,
-    MatDialogTitle, 
-    MatDialogContent, 
-    MatDialogActions, 
-    MatFormField, 
-    MatLabel, 
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatFormField,
+    MatLabel,
     MatDialogClose,
     MatInput,
     MatButtonModule,
@@ -39,7 +39,7 @@ export class CreateCategoryFormDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Category,
-    public dialogRef: MatDialogRef<CreateCategoryFormDialogComponent>, 
+    public dialogRef: MatDialogRef<CreateCategoryFormDialogComponent>,
     public categoryService : CategoryService,
     public accessService : AccessService,
     public router : Router
@@ -51,7 +51,7 @@ export class CreateCategoryFormDialogComponent {
       this.category = this.data;
     }
   }
-  
+
   onCancel() : void {
     this.dialogRef.close();
   }
@@ -68,7 +68,9 @@ export class CreateCategoryFormDialogComponent {
       complete: () => {
         alert(`Категория ${this.category.name} была успешно сохранена!`)
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([window.location.pathname.replace("/", "")]);
+        }); 
       },
       error: (err) => {
         console.log(err.status === 400);
@@ -76,7 +78,7 @@ export class CreateCategoryFormDialogComponent {
       }
     });
   }
-  
+
   onCategoryChange() {
     this.category.name = this.category.name.trim();
     if (!confirm(`Вы уверены, что хотите изменить выбранную категорию?`)) return;
@@ -89,7 +91,9 @@ export class CreateCategoryFormDialogComponent {
       complete: () => {
         alert('Данные были успешно обновлены!');
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['categories']);
+        }); 
       },
       error: (err) => {
         alert('Такая категория уже существует');
@@ -103,7 +107,9 @@ export class CreateCategoryFormDialogComponent {
       complete: () => {
         alert('Данные были успешно удалены!');
         this.dialogRef.close();
-        window.location.reload();
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['categories']);
+        }); 
       },
       error: (err) => {
         if (err.status === 404) {
@@ -115,5 +121,5 @@ export class CreateCategoryFormDialogComponent {
         }
       }
     });
-  }  
+  }
 }

@@ -45,7 +45,7 @@ export class CategoryComponent implements AfterViewInit{
     private dialog : MatDialog,
     private storageService : StorageService,
     private accessService : AccessService,
-    private router : Router
+    private router : Router,
   ) { }
 
   ngOnInit() {
