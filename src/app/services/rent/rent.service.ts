@@ -2,8 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Rent } from '../../models/rent/rent';
+import { environment } from '../../../enviroments/enviroment';
 
-const RENT_API_URL = 'http://localhost:8080/api/v1/rents'
+const RENT_API_URL = `${environment.getBaseUrl()}/api/v1/rents`
 
 @Injectable({
   providedIn: 'root'

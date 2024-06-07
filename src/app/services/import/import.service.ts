@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
+import { environment } from '../../../enviroments/enviroment';
 
-const IMPORT_URL = 'http://localhost:8080/api/v1/import'
+const IMPORT_URL = `${environment.getBaseUrl()}/api/v1/import`
 
 @Injectable({
   providedIn: 'root'

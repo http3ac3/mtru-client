@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map } from 'rxjs';
 import { User } from '../../models/user/user';
+import { environment } from '../../../enviroments/enviroment';
 
-const USER_API = 'http://localhost:8080/api/v1/users'
+const USER_API = `${environment.getBaseUrl()}/api/v1/users`
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class UserService {
   }
 
   create(user : User) : Observable<string> {
-    return this.http.post('http://localhost:8080/auth/register', user, {responseType : 'text'});
+    return this.http.post(`${environment.getBaseUrl()}/auth/register`, user, {responseType : 'text'});
   } 
 
   delete(id : number) : Observable<string> {

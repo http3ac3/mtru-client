@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Department } from '../../models/department/department';
+import { environment } from '../../../enviroments/enviroment';
 
-const DEPARTMENTS_API_URL = 'http://localhost:8080/api/v1/departments'
+const DEPARTMENTS_API_URL = `${environment.getBaseUrl()}/api/v1/departments`
 
 @Injectable({
   providedIn: 'root'

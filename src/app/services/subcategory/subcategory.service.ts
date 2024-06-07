@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subcategory } from '../../models/subcategory/subcategory';
 import { Category } from '../../models/category/category';
+import { environment } from '../../../enviroments/enviroment';
 
-const API_URL = 'http://localhost:8080/api/v1'
+const API_URL = `${environment.getBaseUrl()}/api/v1`
 
 @Injectable({
   providedIn: 'root'

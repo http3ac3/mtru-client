@@ -1,24 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
-import { MainComponent } from './pages/main/main.component';
-import { EquipmentComponent } from './pages/equipment/equipment.component';
-import { ResponsibleComponent } from './pages/responsible/responsible.component';
-import { PlacementComponent } from './pages/placement/placement.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { SubcategoryComponent } from './pages/subcategory/subcategory.component';
-import { RentComponent } from './pages/rent/rent.component';
-import { CreateRentComponent } from './pages/create-rent/create-rent.component';
-import { UserSearchComponent } from './pages/user-search/user-search.component';
-import { UserRentsComponent } from './pages/user-rents/user-rents.component';
 import { AuthService } from './services/Auth/auth.service';
-import { Category } from './models/category/category';
-import { DepartmentComponent } from './pages/department/department.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { StorageService } from './services/storage/storage.service';
 import { Role } from './models/role/role';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { CreateModelsDialogComponent } from './pages/dialogs/create-models-dialog/create-models-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -60,7 +48,6 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     this.isLoggedIn = this.storageService.isLoggedIn();
-
     if (this.isLoggedIn) {
       this.user = this.storageService.getUser();
       this.responsible = this.storageService.getResponsible();

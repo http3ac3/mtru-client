@@ -2,8 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Equipment } from '../../models/equipment/equipment';
+import { environment } from '../../../enviroments/enviroment';
 
-const EQUIPMENT_API_URL = 'http://localhost:8080/api/v1/equipment'
+const EQUIPMENT_API_URL = `${environment.getBaseUrl()}/api/v1/equipment`
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +30,11 @@ export class EquipmentService {
   }
 
   getQrCodeImage(inventoryNumber : string) : Observable<any> {
-    return this.http.get<any>('http://localhost:8080/api/v1/qr/' + inventoryNumber, {responseType: 'blob' as 'json'});
+    return this.http.get<any>(`${environment.getBaseUrl()}/api/v1/qr/` + inventoryNumber, {responseType: 'blob' as 'json'});
   }
 
   getExportExcelFile(params? : any) : Observable<any> {
-    return this.http.get<any>('http://localhost:8080/api/v1/export/excel', {
+    return this.http.get<any>(`${environment.getBaseUrl()}/api/v1/export/excel`, {
       responseType: 'blob' as 'json',
       params : params ? this.getHttpParams(params) : {}
     });
